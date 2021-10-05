@@ -1,25 +1,16 @@
 .CardIcon {
-    margin-left: 20px;
-    margin-right: 16px;
+  margin-left: 20px;
+  margin-right: 16px;
+}
+.LabelForm {
+  font-weight: lighter;
+  color: black;
+  margin-top: 1rem;
+  &:first-child {
+    margin-top: 0rem;
   }
-  .LabelForm {
-    font-weight: lighter;
-    color: black;
-    margin-top: 1rem;
-    &:first-child {
-      margin-top: 0rem;
-    }
-  }
-  .CheckIcon{
-    margin-left: auto;
-    margin-right: 17px;
-  }
-  .btn{
-    border-radius: 100%;
-    border:none;
-    width: 25px;
-    height: auto;
-    margin-bottom: 0px;
-    background-color: rgba(196, 196, 196, 1);
-    color: white;
-  }
+}
+.CheckIcon {
+  margin-left: auto;
+  margin-right: 17px;
+}

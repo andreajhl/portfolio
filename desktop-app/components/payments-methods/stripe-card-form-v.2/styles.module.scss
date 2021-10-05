@@ -23,6 +23,21 @@
     border-color: #80bdff;
     outline: 0;
   }
+
+  &::placeholder {
+    color: var(--gray-2);
+  }
+}
+
+div.InputElement {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+div.InputElement > * {
+  flex: 1;
 }
 
 .SubmitButton {

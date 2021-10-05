@@ -18,6 +18,7 @@ import { FormattedMessage } from "react-intl";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import PaymentMethodFormLabel from "../form-label-v.2";
 import PaymentMethodFormElement from "../form-element-v.2";
+import { PaymentMethodFormHeader } from "../form-header-v.2";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 
 const scriptSrc = "https://js.stripe.com/v3/";
@@ -99,41 +100,52 @@ function StripeFormV2({
           onClose={closePaymentModal}
         >
           <Maybe it={expanded}>
-            <button className={styles.btn} onClick={closePaymentModal}>
-              <i className="fa fa-times text-white" />
-            </button>
-            {showCardForm ? (
-              <Elements>
-                <StripeCardFormV2
+            <PaymentMethodFormHeader
+              title={
+                <Maybe
+                  it={showCardForm}
+                  orElse={
+                    <FormattedMessage defaultMessage="SELECCIONA UNA TARJETA" />
+                  }
+                >
+                  <FormattedMessage defaultMessage="DETALLES DE TU TARJETA" />
+                </Maybe>
+              }
+              closePaymentModal={closePaymentModal}
+            />
+            <div className="container py-4">
+              {showCardForm ? (
+                <Elements>
+                  <StripeCardFormV2
+                    contractPrice={contractPrice}
+                    contractReference={contractReference}
+                    discountCouponId={discountCouponId}
+                    celebrityId={celebrityId}
+                  />
+                </Elements>
+              ) : (
+                <StripeCustomerSourcesV2
+                  onDeleteSource={onDeleteSource}
                   contractPrice={contractPrice}
                   contractReference={contractReference}
                   discountCouponId={discountCouponId}
                   celebrityId={celebrityId}
-                  setShowCardForm={setShowCardForm}
+                  availableSources={userAvailableSources}
                 />
-              </Elements>
-            ) : (
-              <StripeCustomerSourcesV2
-                onDeleteSource={onDeleteSource}
-                contractPrice={contractPrice}
-                contractReference={contractReference}
-                discountCouponId={discountCouponId}
-                celebrityId={celebrityId}
-                availableSources={userAvailableSources}
-              />
-            )}
-            {userAvailableSources.length > 0 ? (
-              <SubmitButton
-                variant="tertiary"
-                onClick={() => setShowCardForm((value) => !value)}
-              >
-                {!showCardForm ? (
-                  <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
-                ) : (
-                  <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
-                )}
-              </SubmitButton>
-            ) : null}
+              )}
+              {userAvailableSources.length > 0 ? (
+                <SubmitButton
+                  variant="tertiary"
+                  onClick={() => setShowCardForm((value) => !value)}
+                >
+                  {!showCardForm ? (
+                    <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
+                  ) : (
+                    <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
+                  )}
+                </SubmitButton>
+              ) : null}
+            </div>
           </Maybe>
         </PaymentMethodFormElement>
       </PaymentMethodFormWrapper>

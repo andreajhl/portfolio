@@ -249,7 +249,7 @@ function StripeCardFormModal({
         <label className={styles.LabelForm}>
           <FormattedMessage defaultMessage="Datos de la tarjeta" />
         </label>
-        <div>
+        <div className={styles.InputElement}>
           <CardElement
             onChange={(event) => {
               if (event.complete) {
