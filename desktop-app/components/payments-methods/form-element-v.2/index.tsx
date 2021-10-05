@@ -16,8 +16,9 @@ interface PaymentMethodFormElementProps {
 const offCanvasStyle: CustomOffCanvasProps["style"] = {
   content: {
     backgroundColor: "white",
-    overflow: "hidden",
+    overflow: "scroll",
     borderRadius: "8px 8px 0 0",
+    maxHeight: "100vh",
   },
 };
 

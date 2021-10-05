@@ -16,7 +16,9 @@ import {
 } from "react-app/src/state/ducks/payments/actions";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
 import { SpreedlyCardForm } from "../spreedly-card-form";
-import SpreedlyCustomSources from "../spreedly-customer-sources";
+import SpreedlyCustomSourcesV2 from "../spreedly-customer-sources-v.2";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { PaymentMethodFormHeader } from "../form-header-v.2";
 
 declare global {
   interface Window {
@@ -102,21 +104,31 @@ function SpreedlyFormV2({
         expanded={expanded}
         onClose={closePaymentModal}
       >
-        <button className={styles.btn} onClick={closePaymentModal}>
-          <i className="fa fa-times text-white" />
-        </button>
-        {(() => {
-          if (isLoading) {
-            return <LoadingSpinner />;
+        <PaymentMethodFormHeader
+          title={
+            <Maybe
+              it={mode === "addSource"}
+              orElse={
+                <FormattedMessage defaultMessage="SELECCIONA UNA TARJETA" />
+              }
+            >
+              <FormattedMessage defaultMessage="DETALLES DE TU TARJETA" />
+            </Maybe>
           }
-          if (userSources.length === 0 || mode === "addSource") {
-            return (
-              <>
-                <SpreedlyCardForm
-                  contractReference={contractReference}
-                  discountCouponId={discountCouponId}
-                />
-                {userSources.length !== 0 && (
+          closePaymentModal={closePaymentModal}
+        />
+        <Maybe it={!isLoading} orElse={<LoadingSpinner />}>
+          <div className="container py-2">
+            <Maybe
+              it={userSources.length === 0 || mode === "addSource"}
+              orElse={
+                <>
+                  <SpreedlyCustomSourcesV2
+                    sources={userSources}
+                    contractReference={contractReference}
+                    discountCouponId={discountCouponId}
+                    onDeleteSource={(index) => removeSpreedlySource(index)}
+                  />
                   <SubmitButton
                     onClick={() => toggleMode()}
                     variant="tertiary"
@@ -124,20 +136,16 @@ function SpreedlyFormV2({
                       marginTop: "0.8rem",
                     }}
                   >
-                    <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
+                    <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
                   </SubmitButton>
-                )}
-              </>
-            );
-          } else {
-            return (
-              <>
-                <SpreedlyCustomSources
-                  sources={userSources}
-                  contractReference={contractReference}
-                  discountCouponId={discountCouponId}
-                  onDeleteSource={(index) => removeSpreedlySource(index)}
-                />
+                </>
+              }
+            >
+              <SpreedlyCardForm
+                contractReference={contractReference}
+                discountCouponId={discountCouponId}
+              />
+              <Maybe it={userSources.length !== 0}>
                 <SubmitButton
                   onClick={() => toggleMode()}
                   variant="tertiary"
@@ -145,12 +153,12 @@ function SpreedlyFormV2({
                     marginTop: "0.8rem",
                   }}
                 >
-                  <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
+                  <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
                 </SubmitButton>
-              </>
-            );
-          }
-        })()}
+              </Maybe>
+            </Maybe>
+          </div>
+        </Maybe>
       </PaymentMethodFormElement>
     </PaymentMethodFormWrapper>
   );
