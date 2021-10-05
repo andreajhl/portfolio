@@ -28,7 +28,7 @@ function ContractPriceSummary() {
           <span className={styles.BoldText}>
             <FormattedMessage defaultMessage="Precio Original" />
           </span>
-          <div>
+          <div className={styles.OriginalPriceWrapper}>
             <Maybe it={contractHasCelebrityDiscount}>
               <span className={styles.OriginalPrice}>
                 <OriginalPrice />

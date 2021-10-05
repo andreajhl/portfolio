@@ -35,3 +35,13 @@
 .StarSelected svg {
   vertical-align: baseline;
 }
+
+.OriginalPriceWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.OriginalPriceWrapper > * + * {
+  margin-left: 0.4em;
+}
