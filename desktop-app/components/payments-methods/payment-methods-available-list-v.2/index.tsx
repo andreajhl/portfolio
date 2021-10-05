@@ -24,7 +24,6 @@ type PaymentMethodsAvailableListProps = {
   }[];
   contractPrice: number;
   contractReference: string;
-  onBuyerDataIncomplete: () => void;
   discountCouponId: number | null;
   celebrityId: number;
 };
@@ -33,7 +32,6 @@ function PaymentMethodsAvailableListV2({
   payment_methods,
   contractPrice,
   contractReference,
-  onBuyerDataIncomplete,
   discountCouponId,
   celebrityId,
 }: PaymentMethodsAvailableListProps) {
@@ -102,7 +100,6 @@ function PaymentMethodsAvailableListV2({
               discountCouponId={discountCouponId}
               onToggle={() => handleChangeCurrentOption(el.paymentMethodType)}
               contractReference={contractReference}
-              handleBuyerDataIncomplete={onBuyerDataIncomplete}
               celebrityId={celebrityId}
               contractPrice={contractPrice}
               closePaymentModal={closePaymentModal}

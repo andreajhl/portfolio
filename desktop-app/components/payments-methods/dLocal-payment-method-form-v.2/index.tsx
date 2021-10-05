@@ -59,7 +59,6 @@ type DLocalPaymentMethodFormProps = {
     redirect: boolean;
   }>;
   discountCouponId: null | number;
-  handleBuyerDataIncomplete: () => void;
   celebrityId: number;
   contractPrice: number;
   closePaymentModal: () => void;
