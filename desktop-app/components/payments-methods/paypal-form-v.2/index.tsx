@@ -20,6 +20,7 @@ import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import PaymentMethodFormLabel from "../form-label-v.2";
 import PaymentMethodFormElement from "../form-element-v.2";
+import { PaymentMethodFormHeader } from "../form-header-v.2";
 
 const INTENT = "authorize";
 const CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_KEY;
@@ -113,7 +114,6 @@ function PaypalFormV2({
       <PaymentMethodFormWrapper>
         <PaymentMethodFormLabel role="button" onToggle={onToggle}>
           <PaypalIcon className={styles.CardIcon} />
-
           <span className={styles.Label}>Paypal</span>
           {expanded ? (
             <DotCircle className={styles.CheckIcon} />
@@ -128,35 +128,33 @@ function PaypalFormV2({
           onClose={closePaymentModal}
         >
           <Maybe it={expanded}>
-            <button className={styles.btn} onClick={closePaymentModal}>
-              <i className="fa fa-times text-white" />
-            </button>
-            <p>
-              <FormattedMessage
-                defaultMessage="Haz clic en el siguiente botón para hacer el pago utilizando tu
+            <PaymentMethodFormHeader closePaymentModal={closePaymentModal} />
+            <div className="container py-4">
+              <p>
+                <FormattedMessage
+                  defaultMessage="Haz clic en el siguiente botón para hacer el pago utilizando tu
               cuenta de paypal."
-              />
-            </p>
-
-            <p>
-              <FormattedMessage
-                defaultMessage="Serás redirigido a la página oficial de paypal para continuar con
+                />
+              </p>
+              <p>
+                <FormattedMessage
+                  defaultMessage="Serás redirigido a la página oficial de paypal para continuar con
               el pago"
+                />
+              </p>
+              <PaypalReactButton
+                contractReference={contractReference}
+                contractPrice={contractPrice}
+                onPayPalButtonError={(err) => console.log(err)}
+                onPayPalButtonCancel={(e) =>
+                  console.log(e, "onPayPalButtonCancel")
+                }
+                onPayPalButtonApprove={onPayPalButtonApprove}
               />
-            </p>
-
-            <PaypalReactButton
-              contractReference={contractReference}
-              contractPrice={contractPrice}
-              onPayPalButtonError={(err) => console.log(err)}
-              onPayPalButtonCancel={(e) =>
-                console.log(e, "onPayPalButtonCancel")
-              }
-              onPayPalButtonApprove={onPayPalButtonApprove}
-            />
-          </Maybe>
-          <Maybe it={errorMessage}>
-            <WarningMessage message={errorMessage} />
+              <Maybe it={errorMessage}>
+                <WarningMessage message={errorMessage} />
+              </Maybe>
+            </div>
           </Maybe>
         </PaymentMethodFormElement>
       </PaymentMethodFormWrapper>
