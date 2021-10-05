@@ -120,7 +120,7 @@ export function fetchDiscountCouponReducer(
   switch (action.type) {
     case types.APPLY_DISCOUNT_COUPON:
       return {
-        ...state,
+        ...applyDiscountCouponInitialState,
         loading: true,
       };
     case types.APPLY_DISCOUNT_COUPON_SUCCESS:
