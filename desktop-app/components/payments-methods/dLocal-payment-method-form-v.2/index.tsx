@@ -22,6 +22,7 @@ import PaymentMethodFormWrapper from "../form-wrapper";
 import styles from "./styles.module.scss";
 import { DLocalPersonalInfoFormV2 } from "../dLocal-personal-info-form-v.2";
 import { defineMessages, useIntl } from "react-intl";
+import { PaymentMethodFormHeader } from "../form-header-v.2";
 
 export const AVAILABLE_PAYMENTS_METHODS_LABEL = {
   CREDIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Crédito" />,
@@ -128,6 +129,10 @@ function DLocalPaymentMethodFormV2({
     }
   };
 
+  const isCardPaymentMethod = isADLocalPaymentMethodWithCardRequired(
+    paymentMethodType
+  );
+
   return (
     <PaymentMethodFormWrapper>
       <PaymentMethodFormLabel onToggle={onToggle}>
@@ -147,39 +152,53 @@ function DLocalPaymentMethodFormV2({
         expanded={expanded}
         onClose={closePaymentModal}
       >
-        <button className={styles.btn} onClick={closePaymentModal}>
-          <i className="fa fa-times text-white" />
-        </button>
-        <DLocalPersonalInfoFormV2 errorMessage={buyerDataError} />
+        <PaymentMethodFormHeader
+          title={
+            <Maybe
+              it={isCardPaymentMethod}
+              orElse={
+                <FormattedMessage defaultMessage="DETALLES DE TU MÉTODO" />
+              }
+            >
+              <FormattedMessage defaultMessage="DETALLES DE TU TARJETA" />
+            </Maybe>
+          }
+          closePaymentModal={closePaymentModal}
+        />
         <Maybe it={expanded}>
-          <Maybe
-            it={isADLocalPaymentMethodWithCardRequired(paymentMethodType)}
-            orElse={
-              <DLocalSelectPaymentMethod
-                onStartPayment={(paymentMethodId) =>
-                  onStartRegisterPayment(null, paymentMethodId)
+          <div className="container py-4">
+            <DLocalPersonalInfoFormV2 errorMessage={buyerDataError} />
+            <div className="pt-2">
+              <Maybe
+                it={isCardPaymentMethod}
+                orElse={
+                  <DLocalSelectPaymentMethod
+                    onStartPayment={(paymentMethodId) =>
+                      onStartRegisterPayment(null, paymentMethodId)
+                    }
+                    paymentMethodType={paymentMethodType}
+                    paymentsMethodsAvailable={paymentsMethodsAvailable}
+                    disabled={paymentInProcess}
+                    paymentInProcess={paymentInProcess}
+                  />
                 }
-                paymentMethodType={paymentMethodType}
-                paymentsMethodsAvailable={paymentsMethodsAvailable}
-                disabled={paymentInProcess}
-                paymentInProcess={paymentInProcess}
+              >
+                <DLocalFormCard
+                  paymentMethodType={paymentMethodType}
+                  paymentsMethodsAvailable={paymentsMethodsAvailable}
+                  paymentInProcess={paymentInProcess}
+                  handleStartPayment={onStartRegisterPayment}
+                  disabled={paymentInProcess}
+                />
+              </Maybe>
+            </div>
+            <Maybe it={paymentError !== ""}>
+              <WarningMessage
+                className={styles.PaymentErrorMessage}
+                message={paymentError}
               />
-            }
-          >
-            <DLocalFormCard
-              paymentMethodType={paymentMethodType}
-              paymentsMethodsAvailable={paymentsMethodsAvailable}
-              paymentInProcess={paymentInProcess}
-              handleStartPayment={onStartRegisterPayment}
-              disabled={paymentInProcess}
-            />
-          </Maybe>
-        </Maybe>
-        <Maybe it={paymentError !== ""}>
-          <WarningMessage
-            className={styles.PaymentErrorMessage}
-            message={paymentError}
-          />
+            </Maybe>
+          </div>
         </Maybe>
       </PaymentMethodFormElement>
     </PaymentMethodFormWrapper>
