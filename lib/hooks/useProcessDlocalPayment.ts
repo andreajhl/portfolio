@@ -1,21 +1,14 @@
 import useBuyerDataState from "lib/hooks/useBuyerDataState";
+import isSafariBrowser from "../utils/isSafariBrowser";
 import useProcessPayment from "./useProcessPayment";
 import useTrackContractPayment from "./useTrackContractPayment";
+
+const GATEWAY_NAME = "DLOCAL";
 
 const STATUS_TO_PROCEED = ["PAID", "AUTHORIZED", "PENDING"];
 
 const canProceed = (chargeStatus: string) =>
   STATUS_TO_PROCEED.includes(chargeStatus);
-
-function continueToDlocalPaymentPage(redirectUri: string) {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(
-    window?.navigator?.userAgent
-  );
-  if (isSafari) {
-    return window?.location?.replace?.(redirectUri);
-  }
-  window?.open?.(redirectUri);
-}
 
 type SuccessResponse = {
   requiredRedirect: boolean;
@@ -30,29 +23,31 @@ type DlocalData = {
 };
 
 function useProcessDlocalPayment() {
-  const processPayment = useProcessPayment();
+  const { processPayment, finishPaymentProcessing } = useProcessPayment();
   const buyerData = useBuyerDataState();
   const trackContractPayment = useTrackContractPayment();
+
+  async function processDlocalPayment(paymentData: DlocalData) {
+    const response = await processPayment({
+      gateway: GATEWAY_NAME,
+      ...buyerData,
+      ...paymentData,
+    });
+    await onRequestCompleted(response);
+  }
 
   async function onRequestCompleted(response: SuccessResponse) {
     if (!canProceed(response.chargeStatus)) {
       throw response.statusDetails;
     }
     if (response.requiredRedirect) {
-      return continueToDlocalPaymentPage(response.redirectUri);
+      if (isSafariBrowser()) {
+        return window?.location?.replace?.(response.redirectUri);
+      }
+      window?.open?.(response.redirectUri);
     }
-    trackContractPayment({ paymentMethod: "Dlocal" });
-  }
-
-  async function processDlocalPayment(paymentData: DlocalData) {
-    return processPayment(
-      {
-        gateway: "DLOCAL",
-        ...buyerData,
-        ...paymentData,
-      },
-      onRequestCompleted
-    );
+    trackContractPayment({ paymentMethod: GATEWAY_NAME });
+    await finishPaymentProcessing(GATEWAY_NAME);
   }
 
   return processDlocalPayment;

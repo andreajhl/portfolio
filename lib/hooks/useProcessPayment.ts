@@ -21,32 +21,27 @@ function useProcessPayment() {
   const stars = useDiscountStarsSelected()[0];
   const discountCouponId = useCouponDataState()?.couponData?.id;
 
-  async function finishPaymentProcessing(paymentData: PaymentData) {
+  async function finishPaymentProcessing(paymentGateway: GatewayNameType) {
     if (!checkFlutterWindowsInstance()) {
       await router.push(getPurchaseSummaryPath(contractReference));
     } else {
       SubmitCallbackInFlutterWebview({
-        paymentType: paymentData.gateway?.toLowerCase(),
+        paymentType: paymentGateway?.toLowerCase?.(),
       });
     }
   }
 
-  async function processPayment(
-    paymentData: PaymentData,
-    onRequestCompleted: (response: any) => Promise<any>
-  ) {
-    const response = await processPaymentRequest({
+  function processPayment(paymentData: PaymentData) {
+    return processPaymentRequest({
       contractReference,
       stars,
       discountCouponId,
       locale,
       ...paymentData,
     });
-    await onRequestCompleted(response);
-    await finishPaymentProcessing(paymentData);
   }
 
-  return processPayment;
+  return { processPayment, finishPaymentProcessing };
 }
 
 export default useProcessPayment;

@@ -30,4 +30,4 @@ export const DLOCAL_PAYMENT_METHODS_WITH_CARD_REQUIRED = [
   "CREDIT_CARD",
 ];
 
-export const GATEWAYS = ["STRIPE", "PAYPAL", "SPREEDLY", "DLOCAL"];
+export const GATEWAYS = ["STRIPE", "PAYPAL", "SPREEDLY", "DLOCAL"] as const;
