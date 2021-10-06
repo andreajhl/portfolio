@@ -1,6 +1,7 @@
 import { FormattedMessage } from "react-intl";
 import { StarDobleLine } from "desktop-app/components/common/icons";
 import styles from "./styles.module.scss";
+import classes from "classnames";
 
 type ModalInfoStarProps = {
   closeModal: () => void;
@@ -10,11 +11,6 @@ function ModalInfoStar({ closeModal }: ModalInfoStarProps) {
   return (
     <div className={styles.modalInfoStar_Div}>
       <div className={styles.modalInfoStar}>
-        <p className={styles.modal_btn}>
-          <button onClick={closeModal} className={styles.modal_btn_i}>
-            <i className="fa fa-times" />
-          </button>
-        </p>
         <div className={styles.modalInfoStar_Header}>
           <h2>
             <FormattedMessage defaultMessage="Ahora puedes pagar con tus estrellas!" />
@@ -40,6 +36,16 @@ function ModalInfoStar({ closeModal }: ModalInfoStarProps) {
           </ol>
         </div>
         <footer className={styles.modalInfoStar_footer}>
+          <button
+            type="button"
+            onClick={closeModal}
+            className={classes(
+              "btn btn-primary",
+              styles.ModalInfoStarCloseButton
+            )}
+          >
+            <FormattedMessage defaultMessage="Cerrar" />
+          </button>
           <p>
             <FormattedMessage defaultMessage="*** Las estrellas sólo serán válidas para uso personal, no son transferibles o canjeables con otros usuarios dentro de la plataforma***" />
           </p>

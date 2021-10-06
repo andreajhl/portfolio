@@ -14,7 +14,6 @@
 
 .modalInfoStar_Header {
   line-height: 5px;
-  height: 10%;
 }
 
 .modalInfoStar_Header h2 {
@@ -27,13 +26,13 @@
 }
 
 .modalInfoStar_star {
-  height: 35%;
   display: flex;
   justify-content: center;
-  margin: 20px;
+  margin-top: 2rem;
 }
 
 .modalInfoStar_body {
+  margin-top: 0.5rem;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -56,14 +55,10 @@
   font-size: 24px;
 }
 
-.modalInfoStar_footer {
-  height: 10%;
+.modalInfoStar_footer p {
+  margin-top: 1rem;
   text-align: center;
   font-size: 10px;
-}
-
-.popup-overlay {
-  z-index: 1;
 }
 
 .modal_btn {
@@ -78,4 +73,10 @@
 .modal_btn_i i {
   font-size: 18px;
   color: white;
+}
+
+.ModalInfoStarCloseButton {
+  width: 100%;
+  min-height: 50px;
+  font-weight: bold;
 }

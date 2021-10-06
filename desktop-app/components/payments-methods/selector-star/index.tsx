@@ -122,7 +122,7 @@ function SelectorStar({ className }: SelectorStarProps) {
         className={styles.StarsErrorMessage}
       />
       <AnimatedPopup
-        className={styles.pop}
+        overlayStyle={{ zIndex: 999999 /* To overlap Botmaker button. */ }}
         open={modalIsOpen}
         onClose={closeModal}
         closeOnDocumentClick={false}
