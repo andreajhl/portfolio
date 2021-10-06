@@ -7,6 +7,7 @@ function StarRatingDisplay({
   editing,
   className = "",
   onChangeRating = function (value) {},
+  starSchemeColor='yellow'
 }) {
   const [rating, setRating] = useState(value | 0);
 
@@ -24,7 +25,7 @@ function StarRatingDisplay({
   const onSaveRating = (index) => {
     if (!editing) return;
     setRating(index);
-    onChangeRating(index + 1);
+    onChangeRating(index);
   };
 
   return (
@@ -40,6 +41,7 @@ function StarRatingDisplay({
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             onSaveRating={onSaveRating}
+            starSchemeColor={starSchemeColor}
           />
         );
       })}
