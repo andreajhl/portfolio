@@ -1,0 +1,24 @@
+.RangeSliderHandle {
+  width: 30px;
+  top:-5px;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(0, -35%);
+  padding: 0;
+  background: none;
+  border: none;
+  z-index: 2;
+}
+.RangeSliderBackground{
+  width: 100%;
+  background-color: white;
+  height: 1px !important;
+}
+.RangeSliderProgressBar{
+  position: relative;
+  background-image: var(--primary-gradient);
+  height: 1px;
+  top:-1px
+}
