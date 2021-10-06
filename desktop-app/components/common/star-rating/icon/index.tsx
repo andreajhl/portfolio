@@ -2,7 +2,6 @@ import React from "react";
 import { StarIcon } from "../../icons";
 import styles from "./styles.module.scss";
 import classes from "classnames";
-import { useRouter } from 'next/router'
 
 type StarRatingProps = {
   index: number;
@@ -48,7 +47,7 @@ function StarRatingIcon({
   editing,
   starSchemeColor
 }) {
-  console.log(starSchemeColor)
+  
   const fill= SchemeFillColorOptions[starSchemeColor](rating,hoverRating,index,editing);
 
   return (
