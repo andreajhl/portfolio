@@ -25,7 +25,7 @@ function ReferralOnboardingPage({
   }
 
   return (
-    <PageContainer showSearch={false}>
+    <PageContainer showSearch={false} showNewsLetters={false}>
       <main className={styles.ReferralOnboardingPage}>
         <div
           className={classes(

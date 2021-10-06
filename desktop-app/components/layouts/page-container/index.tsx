@@ -36,7 +36,8 @@ const NewsletterPopup = dynamic(
   { ssr: false }
 );
 
-type PageContainerProps = PageLayoutProps & PageLayoutMobileProps;
+type PageContainerProps = { showNewsLetters?: boolean } & PageLayoutProps &
+  PageLayoutMobileProps;
 
 function PageContainer(props: PageContainerProps) {
   const { showNewsLetters = true } = props;

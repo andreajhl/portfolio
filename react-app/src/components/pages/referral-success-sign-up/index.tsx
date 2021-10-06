@@ -73,7 +73,12 @@ function ReferralSuccessSignUpPage({
   }
 
   return (
-    <PageContainer showTopBar={false} showNavbar={false} showFooter={false}>
+    <PageContainer
+      showTopBar={false}
+      showNavbar={false}
+      showFooter={false}
+      showNewsLetters={false}
+    >
       <main className={styles.ReferralSuccessSignUpPage}>
         <div
           className={classes(
