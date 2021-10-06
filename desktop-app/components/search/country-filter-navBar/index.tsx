@@ -1,17 +1,12 @@
-import CheckBoxList from "desktop-app/components/common/checkbox-list";
-import React, {
-    ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import PaymentMethodFormElement from 'desktop-app/components/payments-methods/form-element';
 import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
 import { listV2 } from "react-app/src/state/ducks/countries/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { FormattedMessage} from "react-intl";
-import PaymentMethodFormElement from 'desktop-app/components/payments-methods/form-element';
-import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
-import styles from "./styles.module.scss";
 import { RootState } from "react-app/src/state/store";
+import React, {useEffect, useState,} from "react";
+import { FormattedMessage} from "react-intl";
+import styles from "./styles.module.scss";
 
 
 const generateKeysValue = (array) => {
@@ -27,10 +22,10 @@ type timeFilterProps={
 const countries = ({ countries}:RootState) =>  countries.countriesReducer.data.results
 
 const buttonStyle = {
-  size: 10,
-  top: 20,
-  transform: "translateZ(-50%)",
-  color:'red'
+  size: 25,
+  top: 15,
+  opacity:0.6,
+  transform: "translateY(-50%)"
 };
 
 function CountryFilterNavBar({isOpen, toOpen}:timeFilterProps) {
@@ -49,9 +44,9 @@ function CountryFilterNavBar({isOpen, toOpen}:timeFilterProps) {
 
 
   return (
-    <div className={styles.opcion}>
-        <p onClick={()=>toOpen('countrie')} className={styles.opcionTittle}><FormattedMessage defaultMessage= "Paises"/></p>
-        <div className={styles.ContainerOpcion} >
+    <div className={styles.option}>
+        <p onClick={()=>toOpen('countrie')} className={styles.optionTittle}><FormattedMessage defaultMessage= "Paises"/></p>
+        <div className={styles.ContainerOption}>
         <PaymentMethodFormElement
                 labelId={'delivery-countrie-navBar'}
                 sectionId={'delivery-countrie-navBar'}
@@ -61,13 +56,13 @@ function CountryFilterNavBar({isOpen, toOpen}:timeFilterProps) {
                 itemData={arrayCountries}
                 itemCount={arrayCountries?.length}
                 itemWidth={100}
-                itemHeight={30}
+                itemHeight={35}
                 buttonsStyle={buttonStyle}
-                gap={20}
+                gap={10}
             >
                 {(e) =><FormattedMessage id={e.label}>{txt => <p onClick={()=>setCountriesChecked(`${e.value}`)}>{txt}</p>}</FormattedMessage>}
-            </CardsReelSection>
-        </PaymentMethodFormElement>
+            </CardsReelSection>    
+          </PaymentMethodFormElement>
         </div>
     </div>
   );
