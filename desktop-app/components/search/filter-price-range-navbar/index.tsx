@@ -45,9 +45,9 @@ export const PriceRangeNavBar = ({isOpen, toOpen}:timeFilterProps) => {
     }
 
     return (
-        <div className={styles.opcion}>
-            <p className={styles.opcionTittle} onClick={()=>toOpen('price')}><FormattedMessage defaultMessage= "Precios"/></p>
-            <div className={styles.ContainerOpcion} >
+        <div className={styles.option}>
+            <p className={styles.optionTittle} onClick={()=>toOpen('price')}><FormattedMessage defaultMessage= "Precios"/></p>
+            <div className={styles.ContainerOption} >
                 <PaymentMethodFormElement
                         labelId={'delivery-price-navBar'}
                         sectionId={'delivery-price-navBar'}
