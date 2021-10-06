@@ -1,7 +1,9 @@
 import { DeliveryTimeFilterNavbar} from 'desktop-app/components/search/delivery-time-filter-navBar';
+import {ExtraPrudctFilterNavBar} from 'desktop-app/components/search/filter-extra-products';
 import {CountryFilterNavBar } from 'desktop-app/components/search/country-filter-navBar';
 import {PriceRangeNavBar} from 'desktop-app/components/search/filter-price-range-navbar';
 import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
+import {FilterRatingNavbar} from 'desktop-app/components/search/filter-rating '
 import { analytics } from "react-app/src/state/utils/gtm";
 import { getSearchKeywordPath } from "constants/paths";
 import {categories} from 'constants/categories.js';
@@ -18,7 +20,6 @@ const buttonStyle = {
 };
 
 function SearchBarSectionV2() {
-
   const router= useRouter();
   const [inputValue, setInputValue] = useState("");
 
@@ -34,7 +35,9 @@ function SearchBarSectionV2() {
   const [Open, setOpen] = useState({
     time:false,
     countrie:false,
-    price: false
+    price: false,
+    extraProduct: false,
+    rating:false
   });
 
   function toOpen(name:string) {
@@ -42,6 +45,8 @@ function SearchBarSectionV2() {
       time:false,
       countrie:false,
       price:false,
+      extraProduct: false,
+      rating:false,
       [name]:true
     });
   };
@@ -64,9 +69,11 @@ function SearchBarSectionV2() {
             )}
         </CardsReelSection>
         <div className={styles.SearchBarOpcion}>
-        <CountryFilterNavBar isOpen={Open.countrie} toOpen={toOpen}/>
-          <DeliveryTimeFilterNavbar isOpen={Open.time} toOpen={toOpen}/>
+          <FilterRatingNavbar isOpen={Open.rating} toOpen={toOpen}/>
           <PriceRangeNavBar isOpen={Open.price} toOpen={toOpen}/>
+          <CountryFilterNavBar isOpen={Open.countrie} toOpen={toOpen}/>
+          <ExtraPrudctFilterNavBar isOpen={Open.extraProduct} toOpen={toOpen}/>
+          <DeliveryTimeFilterNavbar isOpen={Open.time} toOpen={toOpen}/>
         </div>        
       </div>
     </div>
