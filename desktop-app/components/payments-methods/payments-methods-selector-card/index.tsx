@@ -9,11 +9,11 @@ import { connect, ConnectedProps } from "react-redux";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { CouponForm } from "../coupon-form";
 import { isAValidDLocalPaymentMethod } from "lib/utils/dLocalPaymentMethodsValidations";
-import { PaymentMethodsSelectorCardSkeleton } from "./skeleton";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import useGetContractTotalPrice from "lib/hooks/useGetContractTotalPrice";
 import SelectorStar from "../selector-star";
 import { ProcessFreePaymentButton } from "desktop-app/components/payments-methods/process-free-payment-button";
+import PaymentMethodsAvailableListSkeleton from "../payment-methods-available-list/skeleton";
 
 const mapStateToProps = (state: RootState) => ({
   userInformation: state.session.getSessionReducer.data,
@@ -81,47 +81,47 @@ function PaymentsMethodsSelectorCard({
   const isFreeContract = contractPrice <= 0;
 
   return (
-    <Maybe
-      it={!userInformationLoading && !paymentGatewayLoading}
-      orElse={<PaymentMethodsSelectorCardSkeleton />}
-    >
-      <div className={styles.PaymentsMethodsSelectorCard}>
-        <Maybe
-          it={!isFreeContract}
-          orElse={
-            <>
-              <h2 className={styles.PaymentMethodFormTitle}>
-                <FormattedMessage defaultMessage="Tu compra te sale gratis, confirma para continuar" />
-              </h2>
-              <div className={styles.PaymentMethodFormSection}>
-                <ProcessFreePaymentButton className="w-100">
-                  <FormattedMessage defaultMessage="Confirmar" />
-                </ProcessFreePaymentButton>
-              </div>
-            </>
-          }
-        >
-          <Maybe it={shouldDisplayDLocalForm}>
+    <div className={styles.PaymentsMethodsSelectorCard}>
+      <Maybe
+        it={!isFreeContract}
+        orElse={
+          <>
             <h2 className={styles.PaymentMethodFormTitle}>
-              <FormattedMessage defaultMessage="1. Datos de la persona que realiza el pago." />
+              <FormattedMessage defaultMessage="Tu compra te sale gratis, confirma para continuar" />
             </h2>
-            <Maybe it={!userInformationLoading}>
-              <div
-                className={styles.PaymentMethodFormSection}
-                tabIndex={-1}
-                ref={DLocalPersonalInfoFormRef}
-              >
-                <DLocalPersonalInfoForm
-                  errorMessage={errorMessageForDLocalForm}
-                />
-              </div>
-            </Maybe>
+            <div className={styles.PaymentMethodFormSection}>
+              <ProcessFreePaymentButton className="w-100">
+                <FormattedMessage defaultMessage="Confirmar" />
+              </ProcessFreePaymentButton>
+            </div>
+          </>
+        }
+      >
+        <Maybe it={shouldDisplayDLocalForm}>
+          <h2 className={styles.PaymentMethodFormTitle}>
+            <FormattedMessage defaultMessage="1. Datos de la persona que realiza el pago." />
+          </h2>
+          <Maybe it={!userInformationLoading}>
+            <div
+              className={styles.PaymentMethodFormSection}
+              tabIndex={-1}
+              ref={DLocalPersonalInfoFormRef}
+            >
+              <DLocalPersonalInfoForm
+                errorMessage={errorMessageForDLocalForm}
+              />
+            </div>
           </Maybe>
-          <div className={styles.PaymentMethodFormSection}>
-            <h2 className={styles.PaymentMethodFormTitle}>
-              {shouldDisplayDLocalForm ? 2 : 1}.
-              <FormattedMessage defaultMessage="Selecciona un Método de Pago." />
-            </h2>
+        </Maybe>
+        <div className={styles.PaymentMethodFormSection}>
+          <h2 className={styles.PaymentMethodFormTitle}>
+            {shouldDisplayDLocalForm ? 2 : 1}.
+            <FormattedMessage defaultMessage="Selecciona un Método de Pago." />
+          </h2>
+          <Maybe
+            it={!userInformationLoading && !paymentGatewayLoading}
+            orElse={<PaymentMethodsAvailableListSkeleton />}
+          >
             <PaymentMethodsAvailableList
               discountCouponId={couponData.data?.id || null}
               onBuyerDataIncomplete={() => {
@@ -135,29 +135,29 @@ function PaymentsMethodsSelectorCard({
               payment_methods={paymentMethodsAvailable}
               celebrityId={celebrityId}
             />
-          </div>
-        </Maybe>
-        <div className={styles.PaymentMethodFormSection}>
-          <CouponForm contractReference={contractReference} />
+          </Maybe>
         </div>
-        <div className={styles.PaymentMethodFormSection}>
-          <SelectorStar />
-        </div>
-        <div>
-          <img
-            className={styles.PaymentSecureBanner}
-            src="/assets/img/pago-seguro100.png"
-            alt="Pago seguro"
-          />
-          <p className={styles.DisclaimerTermsAndPolicies}>
-            <FormattedMessage
-              defaultMessage="Al continuar estás aceptando nuestros Términos y Condiciones y
-            nuestra Política de privacidad."
-            />
-          </p>
-        </div>
+      </Maybe>
+      <div className={styles.PaymentMethodFormSection}>
+        <CouponForm contractReference={contractReference} />
       </div>
-    </Maybe>
+      <div className={styles.PaymentMethodFormSection}>
+        <SelectorStar />
+      </div>
+      <div>
+        <img
+          className={styles.PaymentSecureBanner}
+          src="/assets/img/pago-seguro100.png"
+          alt="Pago seguro"
+        />
+        <p className={styles.DisclaimerTermsAndPolicies}>
+          <FormattedMessage
+            defaultMessage="Al continuar estás aceptando nuestros Términos y Condiciones y
+            nuestra Política de privacidad."
+          />
+        </p>
+      </div>
+    </div>
   );
 }
 
