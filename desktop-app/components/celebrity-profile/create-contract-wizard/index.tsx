@@ -15,7 +15,7 @@ import {
 } from "desktop-app/types/contractDataType";
 import { useAuth } from "lib/famosos-auth";
 import useWizardHistory from "../../../../lib/hooks/useWizardHistory";
-import { ComponentProps } from "./types";
+import { ComponentProps as CreateContractWizardProps } from "./types";
 import classes from "classnames";
 import { useRouter } from "next/router";
 import {
@@ -41,6 +41,12 @@ import { Session } from "react-app/src/state/utils/session";
 import objectHasProperties from "lib/utils/objectHasProperties";
 import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 import { getCelebrityProfileVersion } from "react-app/src/utils/celebrityProfileVersion";
+import {
+  getCheckoutVersion,
+  isNotUsedAnymoreCheckoutVersion,
+  getCheckoutVersionDependingOnTime,
+  setCheckoutVersion,
+} from "react-app/src/utils/checkoutVersion";
 
 const NO_TOKEN_ERROR = "invalid token: no token string was provided";
 
@@ -95,7 +101,22 @@ export function getInitialWizardStep(
   return WIZARD_STEPS[contractInProgress?.status] || WIZARD_STEPS[0];
 }
 
-type CreateContractWizardProps = ComponentProps;
+function generateCheckoutVersion() {
+  const checkoutVersionFromCookies = getCheckoutVersion();
+  if (
+    checkoutVersionFromCookies &&
+    !isNotUsedAnymoreCheckoutVersion(checkoutVersionFromCookies)
+  ) {
+    return checkoutVersionFromCookies;
+  }
+  const newCheckoutVersion = getCheckoutVersionDependingOnTime();
+  setCheckoutVersion(newCheckoutVersion);
+  return newCheckoutVersion;
+}
+
+function getContractCheckoutVersion(isMobile: boolean) {
+  return isMobile ? `MOBILE-${generateCheckoutVersion()}` : "DESKTOP";
+}
 
 const WIDGET_NAME = "CreateContractWizard";
 
@@ -200,11 +221,13 @@ function CreateContractWizard({
   }
 
   async function saveNewContract(data: ContractDeliveryType) {
+    const checkoutVersion = getContractCheckoutVersion(isMobile);
     const createData = {
       ...data,
       celebrityId: celebrity.id,
       version: profileVersion,
       userAgent: navigator?.userAgent,
+      checkoutVersion,
     };
     const { id } = await createContract(createData);
     analytics.trackAddContractToCart({

@@ -1,0 +1,87 @@
+.PaymentMethodsPageContent {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 2.25rem !important;
+  height: auto;
+  position: relative;
+  // display: flex;
+  // justify-content: space-between;
+  // margin-bottom: 4.1875rem;
+
+  // > * {
+  //   width: 100%;
+  // }
+}
+
+.PaymentSecureBanner {
+  display: block;
+  margin: 0 auto;
+  height: 40px;
+}
+
+.PaymentMethodsPurchaseForm {
+  // max-width: 524px;^
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-right: 1.5rem;
+  flex-wrap: wrap;
+  @media only screen and (min-width: 1366px) {
+    justify-content: space-between;
+  }
+}
+
+.PaymentMethodsPageContentRightSide {
+  max-width: 520px;
+  padding-top: 2rem;
+  align-self: flex-start;
+}
+.secureBanner {
+  margin-top: 41px;
+  height: 90px;
+  width: 100%;
+}
+
+.PaymentMethodsLayoutBSecureBanner {
+  margin-top: 2rem;
+}
+
+.DisclaimerTermsAndPolicies {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8px;
+  margin-left: 15%;
+  width: 60%;
+  line-height: 16px;
+  text-align: center;
+}
+.linkContact {
+  text-align: center;
+  font-size: 14px;
+  b {
+    color: #6970c6;
+  }
+}
+.WhatHappensBeforeBannerModifier {
+  margin-top: 41px;
+  padding: 2.1875rem 2.8125rem !important;
+  border-radius: 10px;
+  div {
+    max-width: 90% !important;
+    margin-left: 0 !important;
+  }
+}
+.modalCoupon {
+  background-color: white;
+  max-width: 1026px;
+  width: 100%;
+  position: fixed;
+  bottom: -100%;
+  transition: all 1.3s ease-in-out;
+}
+.modalInfoStar {
+  position: fixed;
+  bottom: -100%;
+  transition: all 1.3s ease-in-out;
+}

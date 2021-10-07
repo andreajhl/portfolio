@@ -1,0 +1,41 @@
+.ContractInfoCelebrityInfoDiv {
+  position: relative;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 192px;
+  label {
+    width: 90%;
+    hr {
+      border-top: 1.5px solid white;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.ContractInfoData {
+  margin-top: 20px;
+}
+
+.ContractInfoCelebrityInfo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+}
+
+.ContractInfoTitle {
+  width: 90%;
+  justify-content: center;
+  font-size: 16px !important;
+  margin-left: 13px;
+  line-height: 130%;
+  color: white;
+  b {
+    color: white;
+  }
+}

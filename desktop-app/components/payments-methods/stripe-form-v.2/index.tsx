@@ -1,0 +1,156 @@
+import {
+  CardIcon,
+  DotCircle,
+  Ellipse,
+} from "desktop-app/components/common/icons";
+import React, { useCallback, useEffect, useState } from "react";
+import Maybe from "react-app/src/components/common/helpers/maybe";
+import {
+  removeSource,
+  retrieveUserCards,
+} from "react-app/src/state/ducks/payments/actions";
+import StripeCardFormV2 from "../stripe-card-form-v.2";
+import StripeCustomerSourcesV2 from "../stripe-customer-sources-v.2";
+import styles from "./styles.module.scss";
+import scriptLoader from "react-async-script-loader";
+import { StripeProvider, Elements } from "react-stripe-elements";
+import { FormattedMessage } from "react-intl";
+import PaymentMethodFormWrapper from "../form-wrapper";
+import PaymentMethodFormLabel from "../form-label-v.2";
+import PaymentMethodFormElement from "../form-element-v.2";
+import { PaymentMethodFormHeader } from "../form-header-v.2";
+import SubmitButton from "desktop-app/components/common/button/submit-button";
+
+const scriptSrc = "https://js.stripe.com/v3/";
+
+type StripeFormProps = {
+  expanded: boolean;
+  index: number;
+  contractPrice: number;
+  contractReference: string;
+  discountCouponId: number | null;
+  onToggle: () => void;
+  celebrityId: number;
+  isScriptLoaded: boolean;
+  isScriptLoadSucceed: boolean;
+  closePaymentModal: () => void;
+};
+
+function StripeFormV2({
+  expanded,
+  index,
+  onToggle,
+  contractReference,
+  contractPrice,
+  discountCouponId,
+  celebrityId,
+  isScriptLoaded,
+  isScriptLoadSucceed,
+  closePaymentModal,
+}: StripeFormProps) {
+  const [stripeInstance, setStripeInstance] = useState(null);
+  useEffect(() => {
+    if (isScriptLoaded && isScriptLoadSucceed) {
+      console.log("StripeForm Script loaded");
+
+      setStripeInstance(window.Stripe(process.env.NEXT_PUBLIC_STRIPE_KEY));
+    }
+  }, [isScriptLoaded, isScriptLoadSucceed]);
+  const [userAvailableSources, setUserAvailableSources] = useState([]);
+  const fetchUserCards = useCallback(async () => {
+    const response = await retrieveUserCards();
+    setUserAvailableSources(response.availableSources || []);
+  }, []);
+
+  useEffect(() => {
+    fetchUserCards();
+  }, []);
+  const [showCardForm, setShowCardForm] = useState(true);
+  useEffect(() => {
+    setShowCardForm(userAvailableSources.length === 0);
+  }, [userAvailableSources]);
+
+  const onDeleteSource = async (index) => {
+    await removeSource(userAvailableSources[index].sourceId)
+      .then((r) => fetchUserCards())
+      .catch((e) => console.log(e));
+  };
+
+  const sectionId = `section-${index}`;
+  const labelId = `label-${index}`;
+  return (
+    <StripeProvider stripe={stripeInstance}>
+      <PaymentMethodFormWrapper>
+        <PaymentMethodFormLabel onToggle={onToggle}>
+          <CardIcon className={styles.CardIcon} />
+
+          <span className={styles.LabelSection}>
+            <FormattedMessage defaultMessage="Tarjeta de Crédito" />
+          </span>
+          {expanded ? (
+            <DotCircle className={styles.CheckIcon} />
+          ) : (
+            <Ellipse className={styles.CheckIcon} />
+          )}
+        </PaymentMethodFormLabel>
+        <PaymentMethodFormElement
+          labelId={labelId}
+          sectionId={sectionId}
+          expanded={expanded}
+          onClose={closePaymentModal}
+        >
+          <Maybe it={expanded}>
+            <PaymentMethodFormHeader
+              title={
+                <Maybe
+                  it={showCardForm}
+                  orElse={
+                    <FormattedMessage defaultMessage="SELECCIONA UNA TARJETA" />
+                  }
+                >
+                  <FormattedMessage defaultMessage="DETALLES DE TU TARJETA" />
+                </Maybe>
+              }
+              closePaymentModal={closePaymentModal}
+            />
+            <div className="container py-4">
+              {showCardForm ? (
+                <Elements>
+                  <StripeCardFormV2
+                    contractPrice={contractPrice}
+                    contractReference={contractReference}
+                    discountCouponId={discountCouponId}
+                    celebrityId={celebrityId}
+                  />
+                </Elements>
+              ) : (
+                <StripeCustomerSourcesV2
+                  onDeleteSource={onDeleteSource}
+                  contractPrice={contractPrice}
+                  contractReference={contractReference}
+                  discountCouponId={discountCouponId}
+                  celebrityId={celebrityId}
+                  availableSources={userAvailableSources}
+                />
+              )}
+              {userAvailableSources.length > 0 ? (
+                <SubmitButton
+                  variant="tertiary"
+                  onClick={() => setShowCardForm((value) => !value)}
+                >
+                  {!showCardForm ? (
+                    <FormattedMessage defaultMessage="Agregar nueva tarjeta" />
+                  ) : (
+                    <FormattedMessage defaultMessage="Seleccionar una tarjeta" />
+                  )}
+                </SubmitButton>
+              ) : null}
+            </div>
+          </Maybe>
+        </PaymentMethodFormElement>
+      </PaymentMethodFormWrapper>
+    </StripeProvider>
+  );
+}
+
+export default scriptLoader(scriptSrc)(StripeFormV2);

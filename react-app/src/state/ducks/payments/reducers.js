@@ -5,6 +5,7 @@ import {
 import getCookie from "react-app/src/utils/getCookie";
 import { combineReducers } from "redux";
 import * as types from "./types";
+import { initialValues as initialBuyerDataValues } from "lib/hooks/useBuyerDataForm";
 
 const fetchPaymentGatewaysInitialState = {
   loading: false,
@@ -84,6 +85,8 @@ const applyDiscountCouponInitialState = {
   error_data: null,
 };
 
+const initialDiscountStarSelected = 0;
+
 export const processStripePaymentReducer = (
   state = { error_data: { error: "" } },
   { type, action }
@@ -117,7 +120,7 @@ export function fetchDiscountCouponReducer(
   switch (action.type) {
     case types.APPLY_DISCOUNT_COUPON:
       return {
-        ...state,
+        ...applyDiscountCouponInitialState,
         loading: true,
       };
     case types.APPLY_DISCOUNT_COUPON_SUCCESS:
@@ -273,6 +276,25 @@ export function userPaymentMethodSelected(
   }
 }
 
+export function discountStarsSelected(
+  state = initialDiscountStarSelected,
+  action
+) {
+  if (action.type === types.SET_DISCOUNT_STARS_SELECTED) {
+    return typeof action.payload === "function"
+      ? action.payload(state)
+      : action.payload;
+  }
+  return state;
+}
+
+export function buyerData(state = initialBuyerDataValues, action) {
+  if (action.type === types.SET_BUYER_DATA) {
+    return action.payload;
+  }
+  return state;
+}
+
 export default combineReducers({
   fetchPaymentGatewaysReducer,
   currencyExchangeReducer,
@@ -280,4 +302,6 @@ export default combineReducers({
   fetchDiscountCouponReducer,
   setPaymentInProcess,
   userPaymentMethodSelected,
+  discountStarsSelected,
+  buyerData,
 });
