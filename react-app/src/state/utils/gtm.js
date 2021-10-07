@@ -13,6 +13,7 @@ import famososAnalytics from "lib/utils/famososAnalytics";
 import { getUTMs } from "lib/utils/utms";
 import UAParser from "ua-parser-js";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
+import { PURCHASE_SUMMARY } from "constants/paths";
 // import { Mixpanel } from "./mixPanel";
 
 const ENV = process.env.NEXT_PUBLIC_ENVIRONMENT;
@@ -178,6 +179,23 @@ export function trackSubscription({ celebrityId, subscriptionPlanPrice }) {
     predicted_ltv: subscriptionPlanPrice * 3,
     value: subscriptionPlanPrice,
     currency: "USD",
+  });
+}
+
+export function trackPaymentMethodsBackButtonClick() {
+  tagManagerDataLayer("PAYMENT_METHODS_LEAVE", {
+    isBackButton: true,
+  });
+}
+
+const isPurchaseSummaryPath = (newRoute = "") =>
+  newRoute.includes(PURCHASE_SUMMARY);
+
+export function trackPaymentMethodsLeave(newRoute = "") {
+  if (isPurchaseSummaryPath(newRoute)) return;
+  tagManagerDataLayer("PAYMENT_METHODS_LEAVE", {
+    newRoute,
+    isBackButton: false,
   });
 }
 

@@ -1,0 +1,8 @@
+.PaymentMethodsAvailable {
+  width: 90%;
+  margin-bottom: 14px;
+  margin-left: 5%;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}

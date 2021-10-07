@@ -3,6 +3,7 @@ import Maybe from "desktop-app/components/common/helpers/maybe";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import React, { useRef, useState } from "react";
 import { analytics } from "react-app/src/state/utils/gtm";
+import Collapse from "react-bootstrap/Collapse";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles.module.scss";
 
@@ -110,11 +111,13 @@ function DLocalSelectPaymentMethod({
           </div>
         </div>
       ))}
-      <Maybe it={isCashPaymentMethod}>
-        <p className={styles.CashPaymentMethodCopy}>
-          <FormattedMessage defaultMessage="Por políticas de la pasarela, una vez generado tu ticket, dispones de máximo 3 días calendario (naturales) para pagar, la validación del pago puede tardar hasta 3 días hábiles." />
-        </p>
-      </Maybe>
+      <Collapse in={currentOption.name && isCashPaymentMethod}>
+        <div>
+          <p className={styles.CashPaymentMethodCopy}>
+            <FormattedMessage defaultMessage="Por políticas de la pasarela, una vez generado tu ticket, dispones de máximo 3 días calendario (naturales) para pagar, la validación del pago puede tardar hasta 3 días hábiles." />
+          </p>
+        </div>
+      </Collapse>
       <Maybe it={errorMessage !== ""}>
         <WarningMessage
           className={styles.WarningMessage}

@@ -26,7 +26,8 @@ import { AVAILABLE_CURRENCIES } from "react-app/src/constants/availableCurrencie
 import { getTextOfFormatAllowedForUserDocument } from "react-app/src/state/utils/getTextOfFormatAllowedForUserDocument";
 import { useRef } from "react";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { CardGenerationReminder } from "desktop-app/components/payments-methods/card-generation-reminder";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
@@ -95,6 +96,7 @@ function SpreedlyCardForm({
   const [isProccesing, setIsProccesing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [isCreatingToken, setIsCreatingToken] = useState(false);
+  const stars = useDiscountStarsSelected()[0];
   const { values, onChangeField, submitForm, setFieldValue, errors } = useForm({
     initialValues: initialValuesForm,
     validations: getValidations(formatMessage, userCurrency),
@@ -191,6 +193,7 @@ function SpreedlyCardForm({
       userAgent,
       geolocation,
       locale,
+      stars,
     };
 
     if (!isProccesing) {

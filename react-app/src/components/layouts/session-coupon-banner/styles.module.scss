@@ -1,0 +1,21 @@
+.SessionCouponBanner {
+  background-color: #eb2a7b;
+  width: 100%;
+  min-height: 70px;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.SessionCouponBannerText {
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  font-size: 14px;
+  max-width: 20.57em;
+  font-weight: bold;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+}

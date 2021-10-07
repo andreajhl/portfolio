@@ -13,6 +13,7 @@ export const STRIPE_FAILURE_AUTHENTICATION = "stripe_failure_authentication";
 export const NEXT_LOCALE = "NEXT_LOCALE";
 export const cfUserCountryCode = "__cf__userCountryCode";
 
+/* Sig-Up Params */
 export const CELEBRITY_NAME_QUERY_PARAM = "celebrity";
 export const SUGGESTED_FULL_NAME_QUERY_PARAM = "suggestedFullName";
 
@@ -21,3 +22,13 @@ export const REDIRECT_BEFORE_MAINTENANCE_KEY = "fs__rbmm";
 export const REDIRECT_AFTER_LOGIN = "redirectAfterLogin";
 export const USER_UTMS_KEY = "fs__uutms";
 export const CELEBRITY_PROFILE_VERSION_KEY = "fs__cpv";
+
+/* Referrals Params */
+export const SHOW_BACK_BUTTON_QUERY_PARAM = "showBackButton";
+export const REFERRER_CODE_QUERY_PARAM = "referrer";
+
+export const CHECKOUT_VERSION_KEY = "fs__cov";
+
+/* Coupon link */
+export const COUPON_QUERY_PARAM = "coupon";
+export const COUPON_CODE_KEY = "fs__cclk";

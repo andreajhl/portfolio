@@ -24,3 +24,24 @@
   margin-right: 0.4em;
   color: #dc3545 !important;
 }
+
+.StarSelected {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #000000;
+}
+
+.StarSelected svg {
+  vertical-align: baseline;
+}
+
+.OriginalPriceWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.OriginalPriceWrapper > * + * {
+  margin-left: 0.4em;
+}

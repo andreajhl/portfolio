@@ -12,8 +12,9 @@ import { getPurchaseSummaryPath } from "constants/paths";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
 import Maybe from "desktop-app/components/common/helpers/maybe";
-import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { CardGenerationReminder } from "desktop-app/components/payments-methods/card-generation-reminder";
 import { useIntl } from "react-intl";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
@@ -40,6 +41,7 @@ function SpreedlyCustomSources({
   const [paymentError, setPaymentError] = useState(null);
   const [isProccesing, setIsProccesing] = useState(false);
   const userCurrency = useUserCurrentCurrency();
+  const stars = useDiscountStarsSelected()[0];
 
   const startPayment = () => {
     if (typeof selectedSourceIndex !== "number") {
@@ -67,6 +69,7 @@ function SpreedlyCustomSources({
         userAgent,
         geolocation,
         locale,
+        stars,
       });
       if (!checkFlutterWindowsInstance()) {
         push(getPurchaseSummaryPath(contractReference));
