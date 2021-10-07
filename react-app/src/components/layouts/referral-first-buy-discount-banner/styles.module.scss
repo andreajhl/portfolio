@@ -12,6 +12,10 @@
   color: white;
   margin: 0 auto;
   font-size: 14px;
-  max-width: 18rem;
+  max-width: 20.57em;
   font-weight: bold;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 }
