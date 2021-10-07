@@ -1,4 +1,5 @@
 import useBuyerDataState from "lib/hooks/useBuyerDataState";
+import isMobile from "lib/utils/isMobile";
 import isSafariBrowser from "../utils/isSafariBrowser";
 import useProcessPayment from "./useProcessPayment";
 import useTrackContractPayment from "./useTrackContractPayment";
@@ -41,7 +42,7 @@ function useProcessDlocalPayment() {
       throw response.statusDetails;
     }
     if (response.requiredRedirect) {
-      if (isSafariBrowser()) {
+      if (isMobile(navigator?.userAgent) || isSafariBrowser()) {
         return window?.location?.replace?.(response.redirectUri);
       }
       window?.open?.(response.redirectUri);
