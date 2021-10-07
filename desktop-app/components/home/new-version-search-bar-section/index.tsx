@@ -1,36 +1,13 @@
 import { DeliveryTimeFilterNavbar} from 'desktop-app/components/search/delivery-time-filter-navBar';
+import {CategorieFilterCarrousel} from 'desktop-app/components/search/categories-filter-carousel';
 import {ExtraPrudctFilterNavBar} from 'desktop-app/components/search/filter-extra-products';
 import {CountryFilterNavBar } from 'desktop-app/components/search/country-filter-navBar';
 import {PriceRangeNavBar} from 'desktop-app/components/search/filter-price-range-navbar';
-import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
 import {FilterRatingNavbar} from 'desktop-app/components/search/filter-rating '
-import { analytics } from "react-app/src/state/utils/gtm";
-import { getSearchKeywordPath } from "constants/paths";
-import {categories} from 'constants/categories.js';
 import styles from "./styles.module.scss";
-import { useRouter } from "next/router";
 import { useState } from "react";
-import {useEffect} from 'react';
-
-const buttonStyle = {
-  size: 40,
-  top: 70,
-  opacity:0.6,
-  transform: "translateY(-50%)"
-};
 
 function SearchBarSectionV2() {
-  const router= useRouter();
-  const [inputValue, setInputValue] = useState("");
-
-  useEffect(() => {
-    if (!inputValue) return;
-    analytics.track("HOME_SEARCH_BAR_SUBMIT", {
-      searchKeyword: inputValue,
-      widget: "SearchBarSection",
-    });
-    router.push(getSearchKeywordPath(inputValue));
-  }, [inputValue,router]);
  
   const [Open, setOpen] = useState({
     time:false,
@@ -50,24 +27,14 @@ function SearchBarSectionV2() {
       [name]:true
     });
   };
-
   return (
     <div className={styles.SearchBarContainer}>
       <div className={styles.SearchBarContainer_div}>
-        <CardsReelSection
-          itemData={categories}
-          itemCount={categories?.length}
-          itemWidth={212}
-          itemHeight={170}
-          buttonsStyle={buttonStyle}
+        <CategorieFilterCarrousel
+          itemWidth={270}
+          itemHeight={150}
           gap={20}
-        >
-          {(e) => (
-              <div onClick={()=>setInputValue(e.keywords[0])} className={styles.SearchBarContainer_Img}>
-                <img src={e.image} alt={e.tittle}/>
-              </div>
-            )}
-        </CardsReelSection>
+        />
         <div className={styles.SearchBarOpcion}>
           <FilterRatingNavbar isOpen={Open.rating} toOpen={toOpen}/>
           <PriceRangeNavBar isOpen={Open.price} toOpen={toOpen}/>
