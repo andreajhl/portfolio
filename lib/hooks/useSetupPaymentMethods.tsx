@@ -5,6 +5,7 @@ import { clearCouponData } from "react-app/src/state/ducks/payments/actions";
 import useFetchContractToPay from "lib/hooks/useFetchContractToPay";
 import useTrackPaymentMethodsLeave from "lib/hooks/useTrackPaymentMethodsLeave";
 import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
+import useCurrentPaymentMethodSelected from "./useCurrentPaymentMethodSelected";
 
 function useSetupPaymentMethods(contractReference: string) {
   useTrackPaymentMethodsLeave();
@@ -12,10 +13,12 @@ function useSetupPaymentMethods(contractReference: string) {
   const { contractToPay, status } = useFetchContractToPay(contractReference);
   const isCompleted = status === "completed";
   const setDiscountStarsSelected = useDiscountStarsSelected()[1];
+  const setPaymentMethodSelected = useCurrentPaymentMethodSelected()[1];
 
   useEffect(() => {
     dispatch(clearCouponData());
     setDiscountStarsSelected(0);
+    setPaymentMethodSelected(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contractReference]);
