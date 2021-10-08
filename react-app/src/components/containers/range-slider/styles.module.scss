@@ -1,0 +1,16 @@
+.RangeSliderHandle {
+    width: 30px;
+    top:0px;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    transform: translate(0, -50%);
+    padding: 0;
+    background: none;
+    border: none;
+    z-index: 2;
+}
+.RangeSliderBackground{
+  height: 2px;
+  background-color: black;
+ }
