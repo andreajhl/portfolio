@@ -9,15 +9,15 @@ import  {useState} from "react";
 type timeFilterProps={
   isOpen:boolean,
   toOpen: (value:string)=> void
-}
+};
 
 function FilterRatingNavbar({isOpen, toOpen}:timeFilterProps) {
     
-    const [starChecked, setStarChecked] = useState(0);
+  const [starChecked, setStarChecked] = useState(0);
 
  const onChangeRating=(value)=>{
-     setStarChecked(value)
- }
+    setStarChecked(value)
+ };
 
   return (
     <div className={styles.option}>
