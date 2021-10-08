@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 import { FiltersSectionLayout } from "../filters-section";
 import {CategorieFilterCarrousel } from 'desktop-app/components/search/categories-filter-carrousel';
+=======
+import {CategorieFilterCarrousel } from 'desktop-app/components/search/categories-filter-carrousel';
+import { FiltersSectionLayout } from "../filters-section";
+>>>>>>> Stashed changes
 
 export const NewFilterBar = () => {
     return (
@@ -11,5 +16,10 @@ export const NewFilterBar = () => {
             />
             <FiltersSectionLayout/>
         </div>
+<<<<<<< Updated upstream
     )
 }
+=======
+    );
+};
+>>>>>>> Stashed changes

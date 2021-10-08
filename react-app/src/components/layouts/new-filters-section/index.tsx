@@ -1,88 +1,33 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { connect } from "react-redux";
-import { CelebritiesFilter } from "../celebrities-filter";
-import { CelebritiesOrderBy } from "../celebrities-order-by";
-
-import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
-import { restCountriesOperations } from "../../../state/ducks/rest-countries";
-import { countriesOperations } from "../../../state/ducks/countries";
-import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
+import {FilterSeccionDeliveryTime} from 'react-app/src/components/containers/filter-section-deliveryTime';
+import {FilterSeccionCountries} from 'react-app/src/components/containers/filter-section-countries';
+import {FilterSectionRatings} from 'react-app/src/components/containers/filter-section-rating';
+import {FilterSectionPrice } from 'react-app/src/components/containers/filter-section-price';
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-import * as GTM from "../../../state/utils/gtm";
-import { queryStringToJSON } from "../../../state/utils/apiService";
+import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { withRouter } from "react-app/src/components/common/routing";
-import { useIntl, defineMessage, FormattedMessage } from "react-intl";
-import {
-  CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
-  COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE,
-  labelMessagesForCategoriesFilter,
-  labelMessagesForCountryCodeFilter,
-} from "react-app/src/constants/messages";
-import removeParenthesis from "lib/utils/removeParenthesis";
-
-// LISTA DE ID CON TRADUCCIONES DISPONIBLE. CUALQUIER NUEVO ID QUE SE REGISTRE
-// EN EL BACKEND DEBE DE SER AGREGADO EN ESTA LISTA Y ADEMAS SU RESPECTIVA TRADUCCIÓN
-
-const messageForLabelButtonCategoryFilter = defineMessage({
-  description: "Label button for search CategoryFilter",
-  defaultMessage: "Categoria",
-});
-const messageForModalTitleCategoryFilter = defineMessage({
-  description: "ModalTitle for search CategoryFilter",
-  defaultMessage: "Filtrar por categoría",
-});
-const messageForSearchPlaceholderCategoryFilter = defineMessage({
-  description: "Modal Title for search CategoryFilter",
-  defaultMessage: "Buscar categoría",
-});
-const messageForLabelButtonCategoryCountry = defineMessage({
-  description: "buttonLabel search by country",
-  defaultMessage: "País",
-});
-const messageForModalTitleCategoryCountry = defineMessage({
-  description: "ModalTitle for search CategoryFilter",
-  defaultMessage: "Filtrar por país",
-});
-const messageForSearchPlaceholderCategoryCountry = defineMessage({
-  description: "Modal Title for search CategoryFilter",
-  defaultMessage: "Buscar país",
-});
-const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
-  return {
-    countries: countries.countriesReducer.data.results,
-    celebrityCategories:
-      celebrityCategories.fetchCelebrityCategoriesReducer.data.results,
-  };
-};
-
-const mapDispatchToProps = {
-  updateQueryParams,
-  listCountries: countriesOperations.list,
-  listCelebrityCategories: celebrityCategoriesOperations.list,
-  listRestCountries: restCountriesOperations.list,
-};
+import { countriesOperations } from "../../../state/ducks/countries";
+import { queryStringToJSON } from "../../../state/utils/apiService";
+import { useSelector,useDispatch } from "react-redux";
+import React, { useState, useEffect} from "react";
 
 const initialState = {
   params: {
     offset: updateQueryParamsInitialState.offset,
     limit: updateQueryParamsInitialState.limit,
-  },
+  }
 };
 
-const FiltersSectionLayout = ({
-  className = "",
-  countries,
-  celebrityCategories,
-  updateQueryParams,
-  listCountries,
-  listCelebrityCategories,
+const stateCountries=({countries})=> countries.countriesReducer.data.results;
+
+const NewFiltersSectionLayout = ({
+  className="",
   location,
   router,
 }) => {
-  const intl = useIntl();
-
-  const [params, setParams] = useState(initialState.params);
+  const dispatch=useDispatch()
+  const countries= useSelector(stateCountries)
   const queryParams = queryStringToJSON(location.search);
+  const [params, setParams] = useState(initialState.params);
 
   const setFilterParam = (paramName) => (paramValues) =>
     setParams((params) => ({
@@ -90,65 +35,48 @@ const FiltersSectionLayout = ({
       [paramName]: paramValues.join(","),
     }));
 
-  const setOrderByParam = (orderBy) =>
-    setParams((params) => ({ ...params, orderBy }));
+  const setFilterByDeliveryTimeParam = (deliveryTime) =>
+    setParams((params) => ({...params,max_delivery_time:deliveryTime}));
+  const setFilterByPrice = (price) =>
+    setParams((params) => ({...params,min_price:price[0],max_price: price[1]}));
+  const setFilterByRatings = (star) =>
+    setParams((params) => ({...params,star}));
 
   useEffect(() => {
     if (params === initialState.params) return;
-    updateQueryParams(
+    dispatch(updateQueryParams(
       {
         ...queryParams,
         ...initialState.params,
         ...params,
       },
       router
-    );
+    ))
   }, [params]);
 
   useEffect(() => {
-    const shouldFetchFilterOptions =
-      !countries.length && !celebrityCategories.length;
-    if (!shouldFetchFilterOptions) return;
-    listCountries({ orderBy: "name asc" });
-    listCelebrityCategories({ orderBy: "title asc" });
+    if (countries.length) return;
+    dispatch(countriesOperations.list({ orderBy: "name asc" }))
   }, []);
 
   const cleanFilters = () => {
-    GTM.tagManagerDataLayer("CLICK_CLEAN_FILTERS_BUTTON", {
-      widget: "FiltersSectionLayout",
-      path: window.location.pathname,
-      queryParams,
-    });
-    updateQueryParams(
+    dispatch(updateQueryParams(
       {
         ...updateQueryParamsInitialState,
       },
       router
-    );
+    ))
   };
 
   const showCleanFiltersButton =
     (queryParams.orderBy ||
       queryParams["country_id"] ||
-      queryParams["category_id"]) &&
+      queryParams["max_delivery_time"]) &&
     !queryParams.search;
 
-  const activeCountryItems = useMemo(
-    () => (queryParams.country_id ? queryParams.country_id.split(",") : []),
-    [queryParams.country_id]
-  );
-
-  const activeCategoryItems = useMemo(
-    () => (queryParams.category_id ? queryParams.category_id.split(",") : []),
-    [queryParams.category_id]
-  );
-
   return (
-    <section className={`FiltersSectionLayout ${className}`}>
+    <section className={router.pathname==='/'?'FiltersSectionLayout': 'FiltersSectionLayout__search'}>
       <div className="filters-section__container container pt-1">
-        <h2 className="filters-section__title ml-2">
-          <FormattedMessage defaultMessage="Filtrar por:" />
-        </h2>
         <ul className="filters-section__filters-list p-0">
           {showCleanFiltersButton ? (
             <li className="filters-section__filters-item d-flex align-items-center">
@@ -162,335 +90,35 @@ const FiltersSectionLayout = ({
             </li>
           ) : null}
           <li className="filters-section__filters-item">
-            <CelebritiesFilter
-              buttonLabel={intl.formatMessage(
-                messageForLabelButtonCategoryCountry
-              )}
-              modalTitle={intl.formatMessage(
-                messageForModalTitleCategoryCountry
-              )}
-              searchPlaceholder={intl.formatMessage(
-                messageForSearchPlaceholderCategoryCountry
-              )}
-              activeItems={activeCountryItems}
-              onApplyFilters={setFilterParam("country_id")}
-              options={countries.map((country) => ({
-                label: COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE.includes(
-                  country.countryCode
-                )
-                  ? removeParenthesis(
-                      intl.formatMessage(
-                        labelMessagesForCountryCodeFilter[country.countryCode]
-                      )
-                    )
-                  : removeParenthesis(country.name),
-                value: country.id,
-              }))}
-            />
+           <FilterSeccionCountries 
+              countries={countries}
+              setFilterParam={setFilterParam}
+              queryParams={queryParams}
+           />
           </li>
           <li className="filters-section__filters-item">
-            <CelebritiesFilter
-              buttonLabel={intl.formatMessage(
-                messageForLabelButtonCategoryFilter
-              )}
-              modalTitle={intl.formatMessage(
-                messageForModalTitleCategoryFilter
-              )}
-              searchPlaceholder={intl.formatMessage(
-                messageForSearchPlaceholderCategoryFilter
-              )}
-              activeItems={activeCategoryItems}
-              onApplyFilters={setFilterParam("category_id")}
-              options={celebrityCategories.map((category) => ({
-                label: CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
-                  category.title
-                )
-                  ? intl.formatMessage(
-                      labelMessagesForCategoriesFilter[category.title]
-                    )
-                  : category.title,
-                value: category.id,
-              }))}
-            />
+            <FilterSeccionDeliveryTime
+            setFilterByDeliveryTimeParam={setFilterByDeliveryTimeParam}
+            queryParams={queryParams.max_delivery_time}
+         />
           </li>
-          <li className="filters-section__filters-item filters-section__order-by">
-            <CelebritiesOrderBy
-              onApplyOrderBy={setOrderByParam}
-              activeValue={queryParams.orderBy}
-            />
+          <li className="filters-section__filters-item">
+            <FilterSectionPrice
+            setFilterPrice={setFilterByPrice}
+         />
           </li>
+          <li className="filters-section__filters-item">
+            <FilterSectionRatings
+            setFilterByRatings={setFilterByRatings}
+         />
+          </li>
+          
         </ul>
       </div>
     </section>
   );
 };
 
-FiltersSectionLayout.defaultProps = {
-  queryParams: [],
-};
+const _FiltersSectionLayout = withRouter(NewFiltersSectionLayout)
 
-const _FiltersSectionLayout = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(FiltersSectionLayout));
-
-export { _FiltersSectionLayout as FiltersSectionLayout };
-// import React, { useState, useEffect, useMemo } from "react";
-// import { connect } from "react-redux";
-// import { CelebritiesFilter } from "../celebrities-filter";
-// import { CelebritiesOrderBy } from "../celebrities-order-by";
-// import {CategorieFilterCarrousel} from 'desktop-app/components/search/categories-filter-carrousel'
-// import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
-// import { restCountriesOperations } from "../../../state/ducks/rest-countries";
-// import { countriesOperations } from "../../../state/ducks/countries";
-// import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
-// import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-// import * as GTM from "../../../state/utils/gtm";
-// import { queryStringToJSON } from "../../../state/utils/apiService";
-// import { withRouter } from "react-app/src/components/common/routing";
-// import { useIntl, defineMessage, FormattedMessage } from "react-intl";
-// import {
-//   CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
-//   COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE,
-//   labelMessagesForCategoriesFilter,
-//   labelMessagesForCountryCodeFilter,
-// } from "react-app/src/constants/messages";
-// import removeParenthesis from "lib/utils/removeParenthesis";
-// import { styles } from "../../common/forms/celebrity-select/styles";
-// import {AnimatedPopup} from 'desktop-app/components/common/animated-popup'
-
-// // LISTA DE ID CON TRADUCCIONES DISPONIBLE. CUALQUIER NUEVO ID QUE SE REGISTRE
-// // EN EL BACKEND DEBE DE SER AGREGADO EN ESTA LISTA Y ADEMAS SU RESPECTIVA TRADUCCIÓN
-
-// // const messageForLabelButtonCategoryFilter = defineMessage({
-// //   description: "Label button for search CategoryFilter",
-// //   defaultMessage: "Categoria",
-// // });
-// // const messageForModalTitleCategoryFilter = defineMessage({
-// //   description: "ModalTitle for search CategoryFilter",
-// //   defaultMessage: "Filtrar por categoría",
-// // });
-// // const messageForSearchPlaceholderCategoryFilter = defineMessage({
-// //   description: "Modal Title for search CategoryFilter",
-// //   defaultMessage: "Buscar categoría",
-// // });
-// // const messageForLabelButtonCategoryCountry = defineMessage({
-// //   description: "buttonLabel search by country",
-// //   defaultMessage: "País",
-// // });
-// // const messageForModalTitleCategoryCountry = defineMessage({
-// //   description: "ModalTitle for search CategoryFilter",
-// //   defaultMessage: "Filtrar por país",
-// // });
-// // const messageForSearchPlaceholderCategoryCountry = defineMessage({
-// //   description: "Modal Title for search CategoryFilter",
-// //   defaultMessage: "Buscar país",
-// // });
-// // const mapStateToProps = ({ countries, celebrities, celebrityCategories }) => {
-// //   return {
-// //     countries: countries.countriesReducer.data.results,
-// //     celebrityCategories:
-// //       celebrityCategories.fetchCelebrityCategoriesReducer.data.results,
-// //   };
-// // };
-
-// // const mapDispatchToProps = {
-// //   updateQueryParams,
-// //   listCountries: countriesOperations.list,
-// //   listCelebrityCategories: celebrityCategoriesOperations.list,
-// //   listRestCountries: restCountriesOperations.list,
-// // };
-
-// // const initialState = {
-// //   params: {
-// //     offset: updateQueryParamsInitialState.offset,
-// //     limit: updateQueryParamsInitialState.limit,
-// //   },
-// // };
-
-// const NewFiltersSectionLayout = ({
-//   className = "",
-//   countries,
-//   celebrityCategories,
-//   updateQueryParams,
-//   listCountries,
-//   listCelebrityCategories,
-//   location,
-//   router,
-// }) => {
-// //   const intl = useIntl();
-
-// //   const [params, setParams] = useState(initialState.params);
-// //   const queryParams = queryStringToJSON(location.search);
-
-// //   const setFilterParam = (paramName) => (paramValues) =>
-// //     setParams((params) => ({
-// //       ...params,
-// //       [paramName]: paramValues.join(","),
-// //     }));
-
-// //   const setOrderByParam = (orderBy) =>
-// //     setParams((params) => ({ ...params, orderBy }));
-
-// //   useEffect(() => {
-// //     if (params === initialState.params) return;
-// //     updateQueryParams(
-// //       {
-// //         ...queryParams,
-// //         ...initialState.params,
-// //         ...params,
-// //       },
-// //       router
-// //     );
-// //   }, [params]);
-
-// //   useEffect(() => {
-// //     const shouldFetchFilterOptions =
-// //       !countries.length && !celebrityCategories.length;
-// //     if (!shouldFetchFilterOptions) return;
-// //     listCountries({ orderBy: "name asc" });
-// //     listCelebrityCategories({ orderBy: "title asc" });
-// //   }, []);
-
-// //   const cleanFilters = () => {
-// //     GTM.tagManagerDataLayer("CLICK_CLEAN_FILTERS_BUTTON", {
-// //       widget: "FiltersSectionLayout",
-// //       path: window.location.pathname,
-// //       queryParams,
-// //     });
-// //     updateQueryParams(
-// //       {
-// //         ...updateQueryParamsInitialState,
-// //       },
-// //       router
-// //     );
-// //   };
-
-// //   const showCleanFiltersButton =
-// //     (queryParams.orderBy ||
-// //       queryParams["country_id"] ||
-// //       queryParams["category_id"]) &&
-// //     !queryParams.search;
-
-// //   const activeCountryItems = useMemo(
-// //     () => (queryParams.country_id ? queryParams.country_id.split(",") : []),
-// //     [queryParams.country_id]
-// //   );
-
-// //   const activeCategoryItems = useMemo(
-// //     () => (queryParams.category_id ? queryParams.category_id.split(",") : []),
-// //     [queryParams.category_id]
-// //   );
-// const [state, setstate] = useState(false)
-//   return (
-//       <div className={styles.container_filterCategories}>
-//           <div className={styles.filterCarrousel}>
-//               <CategorieFilterCarrousel
-//                 itemWidth={108}
-//                 itemHeight={61}
-//                 gap={10}
-//               />
-//           </div>
-//             <div>
-//                 <button onClick={()=>{setstate(true)}}><FormattedMessage defaultMessage='Países'/></button>
-//                 <AnimatedPopup
-//                   open={state}
-//                   >
-//                 {<p>1</p>}
-//               </AnimatedPopup>
-//                 <button onClick={()=>{}}><FormattedMessage defaultMessage='Tiempo de Entrega'/></button>
-//                 <button onClick={()=>{}}><FormattedMessage defaultMessage='Precios'/></button>
-//                 <button onClick={()=>{}}><FormattedMessage defaultMessage='Calificaciones'/></button>
-//             </div>
-//       </div>
-//     // <section className={`FiltersSectionLayout ${className}`}>
-//     //   <div className="filters-section__container container pt-1">
-//     //     <h2 className="filters-section__title ml-2">
-//     //       <FormattedMessage defaultMessage="Filtrar por:" />
-//     //     </h2>
-//     //     <ul className="filters-section__filters-list p-0">
-//     //       {showCleanFiltersButton ? (
-//     //         <li className="filters-section__filters-item d-flex align-items-center">
-//     //           <button
-//     //             type="button"
-//     //             className="filters-section__back-btn btn btn-dark"
-//     //             onClick={cleanFilters}
-//     //           >
-//     //             <i className="fa fa-times text-white"></i>
-//     //           </button>
-//     //         </li>
-//     //       ) : null}
-//     //       <li className="filters-section__filters-item">
-//     //         <CelebritiesFilter
-//     //           buttonLabel={intl.formatMessage(
-//     //             messageForLabelButtonCategoryCountry
-//     //           )}
-//     //           modalTitle={intl.formatMessage(
-//     //             messageForModalTitleCategoryCountry
-//     //           )}
-//     //           searchPlaceholder={intl.formatMessage(
-//     //             messageForSearchPlaceholderCategoryCountry
-//     //           )}
-//     //           activeItems={activeCountryItems}
-//     //           onApplyFilters={setFilterParam("country_id")}
-//     //           options={countries.map((country) => ({
-//     //             label: COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE.includes(
-//     //               country.countryCode
-//     //             )
-//     //               ? removeParenthesis(
-//     //                   intl.formatMessage(
-//     //                     labelMessagesForCountryCodeFilter[country.countryCode]
-//     //                   )
-//     //                 )
-//     //               : removeParenthesis(country.name),
-//     //             value: country.id,
-//     //           }))}
-//     //         />
-//     //       </li>
-//     //       <li className="filters-section__filters-item">
-//     //         <CelebritiesFilter
-//     //           buttonLabel={intl.formatMessage(
-//     //             messageForLabelButtonCategoryFilter
-//     //           )}
-//     //           modalTitle={intl.formatMessage(
-//     //             messageForModalTitleCategoryFilter
-//     //           )}
-//     //           searchPlaceholder={intl.formatMessage(
-//     //             messageForSearchPlaceholderCategoryFilter
-//     //           )}
-//     //           activeItems={activeCategoryItems}
-//     //           onApplyFilters={setFilterParam("category_id")}
-//     //           options={celebrityCategories.map((category) => ({
-//     //             label: CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE.includes(
-//     //               category.title
-//     //             )
-//     //               ? intl.formatMessage(
-//     //                   labelMessagesForCategoriesFilter[category.title]
-//     //                 )
-//     //               : category.title,
-//     //             value: category.id,
-//     //           }))}
-//     //         />
-//     //       </li>
-//     //       <li className="filters-section__filters-item filters-section__order-by">
-//     //         <CelebritiesOrderBy
-//     //           onApplyOrderBy={setOrderByParam}
-//     //           activeValue={queryParams.orderBy}
-//     //         />
-//     //       </li>
-//     //     </ul>
-//     //   </div>
-//     // </section>
-//   );
-// };
-
-// // FiltersSectionLayout.defaultProps = {
-// //   queryParams: [],
-// // };
-
-// // const _FiltersSectionLayout = connect(
-// //   mapStateToProps,
-// //   mapDispatchToProps
-// // )(withRouter(FiltersSectionLayout));
-
-// export {NewFiltersSectionLayout };
+export {_FiltersSectionLayout as NewFiltersSectionLayout };

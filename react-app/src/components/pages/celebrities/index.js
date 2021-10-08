@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { celebrityOperations } from "../../../state/ducks/celebrities";
 import * as GTM from "../../../state/utils/gtm";
 import { HeroSectionLayout } from "../../layouts/hero-section";
-import { FiltersSectionLayout } from "../../layouts/filters-section";
+import {NewFilterBar} from 'react-app/src/components/layouts/new-filter-bar'
 import { Session } from "../../../state/utils/session";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { withRouter } from "react-app/src/components/common/routing";
@@ -81,7 +81,7 @@ class CelebritiesPage extends Component {
             shouldFetchCountryCode
           >
             <HeroSectionLayout />
-            <FiltersSectionLayout />
+            <NewFilterBar />
             <Maybe it={isAuthenticated}>
               <UserLikesSectionLayout />
             </Maybe>

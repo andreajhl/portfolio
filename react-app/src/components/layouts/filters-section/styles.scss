@@ -1,6 +1,6 @@
 @import "../../../theme";
 
-.FiltersSectionLayout {
+.FiltersSectionLayout__search {
   // position: sticky;
   // z-index: 1000;
   // top: 0;
@@ -13,7 +13,7 @@
   }
 
   .filters-section {
-    @media only screen and (max-width: 390px) {
+    @media only screen and (max-width: 414px) {
       &__container {
         padding-right: 0;
       }
@@ -70,4 +70,97 @@
       }
     }
   }
+}
+.FiltersSectionLayout {
+  padding-bottom: 0.001rem;
+  background-color: black;
+  width: 95%;
+  margin-left: 3%;
+  border-radius: 5px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .filters-section {
+    @media only screen and (max-width: 390px) {
+      &__container {
+        padding-right: 0;
+      }
+
+      &__filters-list {
+        overflow: scroll;
+        height: 36px;
+      }
+    }
+
+    &__title {
+      font-weight: bold;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: #555454;
+    }
+
+    &__filters-list {
+      display: flex;
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    &__filters-item {
+
+    }
+
+    &__order-by {
+      .ModalSelect__btn-text {
+        max-width: 21.5vw;
+        text-align: left;
+      }
+    }
+
+    &__back-btn {
+      height: 28.88px;
+      padding: 0.375rem 0.625rem;
+      font-size: 10px;
+      text-align: center;
+      border-radius: 50%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0.15em 0.25em 0 rgba($color: #000000, $alpha: 0.1);
+    }
+
+    @media only screen and (min-width: 768px) {
+      &__title {
+        display: inline-block;
+        margin-right: 0.625rem;
+      }
+
+      &__filters-list {
+        display: inline-flex;
+      }
+    }
+  }
+
+  .ModalSelect__btn{
+    background: none !important;
+    border: none !important;
+    height: auto;
+    box-shadow:none !important;
+    padding: 0px !important;
+  
+    span{
+      color: white !important;
+      font-weight: 100;
+      text-decoration:underline;
+      text-underline-position: under
+    }
+    span:active{
+      text-decoration-color: #FB1797;
+    }
+    i{
+      display: none;
+    }
+  }
+  
 }
