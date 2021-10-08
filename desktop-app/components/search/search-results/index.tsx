@@ -101,12 +101,12 @@ function SearchResults({
       searchFilters,
       widget: "SearchResults",
     });
-    fetchCelebrities(searchFilters, false, true);
+    fetchCelebrities(searchFilters, false, false);
   }, [searchFilters]);
 
   useEffect(() => {
     const isCompletedAndInformationPageHasItems =
-      isCompleted && informationPage?.totalItems > 0;
+      isCompleted && informationPage?.totalItems >= 0;
     if (isCompletedAndInformationPageHasItems && !isLoading) {
       setShowAdditionalResults(true);
     } else {

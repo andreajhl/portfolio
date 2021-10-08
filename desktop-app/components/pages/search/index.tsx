@@ -28,12 +28,7 @@ function SearchPage() {
         className={styles.SearchPageSideBarWrapper}
       >
         <Sidebar width={358} className={styles.SideBarSticky}>
-          <div
-            className={classes(
-              styles.SearchPageSidebar,
-              sidebarIsOpen && styles.SearchPageSidebarIsOpen
-            )}
-          >
+          <div>
             <div
               className={`${styles.SearchPageTopBar} ${styles.SearchPageSidebarTopBar}`}
             >
