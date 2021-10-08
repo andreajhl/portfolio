@@ -1,12 +1,13 @@
 import {RangeSlider,RangeSliderProps} from "react-app/src/components/containers/range-slider";
-import { PriceRangeSliderInput } from "react-app/src/components/containers/price-slider-input";  
+import { PriceRangeSliderInput } from "react-app/src/components/containers/price-slider-input";
+import {RangeGraphi} from 'react-app/src/components/containers/range-graphic';
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {rangeSliderLogLinear} from 'lib/utils/rangeSliderLogLinear.js';  
 import usePriceConverter from "lib/hooks/usePriceConverter";
+import {touchGraphi} from 'lib/utils/rangeSliderGraphic';
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 import debounce from "lodash.debounce";
-import {touchGraphi} from 'lib/utils/rangeSliderGraphic';
-import {RangeGraphi} from 'react-app/src/components/containers/range-graphic'
 
 type PriceRangeSliderProps = {
   min?: number;
@@ -105,6 +106,7 @@ function PriceRangeSlider({
       <RangeSlider
         min={min}
         max={max}
+        algorithm={rangeSliderLogLinear}
         values={values}
         isTouched={isTouched}
         onValuesUpdated={changeValues}
