@@ -34,7 +34,7 @@ const buttonStyle = {
   transform: "translateY(-50%)"
 };
 
-function ExtraPrudctFilterNavBar({isOpen, toOpen}:timeFilterProps) {
+function ExtraProductFilterNavBar({isOpen, toOpen}:timeFilterProps) {
 
     const { formatMessage } = useIntl();
 
@@ -72,4 +72,4 @@ function ExtraPrudctFilterNavBar({isOpen, toOpen}:timeFilterProps) {
   );
 }
 
-export {ExtraPrudctFilterNavBar };
+export {ExtraProductFilterNavBar };

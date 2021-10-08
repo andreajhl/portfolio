@@ -55,12 +55,12 @@ function CountryFilterNavBar({isOpen, toOpen}:timeFilterProps) {
             <CardsReelSection
                 itemData={arrayCountries}
                 itemCount={arrayCountries?.length}
-                itemWidth={100}
+                itemWidth={180}
                 itemHeight={35}
                 buttonsStyle={buttonStyle}
                 gap={10}
             >
-                {(e) =><FormattedMessage id={e.label}>{txt => <p onClick={()=>setCountriesChecked(`${e.value}`)}>{txt}</p>}</FormattedMessage>}
+                {(e) =><p onClick={()=>setCountriesChecked(`${e.value}`)}><FormattedMessage id ='pais' defaultMessage = "{label}" values={{label: e.label}}/> </p>}
             </CardsReelSection>    
           </PaymentMethodFormElement>
         </div>
