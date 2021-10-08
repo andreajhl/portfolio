@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import rangeSliderLog10Algorithm from "lib/utils/rangeSliderLog10Algorithm";
+
 type rangeProps={
     touchGraphiInput:(value:{min:string,max:string})=>void;
     maxInputValue:string;

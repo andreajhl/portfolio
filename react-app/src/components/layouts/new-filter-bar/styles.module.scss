@@ -1,0 +1,10 @@
+.container_filter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &_div{
+        max-width: 520px;
+        width: 95%;
+    }
+}

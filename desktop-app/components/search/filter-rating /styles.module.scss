@@ -27,9 +27,12 @@
     margin-top: 10px;
     padding-left: 8px;
     padding-right: 40px;
+    .FormElement{
+        width: 100% !important;
+    }
     div{
-        padding: 2px 0px 0px 10px;
         background-color: black;
+        padding: 0px !important;
     }
     p{
         background-color: #5C5C5C;

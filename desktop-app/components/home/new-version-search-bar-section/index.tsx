@@ -30,7 +30,7 @@ function NewSearchBarSection() {
   };
 
   useEffect(() => {
-    if(Object.entries(Open).flat(Infinity).includes(true)) setwidth(400)
+    if(Object.entries(Open).flat(Infinity).includes(true)) setwidth(500)
   }, [Open])
 
   const filtros=[<CountryFilterNavBar isOpen={Open.countrie} toOpen={toOpen}/>,<FilterRatingNavbar isOpen={Open.rating} toOpen={toOpen}/>,<PriceRangeNavBar isOpen={Open.price} toOpen={toOpen}/>,<ExtraProductFilterNavBar isOpen={Open.extraProduct} toOpen={toOpen}/>,<DeliveryTimeFilterNavbar isOpen={Open.time} toOpen={toOpen}/>]

@@ -24,8 +24,12 @@
     min-width: 0px;
     margin-left: 20px;
     text-align: center;
+    .FormElement{
+        width: 100% !important;
+    }
     div{
-        padding: 0px;
+        background-color: black;
+        padding: 0px !important;
     }
     p{
         background-color: #5C5C5C;
