@@ -8,8 +8,8 @@
     color: white;
     cursor: pointer;
     margin-top: 40px;
-    width:183px;
-    height: 34px;
+    min-width: 183px;
+    min-height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,6 +23,7 @@
     max-width: 400px;
     min-width: 0px;
     margin-left: 20px;
+    text-align: center;
     div{
         padding: 0px;
     }
