@@ -4,7 +4,7 @@ import {ExtraProductFilterNavBar} from 'desktop-app/components/search/filter-ext
 import {CountryFilterNavBar } from 'desktop-app/components/search/country-filter-navBar';
 import {PriceRangeNavBar} from 'desktop-app/components/search/filter-price-range-navbar';
 import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
-import {FilterRatingNavbar} from 'desktop-app/components/search/filter-rating '
+import {FilterRatingNavbar} from 'desktop-app/components/search/filter-rating'
 import { useState,useEffect } from "react";
 import styles from "./styles.module.scss";
 

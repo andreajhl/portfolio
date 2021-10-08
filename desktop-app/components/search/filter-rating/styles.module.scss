@@ -19,7 +19,7 @@
     margin-right: 10px;
     font-size: 15px;
     border: 3px solid rgba(255, 255, 255, 0.651);
-}
+};
 
 .ContainerOption{
     max-width: 700px;
@@ -29,18 +29,17 @@
     padding-right: 40px;
     .FormElement{
         width: 100% !important;
-    }
+    };
     div{
         background-color: black;
         padding: 0px !important;
-    }
+    };
     p{
         background-color: #5C5C5C;
-
         border-radius: 17px;
         display: flex;
         justify-content: center;
         align-items: center;
         color: white;
-    }
-}
+    };
+};
