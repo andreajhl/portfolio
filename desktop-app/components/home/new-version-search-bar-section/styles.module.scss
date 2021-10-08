@@ -1,0 +1,31 @@
+.SearchBarContainer {
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  align-items: center;
+  &_div{
+    width: 90%;
+    max-width: 1120px;
+  }
+  &_Img{
+    background: linear-gradient(180deg, #FB177D 99.99%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 10px;
+    overflow: hidden;
+    img{
+      width: 100%;
+      opacity: 0.8;
+    }
+  }
+}
+  
+.SearchBarOpcion{
+  display:flex;
+  width: 100%;
+  max-width: 1260px;
+  overflow: hidden;
+  align-items: center;
+}
+

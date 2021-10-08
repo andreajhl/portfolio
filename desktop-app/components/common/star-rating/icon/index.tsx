@@ -7,9 +7,10 @@ type StarRatingProps = {
   index: number;
   rating: number;
   editing: boolean;
+  color: string
 };
 
-const getFillColor = (rating, hoverRating, index, editing) => {
+const getYellowFillColor = (rating, hoverRating, index, editing) => {
   if (!editing && rating >= index) {
     return "rgba(255, 201, 11, 1)";
   } else if (hoverRating >= index && editing) {
@@ -20,6 +21,22 @@ const getFillColor = (rating, hoverRating, index, editing) => {
   return "#DEDEDE";
 };
 
+const getPinkFillColor = (rating, hoverRating, index, editing) => {
+  if (!editing && rating >= index) {
+    return "#FB177D";
+  } else if (hoverRating >= index && editing) {
+    return "#FB177D";
+  } else if (!hoverRating && rating >= index) {
+    return "#FB177D";
+  }
+  return "#FB177D";
+};
+
+const SchemeFillColorOptions={
+  yellow: getYellowFillColor,
+  pink: getPinkFillColor
+}
+
 function StarRatingIcon({
   index,
   rating,
@@ -28,8 +45,10 @@ function StarRatingIcon({
   onMouseLeave,
   onSaveRating,
   editing,
+  starSchemeColor
 }) {
-  const fill = getFillColor(rating, hoverRating, index, editing);
+  
+  const fill= SchemeFillColorOptions[starSchemeColor](rating,hoverRating,index,editing);
 
   return (
     <div
@@ -49,7 +68,8 @@ function StarRatingIcon({
           editing && styles.StarIconEditable,
           hoverRating === index && styles.isHovering
         )}
-      ></StarIcon>
+        
+      />
     </div>
   );
 }

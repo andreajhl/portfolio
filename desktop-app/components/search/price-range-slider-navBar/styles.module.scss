@@ -1,0 +1,23 @@
+.PriceRangeSliderSlider {
+    margin-bottom: 9px;
+    width: 100%;
+    min-width: 249px;
+  }
+  
+  .PriceRangeSliderInputs {
+    width: 95%;
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .PriceRangeSliderInputs > div {
+    flex: 45% 0 0;
+    overflow: hidden;
+  }
+  
+  .PriceRangeSliderInputsSeparator {
+    margin: 29px 3.5px 0;
+  }
+  
