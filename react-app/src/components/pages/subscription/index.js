@@ -10,7 +10,7 @@ import { FEED_SUBSCRIPTION } from "../../../routing/Paths";
 import isAlreadySubscribe from "../../../utils/isAlreadySubscribe";
 import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
-import { SubscriptionCheckoutContainer } from "desktop-app/components/subscription-checkout-container";
+import { SubscriptionCheckoutContainer } from "desktop-app/components/subscription-checkout/subscription-checkout-container";
 
 function Subscription({
   celebrityUsername,

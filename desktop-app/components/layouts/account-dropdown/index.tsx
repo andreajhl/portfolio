@@ -14,12 +14,14 @@ import {
   CLIENT_PROFILE,
   FEED_SUBSCRIPTION,
   FAQS_PATH,
+  REFERRALS_INVITE,
 } from "constants/paths";
 import { useAuth } from "lib/famosos-auth";
 import LoginButton from "react-app/src/components/containers/login-button/login-button";
 import { ProfilePicture } from "react-app/src/components/layouts/profile-picture";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { FormattedMessage } from "react-intl";
+import classes from "classnames";
 
 type MenuItemType = {
   id: string;
@@ -48,6 +50,14 @@ const menuItems: MenuItemType[] = [
     to: FEED_SUBSCRIPTION,
   },
   {
+    id: "referrals-invite",
+    icon: (
+      <i className={classes("fas fa-user-friends", styles.ReferralsIcon)} />
+    ),
+    label: <FormattedMessage defaultMessage="Invitar a un amigo" />,
+    to: REFERRALS_INVITE,
+  },
+  {
     id: "help",
     icon: <HelpIcon />,
     label: <FormattedMessage defaultMessage="Ayuda" />,
@@ -64,7 +74,6 @@ const toMenuItem = ({ id, to, icon, label }) => (
 
 function AccountDropdown() {
   const { isAuthenticated, user } = useAuth();
-
   const userAvatar = user?.avatar || "";
 
   return (

@@ -11,6 +11,11 @@ import LoginButton from "../../containers/login-button/login-button";
 import Maybe from "../../common/helpers/maybe";
 import { useIntl, defineMessage } from "react-intl";
 import LangDropdown from "../../containers/lang-dropdown";
+import { UserStarsLink } from "desktop-app/components/common/widgets/user-stars-link";
+import { ReferralFirstBuyDiscountBanner } from "../referral-first-buy-discount-banner";
+import isReferralWithFirstBuyDiscount from "lib/utils/isReferralWithFirstBuyDiscount";
+import { SessionCouponBanner } from "../session-coupon-banner";
+import { useGetSessionCouponCode } from "../../../../../lib/hooks/useGetSessionCouponCode";
 // import { UserNotificationsPopup } from "../user-notifications-popup";
 
 export const sendDropdownLinkAnalyticsData = (eventName, target) => {
@@ -33,16 +38,21 @@ const messageSearchLabel = defineMessage({
   defaultMessage: "Buscar famosos",
 });
 
-const NavbarSectionLayout = ({
+function NavbarSectionLayout({
   className,
   onSearchChange,
   showSearch,
   queryParams,
-  dropdownMenuIsOpen,
-  setDropdownMenuIsOpen,
-}) => {
-  const { isLoading, isAuthenticated } = useAuth();
+  forceHeadroomUpdate,
+}) {
+  const { isLoading, isAuthenticated, user } = useAuth();
   const intl = useIntl();
+
+  const showStarsLink = typeof user?.stars !== "undefined";
+  const showReferralDiscountBanner = isReferralWithFirstBuyDiscount(user);
+
+  const sessionCouponCode = useGetSessionCouponCode();
+  const showSessionCouponBanner = typeof sessionCouponCode === "string";
 
   return (
     <>
@@ -71,22 +81,39 @@ const NavbarSectionLayout = ({
                 />
               </div>
             </Maybe>
-            {/* <div className="top-bar__lang  mr-4 ml-auto">
-              <UserNotificationsPopup />
-            </div> */}
+
             <div className="top-bar__lang  mr-4">
               <LangDropdown />
             </div>
             <div className="top-bar__currency mr-4">
               <CurrencyDropdownLayout />
             </div>
+            <Maybe it={showStarsLink}>
+              <div className="top-bar__currency mr-4">
+                <UserStarsLink />
+              </div>
+            </Maybe>
             <div className="top-bar__lang  mr-4">
               <DropdownMenuLayout isLogged={!isLoading && isAuthenticated} />
             </div>
           </div>
         </div>
+
+        <Maybe
+          it={showReferralDiscountBanner}
+          orElse={
+            <Maybe it={showSessionCouponBanner}>
+              <SessionCouponBanner
+                couponCode={sessionCouponCode}
+                onCollapseEnd={forceHeadroomUpdate}
+              />
+            </Maybe>
+          }
+        >
+          <ReferralFirstBuyDiscountBanner onCollapseEnd={forceHeadroomUpdate} />
+        </Maybe>
         <Maybe it={showSearch}>
-          <div className="col-12 pt-2 px-0">
+          <div className="col-12 pt-3 px-0">
             <div className="d-block top-bar__search-sm">
               <NavbarSearchLayout
                 searchLabel={intl.formatMessage(messageSearchLabel)}
@@ -99,7 +126,7 @@ const NavbarSectionLayout = ({
       </div>
     </>
   );
-};
+}
 
 NavbarSectionLayout.propTypes = {
   className: PropTypes.string,
