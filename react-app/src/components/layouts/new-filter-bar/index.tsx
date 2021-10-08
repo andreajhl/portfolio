@@ -1,6 +1,6 @@
 import {CategorieFilterCarrousel } from 'desktop-app/components/search/categories-filter-carrousel';
 import { NewFiltersSectionLayout } from "react-app/src/components/layouts/new-filters-section";
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
 export const NewFilterBar = () => {
   return (
