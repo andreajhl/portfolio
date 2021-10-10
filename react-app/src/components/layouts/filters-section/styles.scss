@@ -72,11 +72,11 @@
   }
 }
 .FiltersSectionLayout {
-  padding-bottom: 0.001rem;
+  padding: 0.001rem;
   background-color: black;
   width: 100%;
   border-radius: 5px;
-  height: 30px;
+  min-height: 35px;
   margin-top: 10px;
   margin-bottom: 10px;
   .filters-section {

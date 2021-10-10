@@ -28,19 +28,19 @@ export const FilterSectionRatings = ({setFilterByRatings}:filterCountriesProps) 
         setStarChecked(value)
     }
     const analyticsData = {
-      widget: "CelebritiesFilterBy",
+      widget: "CelebritiesFilter",
       path: getWindow().location.pathname,
       star:starChecked
     };
 
-    const registerOrderByFilterOpen = () =>{
+    const onModalOpen = () =>{
         GTM.tagManagerDataLayer("OPEN_CELEBRITIES_FILTER_MODAL", analyticsData)
       }
-      const registerOrderByFilterClose = () =>{
+      const onModalClose = () =>{
         GTM.tagManagerDataLayer("CLOSE_CELEBRITIES_FILTER_MODAL", analyticsData);
       }
     
-      const applyOrderBy = () => {
+      const applyFilters = () => {
         GTM.tagManagerDataLayer("APPLY_CELEBRITIES_FILTER", analyticsData)
         setFilterByRatings(starChecked);
     };
@@ -52,9 +52,9 @@ export const FilterSectionRatings = ({setFilterByRatings}:filterCountriesProps) 
         buttonLabel={intl.formatMessage(messageForLabelButtonCategoryPrice)}
         modalTitle={intl.formatMessage(messageForLabelButtonCategoryPrice)}
         footerButtonLabel={<FormattedMessage defaultMessage="Aplicar filtro" />}
-        footerButtonOnClick={applyOrderBy}
-        onModalOpen={registerOrderByFilterOpen}
-        onModalClose={registerOrderByFilterClose}
+        footerButtonOnClick={applyFilters}
+        onModalOpen={onModalOpen}
+        onModalClose={onModalClose}
         >
             <div className={styles.modalStar}>
                 <StarRatingDisplay

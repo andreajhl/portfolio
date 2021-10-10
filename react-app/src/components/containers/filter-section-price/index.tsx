@@ -27,20 +27,20 @@ export const FilterSectionPrice = ({setFilterPrice}:filterCountriesProps) => {
     const [priceRangeValues, setPriceRangeValues] = useState(priceRangeSliderInitialValues);
   
     const analyticsData = {
-      widget: "CelebritiesFilterBy",
+      widget: "CelebritiesFilter",
       path: getWindow().location.pathname,
       min_price:priceRangeValues[0],
       max_price:priceRangeValues[1]
     };
 
-    const registerOrderByFilterOpen = () =>{
+    const onModalOpen = () =>{
         GTM.tagManagerDataLayer("OPEN_CELEBRITIES_FILTER_MODAL", analyticsData)
     }
-    const registerOrderByFilterClose = () =>{
+    const onModalClose = () =>{
         GTM.tagManagerDataLayer("CLOSE_CELEBRITIES_FILTER_MODAL", analyticsData);
     }
     
-    const applyOrderBy = () => {
+    const applyFilters = () => {
         GTM.tagManagerDataLayer("APPLY_CELEBRITIES_FILTER", analyticsData)
         setFilterPrice(priceRangeValues);
     };
@@ -61,9 +61,9 @@ export const FilterSectionPrice = ({setFilterPrice}:filterCountriesProps) => {
         buttonLabel={intl.formatMessage(messageForLabelButtonCategoryPrice)}
         modalTitle={intl.formatMessage(messageForLabelButtonCategoryPrice)}
         footerButtonLabel={<FormattedMessage defaultMessage="Aplicar filtro" />}
-        footerButtonOnClick={applyOrderBy}
-        onModalOpen={registerOrderByFilterOpen}
-        onModalClose={registerOrderByFilterClose}
+        footerButtonOnClick={applyFilters}
+        onModalOpen={onModalOpen}
+        onModalClose={onModalClose}
         >
             <PriceRangeSlider
                 min={defaultMinPrice}

@@ -40,7 +40,7 @@ const NewFiltersSectionLayout = ({
   const setFilterByPrice = (price) =>
     setParams((params) => ({...params,min_price:price[0],max_price: price[1]}));
   const setFilterByRatings = (star) =>
-    setParams((params) => ({...params,star}));
+    setParams((params) => ({...params,ratings: star}));
 
   useEffect(() => {
     if (params === initialState.params) return;
@@ -77,9 +77,9 @@ const NewFiltersSectionLayout = ({
   return (
     <section className={router.pathname==='/'?'FiltersSectionLayout': 'FiltersSectionLayout__search'}>
       <div className="filters-section__container container pt-1">
-        <ul className="filters-section__filters-list p-0">
+        <ul className="filters-section__filters-list p-0 d-flex justify-content-evenly col-12">
           {showCleanFiltersButton ? (
-            <li className="filters-section__filters-item d-flex align-items-center">
+            <li className="filters-section__filters-item d-flex align-items-center ">
               <button
                 type="button"
                 className="filters-section__back-btn btn btn-dark"

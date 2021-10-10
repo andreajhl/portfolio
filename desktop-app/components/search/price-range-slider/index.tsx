@@ -94,7 +94,6 @@ function PriceRangeSlider({
         min={min}
         max={max}
         values={values}
-        algorithm = {undefined}
         isTouched={isTouched}
         onValuesUpdated={changeValues}
         onClick={onClickAfterChangeIsTouched}

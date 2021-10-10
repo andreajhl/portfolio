@@ -4,8 +4,8 @@ import styles from './styles.module.scss';
 
 export const NewFilterBar = () => {
   return (
-    <div className={styles.container_filter}>
-      <div className={styles.container_filter_div}>
+    <div className={styles.filter}>
+      <div className={styles.filter_Div}>
         <CategorieFilterCarrousel
           itemWidth={108}
           itemHeight={61}

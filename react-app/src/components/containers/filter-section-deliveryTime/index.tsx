@@ -40,19 +40,19 @@ export const FilterSeccionDeliveryTime = ({setFilterByDeliveryTimeParam,queryPar
     }, [queryParams]);
   
     const analyticsData = {
-      widget: "CelebritiesOrderBy",
+      widget: "CelebritiesFilter",
       path: getWindow().location.pathname,
       checkItemLabel,
     };
   
-    const registerOrderByFilterOpen = () =>{
+    const onModalOpen = () =>{
       GTM.tagManagerDataLayer("OPEN_CELEBRITIES_FILTER_MODAL", analyticsData)
     }
-    const registerOrderByFilterClose = () =>{
+    const onModalClose = () =>{
       GTM.tagManagerDataLayer("CLOSE_CELEBRITIES_FILTER_MODAL", analyticsData);
     }
   
-    const applyOrderBy = () => {
+    const applyFilters = () => {
       GTM.tagManagerDataLayer("APPLY_CELEBRITIES_FILTER", {
         ...analyticsData,
         checkItemLabel: getCheckItemLabel(checkedValue),
@@ -65,13 +65,12 @@ export const FilterSeccionDeliveryTime = ({setFilterByDeliveryTimeParam,queryPar
             buttonLabel={intl.formatMessage(messageForLabelButtonCategoryDeliveryTime)}
             modalTitle={intl.formatMessage(messageForLabelButtonCategoryDeliveryTime)}
             footerButtonLabel={<FormattedMessage defaultMessage="Aplicar filtro" />}
-            footerButtonOnClick={applyOrderBy}
-            onModalOpen={registerOrderByFilterOpen}
-            onModalClose={registerOrderByFilterClose}
+            footerButtonOnClick={applyFilters}
+            onModalOpen={onModalOpen}
+            onModalClose={onModalClose}
             options={deliveryTimeFilter.map(e=>({label:intl.formatMessage(e.label), value:e.value}))}
             showSearch={false}
             onInputChange={({ target }) => setCheckedValue(target.value)}
-            isChecked={(optionValue) =>checkedValue === optionValue}
     />
 
     )
