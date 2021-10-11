@@ -30,15 +30,15 @@ function FiltersElementsReel() {
       />
       <DeliveryTimeFilterNavbar
         isOpen={activeFilter === "delivery_time"}
-        toOpen={() => handleToggleFilter("delivery_time")}
+        onToggle={() => handleToggleFilter("delivery_time")}
       />
       <PriceRangeNavBar
         isOpen={activeFilter === "price"}
-        toOpen={() => handleToggleFilter("price")}
+        onToggle={() => handleToggleFilter("price")}
       />
       <FilterRatingNavbar
         isOpen={activeFilter === "rating"}
-        toOpen={() => handleToggleFilter("rating")}
+        onToggle={() => handleToggleFilter("rating")}
       />
       {/* <ExtraProductFilterNavBar isOpen={false} toOpen={() => handleToggleFilter("country")} /> */}
     </div>

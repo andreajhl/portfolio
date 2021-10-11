@@ -7,10 +7,10 @@ import { useState } from "react";
 
 type timeFilterProps = {
   isOpen: boolean;
-  toOpen: (value: string) => void;
+  onToggle: () => void;
 };
 
-function FilterRatingNavbar({ isOpen, toOpen }: timeFilterProps) {
+function FilterRatingNavbar({ isOpen, onToggle }: timeFilterProps) {
   const [starChecked, setStarChecked] = useState(0);
 
   const onChangeRating = (value) => {
@@ -19,7 +19,7 @@ function FilterRatingNavbar({ isOpen, toOpen }: timeFilterProps) {
 
   return (
     <div className={styles.option}>
-      <span className={styles.optionTittle} onClick={() => toOpen("rating")}>
+      <span className={styles.optionTittle} onClick={() => onToggle()}>
         <FormattedMessage defaultMessage="Calificaciónes" />
       </span>
       {isOpen && (

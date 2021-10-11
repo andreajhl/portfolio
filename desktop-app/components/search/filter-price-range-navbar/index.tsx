@@ -13,10 +13,10 @@ const searchFilter = ({ searchFilters }) => searchFilters;
 
 type timeFilterProps = {
   isOpen: boolean;
-  toOpen: (value: string) => void;
+  onToggle: () => void;
 };
 
-export const PriceRangeNavBar = ({ isOpen, toOpen }: timeFilterProps) => {
+export const PriceRangeNavBar = ({ isOpen, onToggle }: timeFilterProps) => {
   const dispatch = useDispatch();
   const searchFilters = useSelector(searchFilter);
   const { min_price, max_price } = searchFilters;
@@ -52,7 +52,7 @@ export const PriceRangeNavBar = ({ isOpen, toOpen }: timeFilterProps) => {
 
   return (
     <div className={styles.option}>
-      <span className={styles.optionTittle} onClick={() => toOpen("price")}>
+      <span className={styles.optionTittle} onClick={() => onToggle()}>
         <FormattedMessage defaultMessage="Precios" />
       </span>
       {isOpen && (

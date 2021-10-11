@@ -32,10 +32,10 @@ const buttonStyle = {
 
 type timeFilterProps = {
   isOpen: boolean;
-  toOpen: (value: string) => void;
+  onToggle: () => void;
 };
 
-function DeliveryTimeFilterNavbar({ isOpen, toOpen }: timeFilterProps) {
+function DeliveryTimeFilterNavbar({ isOpen, onToggle }: timeFilterProps) {
   const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState();
   const { formatMessage } = useIntl();
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ function DeliveryTimeFilterNavbar({ isOpen, toOpen }: timeFilterProps) {
 
   return (
     <div className={styles.option}>
-      <span className={styles.optionTittle} onClick={() => toOpen("time")}>
+      <span className={styles.optionTittle} onClick={() => onToggle()}>
         <FormattedMessage defaultMessage="Tiempo de entrega" />
       </span>
       {isOpen && (
