@@ -1,4 +1,5 @@
 import objectHasProperties from "lib/utils/objectHasProperties";
+import { AllowedFiltersParams } from "react-app/src/state/ducks/search-filters/actions";
 import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 import {
   CELEBRITY_NAME_QUERY_PARAM,
@@ -139,6 +140,8 @@ export const getSearchPath = ({
   pageSize = 40,
   currentPage = 1,
   ...params
+}: {
+  [Property in AllowedFiltersParams]?: unknown;
 }) => {
   return SEARCH_PATH + jsonToQueryString({ pageSize, currentPage, ...params });
 };
