@@ -17,7 +17,9 @@ const allowedParams = [
   "hashtags",
   "orderBy",
   "max_delivery_time",
-];
+] as const;
+
+export type AllowedFiltersParams = typeof allowedParams[number];
 
 function getValidParams(params) {
   const paramsEntries = Object.entries(params);
