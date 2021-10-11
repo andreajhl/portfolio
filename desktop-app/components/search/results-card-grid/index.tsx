@@ -22,13 +22,17 @@ function ResultsCardGrid({
   celebrities,
 }: ResultsCardGridProps) {
   const [celebrityCardHeight, setCelebrityCardHeight] = useState(
-    getPixelsFromViewportWidth(expanded ? 19 : 17.5, expanded ? 256 : 230)
+    getPixelsFromViewportWidth(expanded ? 19 : 17.5, expanded ? 256 : 230, 180)
   );
 
   useEffect(() => {
     function updateHeight() {
       setCelebrityCardHeight(
-        getPixelsFromViewportWidth(expanded ? 19 : 17.5, expanded ? 256 : 230)
+        getPixelsFromViewportWidth(
+          expanded ? 19 : 17.5,
+          expanded ? 256 : 230,
+          180
+        )
       );
     }
 

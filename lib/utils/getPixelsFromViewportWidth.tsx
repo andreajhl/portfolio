@@ -1,6 +1,7 @@
 export function getPixelsFromViewportWidth(
   viewportWidth: number,
-  max?: number
+  max?: number,
+  min?: number
 ) {
   const averageWindowWidth = 1366;
   const windowWidth =
@@ -8,5 +9,6 @@ export function getPixelsFromViewportWidth(
 
   const pixelsFromViewportWidth = windowWidth * (viewportWidth / 100);
   if (max && pixelsFromViewportWidth > max) return max;
+  if (min && pixelsFromViewportWidth < min) return min;
   return pixelsFromViewportWidth;
 }
