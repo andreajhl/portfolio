@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 import Reel from "desktop-app/components/layouts/reel";
+import { getSearchCountryPath } from "constants/paths";
+import { useRouter } from "next/router";
 
 const generateKeysValue = (array) => {
   let arrayCountries = array.map((e) => ({ label: e.name, value: e.id }));
@@ -28,20 +30,24 @@ const buttonStyle = {
 
 function CountryFilterNavBar({ isOpen, onToggle }: timeFilterProps) {
   const dispatch = useDispatch();
+  const { push } = useRouter();
   const { completed, data, error_data, failed, loading } = useSelector(
     countries
   );
   const arrayCountries = generateKeysValue(data.results);
-  const [countriesChecked, setCountriesChecked] = useState("");
+  // const [countriesChecked, setCountriesChecked] = useState("");
 
   useEffect(() => {
     dispatch(listV2({ orderBy: "name asc" }));
   }, [dispatch]);
-  useEffect(() => {
-    if (countriesChecked.length > 0)
-      dispatch(updateSearchFilters({ country_id: countriesChecked }));
-  }, [dispatch, countriesChecked]);
 
+  const handleCountrySelect = (countryID: string) => {
+    push(
+      getSearchCountryPath({
+        country_id: countryID,
+      })
+    );
+  };
   return (
     <div className={styles.option}>
       <span onClick={() => onToggle()} className={styles.optionTittle}>
@@ -67,7 +73,7 @@ function CountryFilterNavBar({ isOpen, onToggle }: timeFilterProps) {
                 >
                   <span
                     className={styles.BadgeStyle}
-                    onClick={() => setCountriesChecked(`${value}`)}
+                    onClick={() => handleCountrySelect(value)}
                   >
                     {hashtag}
                   </span>
