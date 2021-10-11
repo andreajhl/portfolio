@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import Reel from "desktop-app/components/layouts/reel";
 import { getSearchCountryPath } from "constants/paths";
 import { useRouter } from "next/router";
+import { Link } from "desktop-app/components/common/routing/link";
 
 const generateKeysValue = (array) => {
   let arrayCountries = array.map((e) => ({ label: e.name, value: e.id }));
@@ -35,19 +36,11 @@ function CountryFilterNavBar({ isOpen, onToggle }: timeFilterProps) {
     countries
   );
   const arrayCountries = generateKeysValue(data.results);
-  // const [countriesChecked, setCountriesChecked] = useState("");
 
   useEffect(() => {
     dispatch(listV2({ orderBy: "name asc" }));
   }, [dispatch]);
 
-  const handleCountrySelect = (countryID: string) => {
-    push(
-      getSearchCountryPath({
-        country_id: countryID,
-      })
-    );
-  };
   return (
     <div className={styles.option}>
       <span onClick={() => onToggle()} className={styles.optionTittle}>
@@ -68,16 +61,13 @@ function CountryFilterNavBar({ isOpen, onToggle }: timeFilterProps) {
               const hashtag = data[index].label;
               const value = data[index].value;
               return (
-                <div
-                  style={{ ...style, left: Number(style.left) + 10 * index }}
-                >
-                  <span
-                    className={styles.BadgeStyle}
-                    onClick={() => handleCountrySelect(value)}
+                <Link href={getSearchCountryPath(value)}>
+                  <div
+                    style={{ ...style, left: Number(style.left) + 10 * index }}
                   >
-                    {hashtag}
-                  </span>
-                </div>
+                    <span className={styles.BadgeStyle}>{hashtag}</span>
+                  </div>
+                </Link>
               );
             }}
           </Reel>
