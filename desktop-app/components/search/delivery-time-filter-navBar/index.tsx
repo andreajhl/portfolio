@@ -1,12 +1,10 @@
-import PaymentMethodFormElement from "desktop-app/components/payments-methods/form-element";
-import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
-import { CardsReelSection } from "desktop-app/components/layouts/cards-section-reel";
 import { defineMessages, useIntl } from "react-intl";
 import { FormattedMessage } from "lib/custom-intl";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { useDispatch } from "react-redux";
 import Reel from "desktop-app/components/layouts/reel";
+import { getSearchPath } from "constants/paths";
+import { Link } from "desktop-app/components/common/routing/link";
 
 const messages = defineMessages({
   flash: {
@@ -36,17 +34,7 @@ type timeFilterProps = {
 };
 
 function DeliveryTimeFilterNavbar({ isOpen, onToggle }: timeFilterProps) {
-  const [deliveriesTimeChecked, setDeliveriesTimeChecked] = useState();
   const { formatMessage } = useIntl();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (deliveriesTimeChecked) {
-      dispatch(
-        updateSearchFilters({ max_delivery_time: deliveriesTimeChecked })
-      );
-    }
-  }, [deliveriesTimeChecked]);
 
   const deliveryTimeFilter = [
     { label: formatMessage(messages.flash), value: "flash" },
@@ -74,16 +62,17 @@ function DeliveryTimeFilterNavbar({ isOpen, onToggle }: timeFilterProps) {
               const hashtag = data[index].label;
               const value = data[index].value;
               return (
-                <div
-                  style={{ ...style, left: Number(style.left) + 10 * index }}
+                <Link
+                  href={getSearchPath({
+                    max_delivery_time: value,
+                  })}
                 >
-                  <span
-                    className={styles.BadgeStyle}
-                    onClick={() => setDeliveriesTimeChecked(value)}
+                  <div
+                    style={{ ...style, left: Number(style.left) + 10 * index }}
                   >
-                    {hashtag}
-                  </span>
-                </div>
+                    <span className={styles.BadgeStyle}>{hashtag}</span>
+                  </div>
+                </Link>
               );
             }}
           </Reel>
