@@ -3,7 +3,7 @@ import Slider from "rheostat";
 import "rheostat/css/rheostat.css";
 import styles from "./styles.module.scss";
 import { IconButton } from "../../button/icon-button";
-import { HandleIcon } from "../../icons";
+import { HandleIcon, HandleIconPinkStars } from "../../icons";
 import rangeSliderLog10Algorithm from "lib/utils/rangeSliderLog10Algorithm";
 
 type ValuesType = [number, number];
@@ -35,9 +35,14 @@ const RangeSliderBackground = (props) => {
   return <div className={styles.RangeSliderBackground} {...props} />;
 };
 
-const RangeSliderHandle = (props) => (
+const IconVariants = {
+  PinkStars: <HandleIconPinkStars />,
+  DefaultButtons: <HandleIcon />,
+};
+
+const RangeSliderHandle = (props, Icon = "DefaultButtons") => (
   <IconButton className={styles.RangeSliderHandle} {...props}>
-    <HandleIcon />
+    {IconVariants[Icon]}
   </IconButton>
 );
 
@@ -49,6 +54,8 @@ function RangeSlider({
   className = "",
   algorithm = rangeSliderLog10Algorithm,
   isTouched = true,
+  handleIcon = "DefaultButtons",
+
   ...props
 }: RangeSliderProps) {
   return (
@@ -60,7 +67,7 @@ function RangeSlider({
       <Slider
         algorithm={algorithm}
         background={RangeSliderBackground}
-        handle={RangeSliderHandle}
+        handle={(props) => RangeSliderHandle(props, handleIcon)}
         progressBar={isTouched ? RangeSliderProgressBar : NoComponent}
         {...props}
       />
