@@ -17,3 +17,4 @@ export const CELEBRITY_SUBSCRIPTION_PLANS =
 
 export const SUGGESTED_PUBLIC_LIST = `custom-endpoints/${MODEL}/suggested-public-list`;
 export const SUGGESTED_PUBLIC_LIST_V2 = `custom-endpoints/${MODEL}/v2/suggested-public-list`;
+export const FAMOUS_PRICES= "/custom-endpoints/celebrities/get-price-ranges";

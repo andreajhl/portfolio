@@ -7,7 +7,7 @@ import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/
 import { celebrityLikesOperations } from "../../../state/ducks/celebrity-likes";
 import { restCountriesOperations } from "../../../state/ducks/rest-countries";
 import Headroom from "react-headroom";
-import { FiltersSectionLayout } from "../filters-section";
+import { NewFiltersSectionLayout } from "../new-filters-section";
 import { withRouter } from "react-app/src/components/common/routing";
 import Maybe from "../../common/helpers/maybe";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
@@ -84,7 +84,7 @@ function PageContainer({
           />
         </Maybe>
         <Maybe it={props.showFiltersSection}>
-          <FiltersSectionLayout />
+          <NewFiltersSectionLayout />
         </Maybe>
       </Headroom>
 
