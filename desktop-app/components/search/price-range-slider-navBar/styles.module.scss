@@ -1,23 +1,25 @@
 .PriceRangeSliderSlider {
-    margin-bottom: 9px;
-    width: 100%;
-    
-  }
-  
-  .PriceRangeSliderInputs {
-    width: 95%;
-    height: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .PriceRangeSliderInputs > div {
-    flex: 45% 0 0;
-    overflow: hidden;
-  }
-  
-  .PriceRangeSliderInputsSeparator {
-    display: none;
-  }
-  
+  margin-bottom: 9px;
+  width: 250px;
+}
+
+.PriceRangeSliderInputs {
+  width: 95%;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PriceRangeSliderInputs > div {
+  flex: 45% 0 0;
+  overflow: hidden;
+}
+
+.PriceRangeSliderInputsSeparator {
+  display: none;
+}
+
+.PriceRangeSliderBackground {
+  background-color: red;
+}

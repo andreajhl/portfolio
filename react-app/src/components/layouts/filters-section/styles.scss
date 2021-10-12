@@ -76,7 +76,15 @@
   background-color: black;
   width: 100%;
   border-radius: 5px;
+
+  ul {
+    margin-bottom: 0px;
+    height: 22px;
+  }
   .filters-section {
+    &__container {
+      padding-top: 0px !important;
+    }
     @media only screen and (max-width: 390px) {
       &__container {
         padding-right: 0;
@@ -103,7 +111,6 @@
     }
 
     &__filters-item {
-
     }
 
     &__order-by {
@@ -137,25 +144,24 @@
     }
   }
 
-  .ModalSelect__btn{
+  .ModalSelect__btn {
     background: none !important;
     border: none !important;
     height: auto;
-    box-shadow:none !important;
+    box-shadow: none !important;
     padding: 0px !important;
-  
-    span{
+
+    span {
       color: white !important;
       font-weight: 100;
-      text-decoration:underline;
-      text-underline-position: under
+      text-decoration: underline;
+      text-underline-position: under;
     }
-    span:active{
-      text-decoration-color: #FB1797;
+    span:active {
+      text-decoration-color: #fb1797;
     }
-    i{
+    i {
       display: none;
     }
   }
-  
 }

@@ -1,10 +1,13 @@
-import {RangeSliderNavBar,RangeSliderProps} from "desktop-app/components/common/form/range-slider-navBar";
-import { PriceRangeSliderInputNavBar } from "../price-range-slider-input-navBar";  
+import { PriceRangeSliderInputNavBar } from "../price-range-slider-input-navBar";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import usePriceConverter from "lib/hooks/usePriceConverter";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 import debounce from "lodash.debounce";
+import {
+  RangeSlider,
+  RangeSliderProps,
+} from "desktop-app/components/common/form/range-slider";
 
 type PriceRangeSliderProps = {
   min?: number;
@@ -87,7 +90,7 @@ function PriceRangeSliderNavBar({
 
   return (
     <div className={styles.PriceRangeSlider}>
-      <RangeSliderNavBar
+      <RangeSlider
         min={min}
         max={max}
         values={values}
@@ -95,6 +98,19 @@ function PriceRangeSliderNavBar({
         onValuesUpdated={changeValues}
         onClick={onClickAfterChangeIsTouched}
         onChange={onChange}
+        handleIcon="PinkStars"
+        rangeSliderBackgroundStyles={{
+          backgroundColor: "white",
+          marginLeft: "-13px",
+          marginRight: "-5.5px",
+          height: "1px",
+        }}
+        rangeSliderProgressBarStyles={{
+          position: "relative",
+          top: "-1.25px",
+          height: "2.5px",
+          backgroundImage: "linear-gradient(180deg, #ffffff 0%, #ffffff 100%)",
+        }}
         className={styles.PriceRangeSliderSlider}
       />
       <div className={styles.PriceRangeSliderInputs}>
@@ -127,4 +143,3 @@ function PriceRangeSliderNavBar({
 }
 
 export { PriceRangeSliderNavBar };
-  
