@@ -1,5 +1,3 @@
-import PaymentMethodFormElement from "desktop-app/components/payments-methods/form-element";
-import { updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
 import StarRatingDisplay from "desktop-app/components/common/star-rating/display";
 import { FormattedMessage } from "lib/custom-intl";
 import styles from "./styles.module.scss";
@@ -11,7 +9,7 @@ type timeFilterProps = {
 };
 
 function FilterRatingNavbar({ isOpen, onToggle }: timeFilterProps) {
-  const [starChecked, setStarChecked] = useState(0);
+  const [starChecked, setStarChecked] = useState(4);
 
   const onChangeRating = (value) => {
     setStarChecked(value);

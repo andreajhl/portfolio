@@ -109,7 +109,7 @@ function PriceRangeSliderNavBar({
           position: "relative",
           top: "-1.25px",
           height: "2.5px",
-          backgroundImage: "linear-gradient(180deg, #ffffff 0%, #ffffff 100%)",
+          backgroundColor: "#FB177D",
         }}
         className={styles.PriceRangeSliderSlider}
       />
