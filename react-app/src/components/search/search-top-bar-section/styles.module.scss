@@ -1,0 +1,64 @@
+.SearchTopBarSection {
+  display: flex;
+  align-items: stretch;
+  padding: 0.25rem 0;
+}
+
+.FlexOne {
+  flex: 1;
+}
+
+.SearchTopBarSection > * {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchTopBarSection > * + * {
+  border-left: 1px solid white;
+}
+
+.SearchTopBarSectionTitle,
+.SearchTopBarSectionTotalResults {
+  font-size: 10px !important;
+  margin-bottom: 0;
+  color: white;
+}
+
+.SearchTopBarSectionCheckbox.SearchTopBarSectionCheckbox {
+  font-size: 10px;
+  margin-bottom: 0;
+}
+
+.SearchTopBarSectionCheckbox.SearchTopBarSectionCheckbox > span {
+  font-size: 1em;
+  color: white;
+}
+
+.SearchTopBarSectionCheckbox.SearchTopBarSectionCheckbox > div {
+  margin-left: 1em;
+}
+
+.SearchTopBarSectionCheckbox.SearchTopBarSectionCheckbox > div > div {
+  border: 1px solid white !important;
+  background: none;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.SearchTopBarSectionCheckbox.SearchTopBarSectionCheckbox > div > div svg {
+  width: 7px;
+  height: 7px;
+}
+
+.SearchTopBarSectionFilterButton {
+  font-size: 10px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  color: white !important;
+}
+
+.SearchTopBarSectionFilterButton i {
+  color: inherit;
+}

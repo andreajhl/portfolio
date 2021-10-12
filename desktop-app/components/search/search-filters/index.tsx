@@ -12,6 +12,8 @@ import { DeliveryTimeFilter } from "../delivery-time-filter";
 import { HashtagsFilter } from "desktop-app/components/search/hashtags-filter";
 import { RootState } from "react-app/src/state/store";
 import { FormattedMessage } from "react-intl";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 
 const mapStateToProps = ({ searchFilters }: RootState) => {
   return {
@@ -39,6 +41,7 @@ function SearchFilters({
   resetSearchFilters,
   searchFilters,
 }: SearchFiltersProps) {
+  const isDesktop = !useIsOnMobileScreen();
   const [priceRangeValues, setPriceRangeValues] = useState(
     priceRangeSliderInitialValues
   );
@@ -115,11 +118,13 @@ function SearchFilters({
       </div>
       <div className={styles.SearchFilterRow}>
         <div className={styles.SearchFilterItem}>
-          <HashtagsFilter
-            onChangeHashtags={updateSearchFilterHashtags}
-            className={styles.SearchFiltersHashtagsFilter}
-            searchFilters={searchFilters}
-          />
+          <Maybe it={isDesktop}>
+            <HashtagsFilter
+              onChangeHashtags={updateSearchFilterHashtags}
+              className={styles.SearchFiltersHashtagsFilter}
+              searchFilters={searchFilters}
+            />
+          </Maybe>
           <button
             type="button"
             className={`btn btn-tertiary ${styles.SearchFiltersButton}`}
