@@ -3,7 +3,6 @@ import { FilterSeccionCountries } from "react-app/src/components/containers/filt
 import { FilterSectionRatings } from "react-app/src/components/containers/filter-section-rating";
 import { FilterSectionPrice } from "react-app/src/components/containers/filter-section-price";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-import { rankPriceCelebrity } from "react-app/src/state/ducks/celebrities/actions";
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { withRouter } from "react-app/src/components/common/routing";
 import { countriesOperations } from "../../../state/ducks/countries";
@@ -61,7 +60,6 @@ const NewFiltersSectionLayout = ({ className = "", location, router }) => {
   useEffect(() => {
     if (countries.length) return;
     dispatch(countriesOperations.list({ orderBy: "name asc" }));
-    dispatch(rankPriceCelebrity());
   }, []);
 
   const cleanFilters = () => {

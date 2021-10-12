@@ -3,13 +3,14 @@ import {
   RangeSliderProps,
 } from "react-app/src/components/containers/range-slider";
 import { PriceRangeSliderInput } from "react-app/src/components/containers/price-slider-input";
+import { rankPriceCelebrity } from "react-app/src/state/ducks/celebrities/actions";
 import { RangeGraphi } from "react-app/src/components/containers/range-graphic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { rangeSliderLogLinear } from "lib/utils/rangeSliderLogLinear.js";
 import usePriceConverter from "lib/hooks/usePriceConverter";
+import { useSelector, useDispatch  } from "react-redux";
 import { rankValueGraphi } from "lib/utils/rankGraphi";
 import { FormattedMessage } from "react-intl";
-import { useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 import debounce from "lodash.debounce";
 
@@ -30,7 +31,9 @@ function PriceRangeSlider({
   onChange,
   onClick = function () {},
 }: PriceRangeSliderProps) {
+  
   const [low, high] = values;
+  const dispatch= useDispatch();
   var rankGraphi = useSelector(rankPriceState);
   const currentCurrencyRef = useRef<string>();
   const [rank, setRank] = useState(rankGraphi);
@@ -52,6 +55,12 @@ function PriceRangeSlider({
     },
     [getExchangePrice]
   );
+
+  useEffect(() => {
+    if(rankGraphi.length===0){
+      dispatch(rankPriceCelebrity());
+    }
+  }, [])
 
   useEffect(() => {
     if (currentCurrencyRef.current === currency) return;

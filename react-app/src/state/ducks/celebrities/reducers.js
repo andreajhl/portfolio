@@ -78,7 +78,7 @@ const fetchCelebritySubscriptionPlansInitialState = {
 
 const previousPathInitialState = { pathname: ROOT_PATH };
 
-const celebrityProfileVersionInitialState = null;
+const celebrityProfileVersionInitialState = [];
 
 export function queryParamsReducer(
   state = updateQueryParamsInitialState,
