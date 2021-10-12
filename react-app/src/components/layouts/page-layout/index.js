@@ -13,6 +13,9 @@ import Maybe from "../../common/helpers/maybe";
 import { useLoginHandler } from "react-app/src/utils/useLoginHandler";
 import { Session } from "react-app/src/state/utils/session.js";
 import useForceUpdate from "lib/hooks/useForceUpdate";
+import useSearchFilters from "lib/hooks/useSearchFilters";
+import { analytics } from "react-app/src/state/utils/gtm";
+import { getSearchPath } from "constants/paths";
 
 function PageContainer({
   cleanUserCelebrityLikes,
@@ -26,18 +29,27 @@ function PageContainer({
   router,
   ...props
 }) {
+  const { updateSearchFilters } = useSearchFilters();
   const forceHeadroomUpdate = useForceUpdate();
   const loginHandler = useLoginHandler();
 
   const onSearchChange = (keyword) => {
-    const newQueryParams = {
-      ...queryParams,
-      offset: updateQueryParamsInitialState.offset,
-      limit: updateQueryParamsInitialState.limit,
-      search: keyword,
-    };
-    updateQueryParams(newQueryParams, router);
+    updateSearchFilters(
+      {
+        search: keyword,
+      },
+      false
+    );
+    router.push(getSearchPath({ search: keyword }));
+    trackSearch(keyword);
   };
+
+  function trackSearch(keyword) {
+    analytics.track("TOP_BAR_SEARCH_SUBMIT", {
+      widget: "PageContainer",
+      currentQuery: keyword,
+    });
+  }
 
   useEffect(() => {
     const isLogged = new Session().getSession();

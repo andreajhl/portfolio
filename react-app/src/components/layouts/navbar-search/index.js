@@ -6,6 +6,7 @@ import { celebrityOperations } from "../../../state/ducks/celebrities";
 import { connect } from "react-redux";
 import { history } from "../../../routing/History";
 import * as PATHS from "../../../routing/Paths";
+import { withRouter } from "__mocks__/next/router";
 
 const shouldFocusSearchKey = "SHOULD_FOCUS_SEARCH";
 
@@ -14,7 +15,7 @@ class NavbarSearchLayout extends Component {
     super(props);
 
     this.state = {
-      keyword: this.props.queryParams.search || "",
+      keyword: this.props.router?.query?.search || "",
       shouldFocus: false,
     };
 
@@ -126,5 +127,6 @@ const mapDispatchToProps = {
 const _NavbarSearchLayout = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NavbarSearchLayout);
+)(withRouter(NavbarSearchLayout));
+
 export { _NavbarSearchLayout as NavbarSearchLayout };
