@@ -3,12 +3,13 @@ import {FilterSeccionCountries} from 'react-app/src/components/containers/filter
 import {FilterSectionRatings} from 'react-app/src/components/containers/filter-section-rating';
 import {FilterSectionPrice } from 'react-app/src/components/containers/filter-section-price';
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
+import {rankPriceCelebrity } from "react-app/src/state/ducks/celebrities/actions";
 import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { withRouter } from "react-app/src/components/common/routing";
 import { countriesOperations } from "../../../state/ducks/countries";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { useSelector,useDispatch } from "react-redux";
-import React, { useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 
 const initialState = {
   params: {
@@ -44,6 +45,11 @@ const NewFiltersSectionLayout = ({
 
   useEffect(() => {
     if (params === initialState.params) return;
+    console.log('entro en params === initialState.params',{
+      ...queryParams,
+      ...initialState.params,
+      ...params,
+    })
     dispatch(updateQueryParams(
       {
         ...queryParams,
@@ -53,10 +59,11 @@ const NewFiltersSectionLayout = ({
       router
     ))
   }, [params]);
-
+  
   useEffect(() => {
     if (countries.length) return;
     dispatch(countriesOperations.list({ orderBy: "name asc" }))
+    dispatch(rankPriceCelebrity())
   }, []);
 
   const cleanFilters = () => {
@@ -76,8 +83,8 @@ const NewFiltersSectionLayout = ({
 
   return (
     <section className={router.pathname==='/'?'FiltersSectionLayout': 'FiltersSectionLayout__search'}>
-      <div className="filters-section__container container pt-1">
-        <ul className="filters-section__filters-list p-0 d-flex justify-content-evenly col-12">
+      <div className="filters-section__container container pt-2">
+        <ul className="filters-section__filters-list p-0 d-flex justify-content-evenly col-12 ">
           {showCleanFiltersButton ? (
             <li className="filters-section__filters-item d-flex align-items-center ">
               <button

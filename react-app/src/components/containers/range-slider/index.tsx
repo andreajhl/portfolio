@@ -23,6 +23,7 @@ export type RangeSliderProps = {
   onValuesUpdated?: (state: StateType) => void;
   onClick?: () => void;
   isTouched?: boolean;
+  pitPoints:number[]
   [key: string]: any;
 };
 
@@ -43,12 +44,16 @@ const RangeSliderProgressBar = (props) => (
   <div className={styles.RangeSliderProgressBar} {...props} />
 );
 
+
+
 function RangeSlider({
   className = "",
   algorithm = rangeSliderLog10Algorithm,
   isTouched = true,
+  pitPoints,
   ...props
 }: RangeSliderProps) {
+
   return (   
       <div
       className={`${styles.RangeSlider} ${className} ${
@@ -60,6 +65,7 @@ function RangeSlider({
         handle={RangeSliderHandle}
         background={RangeSliderBackground}
         progressBar={RangeSliderProgressBar }
+        pitPoints={pitPoints}
         {...props}
       />
     </div>    

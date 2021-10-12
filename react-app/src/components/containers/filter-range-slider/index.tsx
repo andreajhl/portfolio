@@ -4,8 +4,9 @@ import {RangeGraphi} from 'react-app/src/components/containers/range-graphic';
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {rangeSliderLogLinear} from 'lib/utils/rangeSliderLogLinear.js';  
 import usePriceConverter from "lib/hooks/usePriceConverter";
-import {touchGraphi} from 'lib/utils/rangeSliderGraphic';
+import {rankValueGraphi} from 'lib/utils/rankGraphi'
 import { FormattedMessage } from "react-intl";
+import { useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 import debounce from "lodash.debounce";
 
@@ -13,6 +14,8 @@ type PriceRangeSliderProps = {
   min?: number;
   max?: number;
 } & Omit<RangeSliderProps, "algorithm" | "isTouched">;
+
+const rankPriceState= ({celebrities})=> celebrities.rankPriceCelebrity
 
 function PriceRangeSlider({
   min = 0,
@@ -25,12 +28,14 @@ function PriceRangeSlider({
   onClick = function () {},
 }: PriceRangeSliderProps) {
 
-  const { getExchangePrice, getOriginalPrice, currency } = usePriceConverter();
-  const debouncedOnChange = useMemo(() => debounce(onChange, 500), []);
+  const [low, high] = values;
+  var rankGraphi= useSelector(rankPriceState);
+  const currentCurrencyRef = useRef<string>();
+  const [rank,setRank]=useState(rankGraphi)
   const [minInputValue, setMinInputValue] = useState("");
   const [maxInputValue, setMaxInputValue] = useState("");
-  const currentCurrencyRef = useRef<string>();
-  const [low, high] = values;
+  const debouncedOnChange = useMemo(() => debounce(onChange, 500), []); 
+   const { getExchangePrice, getOriginalPrice, currency } = usePriceConverter();
 
   function changeValues(state: { values: [number, number] }): void {
     changeIsTouched();
@@ -49,8 +54,15 @@ function PriceRangeSlider({
   useEffect(() => {
     if (currentCurrencyRef.current === currency) return;
     currentCurrencyRef.current = currency;
-    updateInputValues(values);
-  }, [currency, updateInputValues, values]);
+  }, [currency, updateInputValues]);
+
+  useEffect(() => {
+    let rank=rankValueGraphi(rankGraphi)
+    rank=rank.map(e=>({price:getExchangePrice(e.price),percentage:e.percentage}))
+    setRank(rank)
+    setMinInputValue(String(rank[0].price));
+    setMaxInputValue(String(rank[rank.length-1].price));
+  }, [rankGraphi,getExchangePrice])
 
   function onClickAfterChangeIsTouched() {
     changeIsTouched();
@@ -88,30 +100,24 @@ function PriceRangeSlider({
     if (String(high) === maxInputValue) return;
     setMaxInputValue(String(getExchangePrice(high)));
   }
-
-
-  function touchGraphiInput(e){
-    touchGraphi({e,min,max,setMaxInputValue,changeHighValue})
-  }
-
   return (
     <div className={styles.PriceRangeSlider}>
       <RangeGraphi 
-        touchGraphiInput={touchGraphiInput} 
         maxInputValue={maxInputValue} 
         minInputValue={minInputValue} 
-        max={max}
-        min={min}
+        max={getExchangePrice(max)}
+        rankGraphi={rank}
       />
       <RangeSlider
-        min={min}
         max={max}
+        min={min}
         algorithm={rangeSliderLogLinear}
         values={values}
         isTouched={isTouched}
         onValuesUpdated={changeValues}
         onClick={onClickAfterChangeIsTouched}
         onChange={onChange}
+        pitPoints={rank.map(e=>e.price)}
         className={styles.PriceRangeSliderSlider}
       />
       <div className={styles.PriceRangeSliderInputs}>

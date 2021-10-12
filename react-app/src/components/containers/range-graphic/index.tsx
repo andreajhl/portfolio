@@ -1,30 +1,22 @@
 import styles from "./styles.module.scss";
 
 type rangeProps={
-    touchGraphiInput:(value:{min:string,max:string})=>void;
     maxInputValue:string;
     minInputValue:string;
     max:number,
-    min:number
+    rankGraphi:{price:number,percentage:number}[]
 }
 
-var graphic=[]
-var value=1
-while (graphic.length<20) {
-    graphic.push({min:value, max:(value+=5)})
-};
-
-export const RangeGraphi= ({touchGraphiInput,maxInputValue, minInputValue, max,min}:rangeProps) => {
+export const RangeGraphi= ({maxInputValue, minInputValue, max, rankGraphi}:rangeProps) => {
 
     return (
         <div className={styles.PriceRangeGraphi}>
-        {graphic.map(e=><p 
-            onClick={()=>touchGraphiInput(e)} 
+        {rankGraphi.map(e=><p 
             className={styles.PriceRangeGraphiDiv} 
             style={{
-                height:` ${e.max<=55? `${e.max-Math.random()*7}%` : `${100%-Number(e.min)+Math.random()*15}%` }`,
-                backgroundColor: `${(Number(e.min)*max)/100 >= Number(minInputValue) && (Number(e.min)*max)/100 <= Number(maxInputValue)? '#FB177D' : '#C4C4C4'} `
-                
+                height:` ${e.percentage < 10 ? `${e.percentage*5}px`: `${e.percentage }px`}`,
+                backgroundColor: `${e.price >= Number(minInputValue) && e.price <= Number(maxInputValue) ? '#FB177D' : '#C4C4C4'}`,
+                width: `${100/rankGraphi.length}%`
             }}
             >x</p>
         )}

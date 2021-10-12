@@ -20,20 +20,18 @@
 }
 
 .ContainerOption {
-  max-width: 800px;
+  max-width: 900px;
   min-width: 0px;
   width: 100%;
   margin-top: 10px;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 5%;
-  padding-left: 5%;
+  padding-right: 15%;
+  padding-left: 15%;
+  margin-left: 10%;
   div {
     padding: 0px !important;
-    width: 100% !important;
   }
   p {
     background-color: #5c5c5c;

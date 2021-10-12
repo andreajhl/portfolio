@@ -20,7 +20,7 @@ const deliveryTimeFilter = [
   
 
 type filterCountriesProps={
-    setFilterByDeliveryTimeParam:(paramName: any) => void,
+    setFilterByDeliveryTimeParam:(paramName: string) => void,
     queryParams:any
 }
 

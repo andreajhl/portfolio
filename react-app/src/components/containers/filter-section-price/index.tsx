@@ -22,7 +22,6 @@ type filterCountriesProps={
 export const FilterSectionPrice = ({setFilterPrice}:filterCountriesProps) => {
     
     const intl = useIntl();
-
     const [priceRangeIsTouched, setPriceRangeIsTouched] = useState(false);
     const [priceRangeValues, setPriceRangeValues] = useState(priceRangeSliderInitialValues);
   
