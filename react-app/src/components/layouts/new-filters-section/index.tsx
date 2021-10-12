@@ -10,11 +10,11 @@ import { countriesOperations } from "../../../state/ducks/countries";
 import { queryStringToJSON } from "../../../state/utils/apiService";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
-import styles from "./styles.module.scss";
+
 const initialState = {
   params: {
-    offset: updateQueryParamsInitialState.offset,
-    limit: updateQueryParamsInitialState.limit,
+    currentPage: 1,
+    pageSize: 40,
   },
 };
 
