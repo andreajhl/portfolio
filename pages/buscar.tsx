@@ -5,10 +5,21 @@ import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
-import { resetSearchFilters, updateSearchFilters } from "react-app/src/state/ducks/search-filters/actions";
+import {
+  resetSearchFilters,
+  updateSearchFilters,
+} from "react-app/src/state/ducks/search-filters/actions";
 import { wrapper } from "react-app/src/state/store";
 import { analytics } from "react-app/src/state/utils/gtm";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
+
+const MobileSearchPage = dynamic(() =>
+  import("react-app/src/components/pages/search").then((mod) => mod.SearchPage)
+);
+
+const DesktopSearchPage = dynamic(() =>
+  import("desktop-app/components/pages/search").then((mod) => mod.SearchPage)
+);
 
 const allowedParams = [
   "search",
@@ -16,7 +27,7 @@ const allowedParams = [
   "offset",
   "country_id",
   "category_id",
-  "orderBy"
+  "orderBy",
 ];
 
 const listParamsInitialKeys = ["offset", "limit"];
@@ -49,35 +60,35 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     return {
       props: {
         isMobile: isMobile(req.headers["user-agent"]),
-        searchParams: query
-      }
+        searchParams: query,
+      },
     };
   }
 );
 
-const CelebritiesResultsPage = dynamic(() =>
-  import("react-app/src/components/pages/celebrities-results").then(
-    (mod) => mod.CelebritiesResultsPage
-  )
-);
+const mapDispatchToProps = { updateSearchFilters, resetSearchFilters };
+const connector = connect(null, mapDispatchToProps);
 
-const DesktopSearchPage = dynamic(() =>
-  import("desktop-app/components/pages/search").then((mod) => mod.SearchPage)
-);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const CelebritiesSearchResults = ({
-                                    isMobile,
-                                    searchParams,
-                                    updateSearchFilters,
-                                    resetSearchFilters
-                                  }) => {
-  useDesktopClass(!isMobile);
+type CelebritiesSearchResultsProps = {
+  isMobile: boolean;
+  searchParams: { [key: string]: any };
+} & PropsFromRedux;
+
+function CelebritiesSearchResults({
+  isMobile,
+  searchParams,
+  updateSearchFilters,
+  resetSearchFilters,
+}: CelebritiesSearchResultsProps) {
+  useDesktopClass(false);
 
   useEffect(() => {
     if (searchParams) {
       analytics.track("SEARCH_PARAMS_ON_LOAD", {
         searchParams,
-        widget: "CelebritiesSearchResults"
+        widget: "CelebritiesSearchResults",
       });
       updateSearchFilters(searchParams, false);
     }
@@ -90,12 +101,10 @@ const CelebritiesSearchResults = ({
     <>
       <CustomHead />
       <Maybe it={isMobile} orElse={<DesktopSearchPage />}>
-        <CelebritiesResultsPage />
+        <MobileSearchPage />
       </Maybe>
     </>
   );
-};
+}
 
-export default connect(null, { updateSearchFilters, resetSearchFilters })(
-  CelebritiesSearchResults
-);
+export default connector(CelebritiesSearchResults);

@@ -1,0 +1,46 @@
+.SearchTopBarSectionWrapper {
+  background-color: #fb177d;
+}
+
+.SearchPageHashtagsContainer {
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  overflow: scroll;
+  min-height: 37.1px;
+}
+
+.SearchPageHashtagsBadgeList.SearchPageHashtagsBadgeList {
+  margin-right: 0.25rem;
+  overflow: visible;
+}
+
+.SearchPageHashtagsFilter.SearchPageHashtagsFilter {
+  margin: 0;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow: visible;
+}
+
+.SearchPageHashtagsBadgeList.SearchPageHashtagsBadgeList span,
+.SearchPageHashtagsFilter.SearchPageHashtagsFilter span {
+  color: black;
+  font-size: 10px;
+}
+
+.SearchPageHashtagsBadgeList.SearchPageHashtagsBadgeList > div,
+.SearchPageHashtagsFilter.SearchPageHashtagsFilter div {
+  height: 1.75rem;
+}
+
+.SearchPageHashtagsBadgeList.SearchPageHashtagsBadgeList div {
+  background-color: rgba(251, 23, 151, 0.56);
+}
+
+.SearchPageHashtagsFilter.SearchPageHashtagsFilter div {
+  background: rgba(251, 23, 151, 0.15);
+}
