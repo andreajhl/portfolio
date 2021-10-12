@@ -48,6 +48,18 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .LabelContainer:hover .StyledCheckbox {
+    border: 1px solid #fb1797;
+  }
+  .StyledCheckbox {
+    border-radius: 50%;
+  }
+  .StyledCheckbox__Checked {
+    background: #fb1797;
+  }
+}
+
 .Label {
   font-size: 14px;
   font-style: normal;
