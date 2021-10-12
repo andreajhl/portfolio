@@ -1,23 +1,13 @@
 import CelebritiesSection from "desktop-app/components/layouts/celebrity-section-cards";
 import { useEffect, useState } from "react";
-import Maybe from "react-app/src/components/common/helpers/maybe";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CelebritySectionType } from "desktop-app/types/celebritySectionType";
 import { tagManagerDataLayer } from "react-app/src/state/utils/gtm";
-import { categories } from "../../../../constants/categories";
-import { Fragment } from "react";
 import { fetchLandings } from "react-app/src/state/ducks/landings/actions";
 import getCookie from "lib/utils/getCookie";
 import { USER_LOCATION_KEY } from "constants/keys";
-import { defineMessages, useIntl } from "react-intl";
 import { InfinityCelebritySkeleton } from "./skeleton";
-
-const messages = defineMessages({
-  categorySectionTitle: {
-    defaultMessage: "Categorías destacadas",
-  },
-});
 
 const mapStateToProps = ({ landings }) => {
   const { loading, data } = landings.fetchLandingsReducer;
@@ -47,7 +37,6 @@ function InfinityCelebritySections({
   fetchLandings,
   loading,
 }: InfinityCelebritySectionsProps) {
-  const { formatMessage } = useIntl();
   const [offset, setOffset] = useState(offsetInitialValue);
 
   useEffect(() => {
@@ -76,8 +65,6 @@ function InfinityCelebritySections({
     });
   };
 
-  const categorySectionTitle = formatMessage(messages.categorySectionTitle);
-
   return (
     <InfiniteScroll
       dataLength={celebritiesSections.length}
@@ -86,21 +73,11 @@ function InfinityCelebritySections({
       loader={<InfinityCelebritySkeleton />}
       style={{ overflow: "visible" }}
     >
-      {celebritiesSections.map((celebritySection, index) => (
-        <Fragment key={celebritySection.id}>
-          <CelebritiesSection celebritySection={celebritySection} />
-          <Maybe it={index === 2}>
-            <CelebritiesSection
-              celebritySection={{
-                celebritySectionType: "CATEGORY_CARD",
-                position: 999,
-                id: 0,
-                title: categorySectionTitle,
-                celebrities: categories,
-              }}
-            />
-          </Maybe>
-        </Fragment>
+      {celebritiesSections.map((celebritySection) => (
+        <CelebritiesSection
+          celebritySection={celebritySection}
+          key={celebritySection.id}
+        />
       ))}
     </InfiniteScroll>
   );
