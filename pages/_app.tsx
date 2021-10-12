@@ -20,6 +20,7 @@ import { REDIRECT_AFTER_LOGIN } from "constants/keys";
 import useSaveUserCurrencyCodeInGlobalObject from "lib/hooks/useSaveUserCurrencyCodeInGlobalObject";
 import { saveUTMs } from "lib/utils/utms";
 import { initializeActiveCampaign } from "react-app/src/state/utils/activeCampaign";
+import { saveCouponParam } from "lib/utils/session-coupon";
 
 const languages = {
   en: enMessages,
@@ -51,6 +52,7 @@ function CustomApp({ Component, pageProps }) {
     gtmInitialize();
     initializeActiveCampaign();
     saveUTMs(router.query);
+    saveCouponParam(router.query);
     analytics.trackFirstPageLoad({ isMobile: pageProps.isMobileDevice });
     const handleRouteChange = (url: any, { shallow }: { shallow: boolean }) => {
       analytics.page({

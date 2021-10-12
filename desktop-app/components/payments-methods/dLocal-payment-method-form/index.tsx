@@ -1,5 +1,3 @@
-import { USER_IP_ADDRESS } from "constants/keys";
-import { getPurchaseSummaryPath } from "constants/paths";
 import {
   DotCircle,
   Ellipse,
@@ -8,26 +6,20 @@ import {
   ExchangeArrowIcon,
 } from "desktop-app/components/common/icons";
 import WarningMessage from "desktop-app/components/common/warning-message";
-import { FormattedMessage, useIntl } from "lib/custom-intl";
+import { FormattedMessage } from "lib/custom-intl";
+import useProcessDlocalPayment from "lib/hooks/useProcessDlocalPayment";
 import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
-import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 import { isADLocalPaymentMethodWithCardRequired } from "lib/utils/dLocalPaymentMethodsValidations";
-import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
-import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Maybe from "react-app/src/components/common/helpers/maybe";
-import { processDlocalPayment } from "react-app/src/state/ducks/payments/actions";
 import { analytics } from "react-app/src/state/utils/gtm";
-import { getIpAddress } from "react-app/src/state/utils/localizationApiService";
-import { generateDeviceId } from "react-app/src/utils/generateDeviceId";
-import getCookie from "react-app/src/utils/getCookie";
 import DLocalFormCard from "../DLocal-form-card";
 import DLocalSelectPaymentMethod from "../DLocal-select-payment-method";
 import PaymentMethodFormElement from "../form-element";
 import PaymentMethodFormLabel from "../form-label";
 import PaymentMethodFormWrapper from "../form-wrapper";
 import styles from "./styles.module.scss";
+import useBuyerDataState from "../../../../lib/hooks/useBuyerDataState";
 
 export const AVAILABLE_PAYMENTS_METHODS_LABEL = {
   CREDIT_CARD: <FormattedMessage defaultMessage="Tarjeta de Crédito" />,
@@ -58,11 +50,6 @@ type DLocalPaymentMethodFormProps = {
     name: string;
     redirect: boolean;
   }>;
-  buyerData: {
-    buyer_name: string;
-    email_address: string;
-    identification_document: string;
-  };
   discountCouponId: null | number;
   handleBuyerDataIncomplete: () => void;
   celebrityId: number;
@@ -75,21 +62,20 @@ function DLocalPaymentMethodForm({
   onToggle,
   paymentsMethodsAvailable,
   paymentMethodType,
-  buyerData,
   handleBuyerDataIncomplete,
   contractReference,
   discountCouponId,
   celebrityId,
   contractPrice,
 }: DLocalPaymentMethodFormProps) {
-  const { push } = useRouter();
-  const { locale } = useIntl();
   const togglePaymentInProcess = useTogglePaymentInProcess();
+  const buyerData = useBuyerDataState();
 
   const sectionId = `section-${index}`;
   const [paymentInProcess, setPaymentInProcess] = useState(false);
   const [paymentError, setPaymentError] = useState("");
   const labelId = `label-${index}`;
+  const processDlocalPayment = useProcessDlocalPayment();
 
   const handleStartPayment = async (cardToken, option) => {
     analytics.track("START_DLOCAL_PAYMENT", {
@@ -103,75 +89,15 @@ function DLocalPaymentMethodForm({
     setPaymentInProcess(true);
     togglePaymentInProcess();
 
-    const {
-      deviceId,
-      IP,
-      userAgent,
-      geolocation,
-    } = await getBuyerIdentityData();
-
     try {
-      processDlocalPayment(
-        contractReference,
-        option.paymentMethodId,
-        buyerData.buyer_name,
-        buyerData.email_address,
-        buyerData.identification_document,
-        discountCouponId,
+      await processDlocalPayment({
         cardToken,
-        deviceId,
-        IP,
-        userAgent,
-        geolocation,
-        locale
-      )
-        .then((response) => {
-          if (
-            ["PAID", "AUTHORIZED", "PENDING"].includes(response.chargeStatus)
-          ) {
-            if (response.requiredRedirect) {
-              const isSafari = /^((?!chrome|android).)*safari/i.test(
-                window?.navigator?.userAgent
-              );
-              if (!isSafari) {
-                window?.open?.(response.redirectUri);
-              } else {
-                return window?.location?.replace?.(response.redirectUri);
-              }
-            } else {
-              analytics.trackContractPurchase({
-                contractPrice,
-                celebrityId,
-              });
-              analytics.track("CONTRACT_PAYED", {
-                widget: "DLocalPaymentMethodForm",
-                paymentMethod: "DLocal",
-                contractReference,
-                discountCouponId,
-                contractPrice,
-                celebrityId,
-              });
-            }
-            if (!checkFlutterWindowsInstance()) {
-              push(getPurchaseSummaryPath(String(contractReference)));
-            } else {
-              SubmitCallbackInFlutterWebview({
-                paymentType: "dlocal",
-              });
-            }
-          } else {
-            setPaymentError(response.statusDetails);
-            setPaymentInProcess(false);
-          }
-        })
-        .catch((e) => {
-          setPaymentError(e);
-          setPaymentInProcess(false);
-        })
-        .finally(() => togglePaymentInProcess());
-    } catch (e) {
+        paymentMethodId: option.paymentMethodId,
+      });
+    } catch (error) {
+      setPaymentError(error);
       setPaymentInProcess(false);
-      setPaymentError(e);
+    } finally {
       togglePaymentInProcess();
     }
   };
@@ -186,6 +112,7 @@ function DLocalPaymentMethodForm({
       handleBuyerDataIncomplete();
     }
   };
+
   return (
     <PaymentMethodFormWrapper>
       <PaymentMethodFormLabel onToggle={onToggle}>

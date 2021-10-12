@@ -18,9 +18,10 @@ import useTogglePaymentInProcess from "lib/hooks/useTogglePaymentInProcess";
 import WarningMessage from "desktop-app/components/common/warning-message";
 import getBuyerIdentityData from "lib/utils/getBuyerIdentityData";
 import SubmitButton from "desktop-app/components/common/button/submit-button";
-import { CardGenerationReminder } from "desktop-app/components/card-generation-reminder";
+import { CardGenerationReminder } from "desktop-app/components/payments-methods/card-generation-reminder";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import useUserCurrentCurrency from "lib/hooks/useUserCurrentCurrency";
+import useDiscountStarsSelected from "lib/hooks/useDiscountStarsSelected";
 import { SubmitCallbackInFlutterWebview } from "lib/utils/SubmitCallbackInFlutterWebview";
 import { checkFlutterWindowsInstance } from "lib/utils/checkFlutterWindowsInstance";
 
@@ -56,6 +57,7 @@ function StripeCardForm({
     name: "",
   });
   const userCurrency = useUserCurrentCurrency();
+  const stars = useDiscountStarsSelected()[0];
 
   const createStripe3DFlow = async (sourceId) => {
     togglePaymentInProcess();
@@ -124,7 +126,8 @@ function StripeCardForm({
       IP,
       userAgent,
       geolocation,
-      locale
+      locale,
+      stars
     )
       .then((res) => {
         if (res.data.status === "ERROR") {

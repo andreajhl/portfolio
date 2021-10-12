@@ -1,15 +1,15 @@
-import { useState } from "react";
-import StarRatingIcon from "../icon";
 import styles from "./styles.module.scss";
+import StarRatingIcon from "../icon";
+import { useState } from "react";
 
 function StarRatingDisplay({
   value,
   editing,
   className = "",
   onChangeRating = function (value) {},
+  starSchemeColor = "yellow",
 }) {
   const [rating, setRating] = useState(value | 0);
-
   const [hoverRating, setHoverRating] = useState(0);
 
   const onMouseEnter = (index) => {
@@ -24,11 +24,17 @@ function StarRatingDisplay({
   const onSaveRating = (index) => {
     if (!editing) return;
     setRating(index);
-    onChangeRating(index + 1);
+    onChangeRating(index);
   };
 
   return (
-    <div className={`${styles.StarRatingDisplay} ${className}`}>
+    <div
+      className={
+        starSchemeColor === "yellow"
+          ? `${styles.StarRatingDisplay_yellow} ${className}`
+          : `${styles.StarRatingDisplay_pink} ${className}`
+      }
+    >
       {[1, 2, 3, 4, 5].map((index) => {
         return (
           <StarRatingIcon
@@ -40,6 +46,7 @@ function StarRatingDisplay({
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             onSaveRating={onSaveRating}
+            starSchemeColor={starSchemeColor}
           />
         );
       })}

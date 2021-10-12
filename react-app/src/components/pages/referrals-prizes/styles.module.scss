@@ -1,0 +1,49 @@
+.ReferralsPrizesPage {
+  padding: 38px 0 42px;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.ReferralsPrizesPagePrizesList {
+  margin-top: 42px;
+}
+
+.ReferralsPrizesPagePrizesListItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.ReferralsPrizesPagePrizesListItem + .ReferralsPrizesPagePrizesListItem {
+  margin-top: 3.5rem;
+}
+
+.StarsCountWrapper {
+  position: relative;
+  text-align: center;
+}
+
+.StarsCountNumber {
+  position: absolute;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 30px;
+  letter-spacing: 0em;
+  left: calc(50% + 1rem);
+  top: -0.3rem;
+}
+
+.StarsCountIcon {
+  font-size: 80px;
+}
+
+.ReferralsPrizesPagePrizeDescription {
+  margin: 14px auto 0;
+  font-size: 16px;
+  line-height: 1.375;
+  letter-spacing: 0em;
+  text-align: center;
+  max-width: 13em;
+  color: #999999;
+}

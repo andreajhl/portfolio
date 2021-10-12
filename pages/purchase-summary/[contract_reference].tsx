@@ -1,5 +1,5 @@
 import LoadingPage from "react-app/src/components/layouts/loading-page";
-import { withAuthenticationRequired } from "lib/famosos-auth";
+import { useAuth, withAuthenticationRequired } from "lib/famosos-auth";
 import CustomHead from "react-app/src/components/common/helpers/custom-head";
 
 import { GetServerSideProps } from "next";
@@ -8,6 +8,8 @@ import isMobile from "lib/utils/isMobile";
 import dynamic from "next/dynamic";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useDesktopClass } from "lib/hooks/useDesktopClass";
+import useUserData from "lib/hooks/useUserData";
+import { useEffect } from "react";
 
 const DesktopContractCreatedPage = dynamic<{ contractReference: any }>(() =>
   import("desktop-app/components/pages/contract-created").then(
@@ -41,7 +43,17 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 
 function ContractWithPaymentsPage({ contractReference, isMobile }) {
+  const { user } = useAuth();
+  const { fetchUserData } = useUserData();
   useDesktopClass(!isMobile);
+
+  // To update user data and its stars if is already fetched .
+  useEffect(() => {
+    if (!user) return;
+    fetchUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <CustomHead />

@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss";
 import classes from "classnames";
+import React, { CSSProperties } from "react";
 
 export function CurrencyIcon() {
   return (
@@ -94,6 +95,90 @@ export function UserIcon() {
   );
 }
 
+export function StarDobleLine(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={190}
+      height={190}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M93.566 35.31c.236-.744 1.29-.744 1.526 0l12.702 40.173a.799.799 0 00.762.56h41.15c.77 0 1.095.98.479 1.44l-33.328 24.883a.802.802 0 00-.285.883l12.722 40.233c.234.741-.619 1.347-1.242.882l-33.245-24.821a.8.8 0 00-.957 0l-33.245 24.821c-.622.465-1.475-.141-1.241-.882l12.721-40.233a.8.8 0 00-.284-.883L38.473 77.483c-.617-.46-.291-1.44.479-1.44h41.15a.8.8 0 00.762-.56l12.702-40.172z"
+        fill="#FB177D"
+      />
+      <path
+        d="M92.055 117.139l-27.772 20.735 10.663-33.721a3.8 3.8 0 00-1.35-4.19l-28.02-20.92H80.1a3.8 3.8 0 003.624-2.655l10.604-33.539 10.604 33.539a3.8 3.8 0 003.623 2.654h34.526l-28.02 20.92a3.8 3.8 0 00-1.35 4.191l10.662 33.721-27.772-20.735a3.8 3.8 0 00-4.547 0l1.795 2.404-1.795-2.404z"
+        stroke="#FF647C"
+        strokeOpacity={0.08}
+        strokeWidth={6}
+      />
+      <g filter="url(#prefix__filter0_d)">
+        <path
+          d="M76.973 65.189L95 9.709l18.027 55.48a5 5 0 004.755 3.454h58.335l-47.194 34.289a5 5 0 00-1.816 5.59l18.026 55.481-47.194-34.289-1.763 2.427 1.763-2.427a5 5 0 00-5.878 0l-47.194 34.289 18.026-55.481a5 5 0 00-1.816-5.59L13.883 68.643h58.335a5 5 0 004.755-3.454zm101.634 1.645l-.003.003a.057.057 0 01.003-.003zM146.084 166.93l-.001-.004.001.004zM11.393 66.834l.003.002-.003-.002z"
+          stroke="#FB177D"
+          strokeWidth={6}
+          shapeRendering="crispEdges"
+        />
+      </g>
+      <g filter="url(#prefix__filter1_d)">
+        <path
+          d="M94.049 6.163c.3-.921 1.603-.921 1.902 0L114.93 64.57a2.999 2.999 0 002.853 2.073h61.413c.969 0 1.371 1.24.588 1.81l-49.684 36.097a2.999 2.999 0 00-1.09 3.354l18.977 58.408c.3.921-.755 1.687-1.538 1.118l-49.685-36.098a3 3 0 00-3.526 0L43.552 167.43c-.783.569-1.838-.197-1.538-1.118l18.977-58.408a3 3 0 00-1.09-3.354L10.217 68.452c-.784-.569-.38-1.809.588-1.809h61.413a3 3 0 002.853-2.073L94.05 6.163z"
+          stroke="#fff"
+          strokeWidth={2}
+          shapeRendering="crispEdges"
+        />
+      </g>
+      <defs>
+        <filter
+          id="prefix__filter0_d"
+          x={4.801}
+          y={4.473}
+          width={180.398}
+          height={172.157}
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy={4} />
+          <feGaussianBlur stdDeviation={2} />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+          <feBlend in2="BackgroundImageFix" result="effect1_dropShadow" />
+          <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+        </filter>
+        <filter
+          id="prefix__filter1_d"
+          x={4.801}
+          y={4.473}
+          width={180.398}
+          height={172.157}
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy={4} />
+          <feGaussianBlur stdDeviation={2} />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+          <feBlend in2="BackgroundImageFix" result="effect1_dropShadow" />
+          <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
 export function PlayIcon({
   fill = "currentColor",
   ...props
@@ -542,6 +627,23 @@ export function HandleIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function HandleIconPinkStars(props: React.SVGAttributes<SVGSVGElement>) {
+  return (
+    <svg
+      width="29"
+      height="28"
+      viewBox="0 0 29 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14.1196 1.17082C14.2393 0.802296 14.7607 0.802296 14.8804 1.17082L17.8902 10.4338C17.9437 10.5987 18.0973 10.7102 18.2706 10.7102H28.0103C28.3978 10.7102 28.5589 11.2061 28.2454 11.4338L20.3658 17.1587C20.2256 17.2606 20.167 17.4411 20.2205 17.6059L23.2302 26.8689C23.35 27.2375 22.9282 27.5439 22.6147 27.3162L14.7351 21.5913C14.5949 21.4894 14.4051 21.4894 14.2649 21.5913L6.38529 27.3162C6.0718 27.5439 5.65001 27.2375 5.76975 26.8689L8.77949 17.6059C8.83304 17.4411 8.77438 17.2606 8.63418 17.1587L0.754583 11.4338C0.441097 11.2061 0.602208 10.7102 0.989697 10.7102H10.7294C10.9027 10.7102 11.0563 10.5987 11.1098 10.4338L14.1196 1.17082Z"
+        fill="#FB177D"
+      />
+    </svg>
+  );
+}
+
 export function OrderByIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -756,6 +858,39 @@ export function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
       <path
         d="M15.32 6.827a4.53 4.53 0 01-1.305.357c.469-.281.829-.726.998-1.256-.438.26-.925.449-1.441.55a2.271 2.271 0 00-3.87 2.071 6.446 6.446 0 01-4.68-2.372 2.27 2.27 0 00.703 3.032 2.255 2.255 0 01-1.03-.284v.028c0 1.1.783 2.018 1.822 2.227a2.265 2.265 0 01-1.025.04 2.273 2.273 0 002.12 1.576 4.556 4.556 0 01-3.361.94 6.423 6.423 0 003.48 1.02c4.177 0 6.462-3.46 6.462-6.46a6.5 6.5 0 00-.007-.294c.444-.32.829-.72 1.133-1.175z"
         fill="#fff"
+      />
+    </svg>
+  );
+}
+
+export function TelegramIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={16}
+      height={16}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      {...props}
+    >
+      <path
+        stroke="null"
+        d="M8.099 0a8.095 8.095 0 100 16.19 8.095 8.095 0 100-16.19z"
+        fill="#29b6f6"
+      />
+      <path
+        stroke="null"
+        d="M12.126 4.452l-1.516 7.742s-.065.354-.504.354c-.233 0-.353-.111-.353-.111L6.469 9.71l-1.607-.81-2.063-.548s-.367-.106-.367-.41c0-.253.378-.373.378-.373l8.628-3.428s.263-.095.456-.094c.118 0 .253.05.253.202 0 .101-.02.202-.02.202z"
+        fill="#fff"
+      />
+      <path
+        stroke="null"
+        d="M7.694 10.728l-1.386 1.366s-.06.046-.141.048a.2.2 0 01-.089-.017l.39-2.414 1.226 1.017z"
+        fill="#b0bec5"
+      />
+      <path
+        stroke="null"
+        d="M10.486 5.746a.202.202 0 00-.284-.038L4.861 8.905s.852 2.385.982 2.798c.13.413.235.422.235.422l.39-2.414 3.98-3.682a.202.202 0 00.038-.283z"
+        fill="#cfd8dc"
       />
     </svg>
   );
@@ -1036,6 +1171,34 @@ export function CommentIcon({
       <path
         d="M17.5 0h-15A2.505 2.505 0 000 2.505v11.27a2.505 2.505 0 002.5 2.505h3.75v3.288a.468.468 0 00.746.375l4.879-3.663H17.5c1.379 0 2.5-1.123 2.5-2.504V2.505A2.505 2.505 0 0017.5 0zm.625 13.776a.627.627 0 01-.625.626h-6.25l-.5.376-2.625 1.972v-2.348H2.5a.627.627 0 01-.625-.626V2.505c0-.345.281-.626.625-.626h15c.344 0 .625.281.625.626v11.27z"
         fill={strokeColor}
+      />
+    </svg>
+  );
+}
+
+export function ReferralsStarIcon({
+  color = "#FB177D",
+  className,
+  width = 16,
+  height = 16,
+}: {
+  color?: CSSProperties["fill"];
+  className?: string;
+  width?: string | number;
+  height?: string | number;
+}) {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={height}
+      viewBox="0 0 77 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M38.5 0L47.3683 27.2938L76.0667 27.2938L52.8492 44.1623L61.7175 71.4562L38.5 54.5877L15.2825 71.4562L24.1508 44.1623L0.93327 27.2938L29.6317 27.2938L38.5 0Z"
+        fill={color}
       />
     </svg>
   );

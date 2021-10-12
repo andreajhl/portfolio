@@ -9,7 +9,7 @@ const br = <br />;
 
 function SignUpPage() {
   return (
-    <PageContainer showSearch={false}>
+    <PageContainer showSearch={false} showNewsLetters={false}>
       <main className={classes("container", styles.Container)}>
         <div>
           <h1 className={styles.TitleDesktop}>

@@ -1,0 +1,16 @@
+.SearchBarContainer {
+    width: 100%;
+    &_Img{
+      background: linear-gradient(180deg, #FB177D 99.99%, rgba(255, 255, 255, 0) 100%);
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+    }
+}

@@ -26,15 +26,19 @@ const getValidParams = (params) => {
 
 export const updateQueryParams = (params, router) => (dispatch) => {
   const newParams = getValidParams(params);
+  console.log("newParams:", newParams);
   dispatch({
     type: types.UPDATE_QUERY_PARAMS,
     payload: { params: { ...updateQueryParamsInitialState, ...newParams } },
   });
   if (newParams.offset) {
+    console.log("entro en newParams.offset");
     router.replace(PATHS.SEARCH_PATH + jsonToQueryString(newParams));
   } else {
     const previousPathname = router.pathname;
+    console.log("entro en previousPathname:", previousPathname);
     if (previousPathname !== PATHS.SEARCH_PATH) {
+      console.log("entro en previousPathname !== PATHS.SEARCH_PATH");
       dispatch({
         type: types.SET_PREVIOUS_PATH,
         payload: previousPathname,
@@ -421,6 +425,31 @@ export const fetchFlashDeliveryCelebrities = () => async (dispatch) => {
   } finally {
     dispatch({ type: `${TYPE}_COMPLETED`, payload: {} });
   }
+};
+
+export const rankPriceCelebrity = () => async (dispatch) => {
+  const TYPE = types.RANK_PRICE_CELEBRITIES;
+  const FINAL_PATH = API_PATHS.CELEBRITIES_PRICES;
+  apiService({
+    method: "GET",
+    action: TYPE,
+    path: FINAL_PATH,
+    async: true,
+    body: null,
+  })
+    .then((res) => {
+      if (res.data.status === "OK") {
+        handleApiResponseSuccess(dispatch, TYPE, res);
+        dispatch({ type: TYPE, payload: res });
+      } else {
+        handleApiResponseFailure(dispatch, TYPE, res);
+      }
+    })
+    .catch((err) => {
+      handleApiErrors(dispatch, TYPE, {
+        data: { api_error: err, error: "Server 500" },
+      });
+    });
 };
 
 export const fetchCelebritySubscriptionPlans = (celebrityUsername) => (

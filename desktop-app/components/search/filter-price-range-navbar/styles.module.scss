@@ -1,0 +1,46 @@
+.option {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin-left: 44px;
+}
+.optionTittle {
+  color: white;
+  cursor: pointer;
+  min-width: 183px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f1f126;
+  border-radius: 15px;
+  font-weight: 800;
+  font-size: 15px;
+  border: 3px solid rgba(255, 255, 255, 0.651);
+}
+
+.ContainerOption {
+  max-width: 900px;
+  min-width: 0px;
+  width: 310px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.0625rem;
+  margin-left: 1.0625rem;
+  padding-right: 5%;
+  padding-left: 5%;
+  div {
+    // padding: 0px !important;
+    // width: 100% !important;
+  }
+  p {
+    background-color: #5c5c5c;
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+}

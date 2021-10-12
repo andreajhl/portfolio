@@ -6,7 +6,7 @@ import { SignInBox } from "../../containers/sign-in-box";
 
 function SignInPage() {
   return (
-    <PageContainer showSearch={false}>
+    <PageContainer showSearch={false} showNewsLetters={false}>
       <main className={classes("container", styles.Container)}>
         <div>
           <h1 className={styles.Title}>

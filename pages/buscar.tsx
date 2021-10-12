@@ -56,6 +56,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     //   };
     // }
     // await list(listParams)(store.dispatch, store.getState);
+    updateSearchFilters(query, false)(store.dispatch, store.getState);
 
     return {
       props: {
@@ -76,13 +77,12 @@ type CelebritiesSearchResultsProps = {
   searchParams: { [key: string]: any };
 } & PropsFromRedux;
 
-function CelebritiesSearchResults({
+const CelebritiesSearchResults = ({
   isMobile,
   searchParams,
-  updateSearchFilters,
   resetSearchFilters,
-}: CelebritiesSearchResultsProps) {
-  useDesktopClass(false);
+}: CelebritiesSearchResultsProps) => {
+  useDesktopClass(!isMobile);
 
   useEffect(() => {
     if (searchParams) {
@@ -90,7 +90,6 @@ function CelebritiesSearchResults({
         searchParams,
         widget: "CelebritiesSearchResults",
       });
-      updateSearchFilters(searchParams, false);
     }
     return () => {
       resetSearchFilters(false);
@@ -105,6 +104,6 @@ function CelebritiesSearchResults({
       </Maybe>
     </>
   );
-}
+};
 
 export default connector(CelebritiesSearchResults);

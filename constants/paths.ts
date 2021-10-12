@@ -1,4 +1,5 @@
 import objectHasProperties from "lib/utils/objectHasProperties";
+import { AllowedFiltersParams } from "react-app/src/state/ducks/search-filters/actions";
 import { jsonToQueryString } from "react-app/src/state/utils/apiService";
 import {
   CELEBRITY_NAME_QUERY_PARAM,
@@ -67,6 +68,19 @@ export const FEED_SUBSCRIPTION = "/backstage/feed";
 export const SUBSCRIPTION_FEED_VIEW_NAME = "feed";
 export const SUBSCRIPTION_FEED = `/backstage/${SUBSCRIPTION_FEED_VIEW_NAME}`;
 
+// REFERRALS
+export const REFERRALS_HOME = "/referrals";
+export const REFERRALS_INVITE = `${REFERRALS_HOME}/invite`;
+export const REFERRALS_PRIZES = `${REFERRALS_HOME}/prizes`;
+export const REFERRALS_LIST = `${REFERRALS_HOME}/list`;
+export const REFERRER_INVITE_LINK = "/referrer/:name/:code";
+
+export const getReferrerInviteLink = ({ referrerName, referrerCode }) =>
+  REFERRER_INVITE_LINK.replace(":name", referrerName).replace(
+    ":code",
+    referrerCode
+  );
+
 export const getCelebrityBackstagePostsPath = (celebrityUsername: string) =>
   CELEBRITY_SUBSCRIBE.replace(":celebrity_username", celebrityUsername);
 
@@ -126,6 +140,8 @@ export const getSearchPath = ({
   pageSize = 40,
   currentPage = 1,
   ...params
+}: {
+  [Property in AllowedFiltersParams]?: unknown;
 }) => {
   return SEARCH_PATH + jsonToQueryString({ pageSize, currentPage, ...params });
 };
@@ -187,13 +203,16 @@ export const getStripe3dSecureIframePath = (contractReference) =>
 export const getStripe3dSecureResponsePath = (contractReference) =>
   STRIPE_3D_SECURE_RESPONSE.replace(":contract_reference", contractReference);
 
-type SignInFromPathDataType = {
+type FromPathDataType = {
   [CELEBRITY_NAME_QUERY_PARAM]?: string;
   [SUGGESTED_FULL_NAME_QUERY_PARAM]?: string;
 };
 
-const getQueryParams = (data?: SignInFromPathDataType) =>
+const getQueryParams = (data?: FromPathDataType) =>
   data && objectHasProperties(data) ? jsonToQueryString(data) : "";
 
-export const getSignInFromPath = (data?: SignInFromPathDataType) =>
+export const getSignInFromPath = (data?: FromPathDataType) =>
   SIGN_IN_FROM_PATH + getQueryParams(data);
+
+export const getSignUpFromPath = (data?: FromPathDataType) =>
+  SIGN_UP_FROM_PATH + getQueryParams(data);

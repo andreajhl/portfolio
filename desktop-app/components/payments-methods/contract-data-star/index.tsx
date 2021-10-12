@@ -1,0 +1,120 @@
+import { CustomOffCanvas } from "react-app/src/components/common/widgets/custom-off-canvas";
+import { FormattedMessage } from "react-intl";
+import SelectorStar from "../selector-star";
+import styles from "./styles.module.scss";
+import { useState } from "react";
+import { CouponFormV2 } from "../coupon-form-v.2";
+import {
+  BasePrice,
+  OriginalPrice,
+  TotalPrice,
+  DiscountAmount,
+} from "../price-summary-layouts";
+import useGetContractToPayState from "lib/hooks/useGetContractToPayState";
+import useHasAppliedCoupon from "lib/hooks/useHasAppliedCoupon";
+import useContractHasCelebrityDiscount from "lib/hooks/useContractHasCelebrityDiscount";
+import Maybe from "desktop-app/components/common/helpers/maybe";
+import { useHasStarsDiscount } from "lib/hooks/useHasStarsDiscount";
+import classes from "classnames";
+import { Collapse } from "react-bootstrap";
+
+const offCanvasStyle = {
+  content: {
+    backgroundColor: "white",
+  },
+};
+
+function ContractDataStar() {
+  const contractReference = useGetContractToPayState()?.contractToPay
+    ?.reference;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const hasAppliedCoupon = useHasAppliedCoupon();
+  const contractHasCelebrityDiscount = useContractHasCelebrityDiscount();
+  const hasStarsDiscount = useHasStarsDiscount();
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  return (
+    <div className={styles.containerPriceStar}>
+      <div className={styles.containerPriceStar_div}>
+        <h2>
+          <FormattedMessage defaultMessage="DETALLES DEL PRECIO" />
+        </h2>
+        <div className={styles.containerPriceStarBody}>
+          <div className={styles.containerPriceStarBody_left}>
+            <div className={styles.containerPriceStarBody_left_header}>
+              <p>
+                <FormattedMessage defaultMessage="Video personalizado" />
+              </p>
+              <p className={styles.InitialVideoPrice}>
+                <Maybe it={contractHasCelebrityDiscount}>
+                  <span
+                    className={classes(
+                      styles.containerPriceStarBody_left_p,
+                      styles.OriginalPrice
+                    )}
+                  >
+                    <OriginalPrice />
+                  </span>
+                </Maybe>
+                <span
+                  className={classes(hasStarsDiscount && styles.RemovedPrice)}
+                >
+                  <BasePrice />
+                </span>
+              </p>
+            </div>
+            <div className={styles.containerPriceStarBody_left_div}>
+              <SelectorStar />
+            </div>
+            <button
+              className={styles.containerPriceStarBody_left_btn}
+              onClick={() => setIsOpen(true)}
+            >
+              <FormattedMessage defaultMessage="Introduce un cupón" />
+            </button>
+          </div>
+        </div>
+        <Collapse in={hasAppliedCoupon} unmountOnExit>
+          <div className={styles.containerPriceStarBody_left_header}>
+            <p>
+              <FormattedMessage defaultMessage="Descuento" />
+            </p>
+            <p>
+              <DiscountAmount />
+            </p>
+          </div>
+        </Collapse>
+        <div className={styles.containerPriceStarFooter}>
+          <p>
+            <FormattedMessage defaultMessage="Total" />
+          </p>
+          <div>
+            <p>
+              <TotalPrice />
+            </p>
+          </div>
+          <CustomOffCanvas
+            overlayClassName={styles.CouponFormOverlay}
+            isOpen={isOpen}
+            position="bottom"
+            width="100%"
+            style={offCanvasStyle}
+            height="auto"
+            onClose={closeModal}
+          >
+            <CouponFormV2
+              contractReference={contractReference}
+              setIsOpen={setIsOpen}
+            />
+          </CustomOffCanvas>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export { ContractDataStar };

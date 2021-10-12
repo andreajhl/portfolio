@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { connect } from "react-redux";
-import { CelebritiesFilter } from "../celebrities-filter";
-import { CelebritiesOrderBy } from "../celebrities-order-by";
-
-import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
-import { restCountriesOperations } from "../../../state/ducks/rest-countries";
-import { countriesOperations } from "../../../state/ducks/countries";
 import { celebrityCategoriesOperations } from "../../../state/ducks/celebrity-categories";
 import { updateQueryParamsInitialState } from "../../../state/ducks/celebrities/reducers";
-import * as GTM from "../../../state/utils/gtm";
-import { queryStringToJSON } from "../../../state/utils/apiService";
-import { withRouter } from "react-app/src/components/common/routing";
+import { restCountriesOperations } from "../../../state/ducks/rest-countries";
+import { updateQueryParams } from "../../../state/ducks/celebrities/actions";
 import { useIntl, defineMessage, FormattedMessage } from "react-intl";
+import { withRouter } from "react-app/src/components/common/routing";
+import { countriesOperations } from "../../../state/ducks/countries";
+import { queryStringToJSON } from "../../../state/utils/apiService";
+import { CelebritiesOrderBy } from "../celebrities-order-by";
+import { CelebritiesFilter } from "../celebrities-filter";
+import React, { useState, useEffect, useMemo } from "react";
+import * as GTM from "../../../state/utils/gtm";
 import {
   CATEGORIES_TITLES_WITH_TRANSLATION_AVAILABLE,
   COUNTRY_CODE_WITH_TRANSLATIONS_AVAILABLE,
@@ -19,7 +17,7 @@ import {
   labelMessagesForCountryCodeFilter,
 } from "react-app/src/constants/messages";
 import removeParenthesis from "lib/utils/removeParenthesis";
-
+import { connect } from "react-redux";
 // LISTA DE ID CON TRADUCCIONES DISPONIBLE. CUALQUIER NUEVO ID QUE SE REGISTRE
 // EN EL BACKEND DEBE DE SER AGREGADO EN ESTA LISTA Y ADEMAS SU RESPECTIVA TRADUCCIÓN
 

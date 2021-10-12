@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ModalSelect } from "../modal-select";
-
 import * as GTM from "../../../state/utils/gtm";
 import getWindow from "../../../utils/getWindow";
 import { FormattedMessage } from "react-intl";
@@ -75,7 +74,6 @@ const CelebritiesFilter = ({
       onInputChange={addCheckedItem}
       onSearchChange={setSearchQuery}
       isChecked={(optionValue) => checkedItems.includes(String(optionValue))}
-      multipleSelection
     />
   );
 };

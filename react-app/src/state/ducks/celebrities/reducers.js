@@ -59,6 +59,8 @@ const fetchPublicContractsInitialState = {
   data: { results: [], informationPage: {} },
 };
 
+const fetchRankPriceCelebrities = null;
+
 const fetchFlashDeliveryCelebritiesInitialState = {
   loading: false,
   failed: false,
@@ -386,6 +388,18 @@ export const celebrityProfileVersionReducer = (
   { type, payload }
 ) => (type === types.SET_CELEBRITY_PROFILE_VERSION ? payload : state);
 
+export const rankPriceCelebrity = (
+  state = fetchRankPriceCelebrities,
+  { type, payload }
+) =>
+  type === types.RANK_PRICE_CELEBRITIES
+    ? payload.data.results.sort((a, b) => {
+        if (a.price < b.price) return -1;
+        if (a.price > b.price) return 1;
+        else return 0;
+      })
+    : state;
+
 export default combineReducers({
   queryParamsReducer,
   fetchCelebritiesReducer,
@@ -399,4 +413,5 @@ export default combineReducers({
   fetchCelebritiesSimilarResultsReducer,
   celebrityProfileVersionReducer,
   saveLastQueryParamsReducer,
+  rankPriceCelebrity,
 });

@@ -1,0 +1,38 @@
+.DLocalFormCardWrapper{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    h2{
+        font-size: 17px;
+        color:rgba(251, 23, 125, 1);
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    h6{
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    input{
+        width: 100%;
+        font-size: 14px;
+        border-radius: 7px;
+        border:1px solid rgba(196, 196, 196, 0.493);
+        margin-bottom: 15px;
+        padding-left: 5px;
+    }
+}
+.DLocalFormCard_Payment{
+    width: 100%;
+    margin-top: 15px;
+    &_div{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-bottom: 10px;
+    }
+}
+.InputElement1{
+    border-radius: 7px 0px 0px 7px !important;
+}
+.InputElement2{
+    border-radius: 0px 7px 7px 0px !important;
+}

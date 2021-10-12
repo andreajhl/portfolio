@@ -1,4 +1,5 @@
 export const getStateFromServer = (fromClient, fromServer) => {
+  console.log({ fromServer });
   return {
     ...fromClient,
     celebritySections: {
@@ -9,6 +10,9 @@ export const getStateFromServer = (fromClient, fromServer) => {
     landings: {
       ...fromClient.landings,
       fetchLandingsReducer: fromServer.landings.fetchLandingsReducer,
+    },
+    searchFilters: {
+      ...fromServer.searchFilters,
     },
     celebrities: {
       ...fromClient.celebrities,

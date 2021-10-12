@@ -1,4 +1,4 @@
-.StarRatingDisplay {
+.StarRatingDisplay_yellow {
   display: flex;
   padding: 10px 6px;
   background-color: rgba(255, 245, 202, 1);
@@ -6,4 +6,10 @@
   align-items: center;
   border-radius: 5px;
   height: 27px;
+}
+.StarRatingDisplay_pink {
+  display: flex;
+  width: auto;
+  align-items: center;
+  height: 30px;
 }
