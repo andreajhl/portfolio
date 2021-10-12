@@ -10,12 +10,11 @@ type rangeProps = {
 export const RangeGraphi = ({
   maxInputValue,
   minInputValue,
-  max,
   rankGraphi,
 }: rangeProps) => {
   return (
     <div className={styles.PriceRangeGraphi}>
-      {rankGraphi.map((e) => (
+      {rankGraphi.length && rankGraphi.map((e) => (
         <p
           className={styles.PriceRangeGraphiDiv}
           style={{

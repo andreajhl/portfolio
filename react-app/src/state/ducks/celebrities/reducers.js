@@ -59,7 +59,7 @@ const fetchPublicContractsInitialState = {
   data: { results: [], informationPage: {} },
 };
 
-const fetchRankPriceCelebrities = null;
+const fetchRankPriceCelebrities = [];
 
 const fetchFlashDeliveryCelebritiesInitialState = {
   loading: false,
@@ -78,7 +78,7 @@ const fetchCelebritySubscriptionPlansInitialState = {
 
 const previousPathInitialState = { pathname: ROOT_PATH };
 
-const celebrityProfileVersionInitialState = [];
+const celebrityProfileVersionInitialState = null;
 
 export function queryParamsReducer(
   state = updateQueryParamsInitialState,
