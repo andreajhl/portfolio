@@ -11,19 +11,23 @@ export const RangeGraphi = ({
   maxInputValue,
   minInputValue,
   rankGraphi,
+  max
 }: rangeProps) => {
+
+  var percentage=100/rankGraphi.length;
+
   return (
     <div className={styles.PriceRangeGraphi}>
-      {rankGraphi.length && rankGraphi.map((e) => (
+      {rankGraphi.length && rankGraphi.map((e,i) => (
         <p
           className={styles.PriceRangeGraphiDiv}
           style={{
             height: ` ${
-              e.percentage < 10 ? `${e.percentage * 5}px` : `${e.percentage}px`
+              e.percentage < 10 ? `${e.percentage * 8}px` : `${e.percentage}px`
             }`,
             backgroundColor: `${
-              e.price >= Number(minInputValue) &&
-              e.price <= Number(maxInputValue)
+             ( ( (percentage * i ) * max / 100) >= Number(minInputValue) &&
+             (( percentage * i ) * max / 100) <= Number(maxInputValue))
                 ? "#FB177D"
                 : "#C4C4C4"
             }`,

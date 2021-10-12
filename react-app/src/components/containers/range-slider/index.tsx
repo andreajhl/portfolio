@@ -2,8 +2,8 @@ import "rheostat/initialize";
 import Slider from "rheostat";
 import "rheostat/css/rheostat.css";
 import styles from "./styles.module.scss";
-import { IconButton } from "desktop-app/components/common/button/icon-button";
 import rangeSliderLog10Algorithm from "lib/utils/rangeSliderLog10Algorithm";
+import { IconButton } from "desktop-app/components/common/button/icon-button";
 
 type ValuesType = [number, number];
 
@@ -30,6 +30,7 @@ export type RangeSliderProps = {
 const RangeSliderBackground = (props) => {
   return <div className={styles.RangeSliderBackground} {...props} />;
 };
+
 const RangeSliderHandle = (props) => (
   <IconButton className={styles.RangeSliderHandle} {...props}>
     <svg
@@ -55,9 +56,10 @@ function RangeSlider({
   className = "",
   algorithm = rangeSliderLog10Algorithm,
   isTouched = true,
-  pitPoints,
+  pitPoints=[],
   ...props
 }: RangeSliderProps) {
+
   return (
     <div
       className={`${styles.RangeSlider} ${className} ${

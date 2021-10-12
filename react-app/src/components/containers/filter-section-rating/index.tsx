@@ -21,7 +21,7 @@ export const FilterSectionRatings = ({
 }: filterCountriesProps) => {
   const intl = useIntl();
 
-  const [starChecked, setStarChecked] = useState(0);
+  const [starChecked, setStarChecked] = useState(4);
 
   const onChangeRating = (value) => {
     setStarChecked(value);

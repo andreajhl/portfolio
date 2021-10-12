@@ -9,7 +9,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { rangeSliderLogLinear } from "lib/utils/rangeSliderLogLinear.js";
 import usePriceConverter from "lib/hooks/usePriceConverter";
 import { useSelector, useDispatch  } from "react-redux";
-import { rankValueGraphi } from "lib/utils/rankGraphi";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles.module.scss";
 import debounce from "lodash.debounce";
@@ -37,8 +36,8 @@ function PriceRangeSlider({
   var rankGraphi = useSelector(rankPriceState);
   const currentCurrencyRef = useRef<string>();
   const [rank, setRank] = useState(rankGraphi);
-  const [minInputValue, setMinInputValue] = useState("");
-  const [maxInputValue, setMaxInputValue] = useState("");
+  const [minInputValue, setMinInputValue] = useState(String(low));
+  const [maxInputValue, setMaxInputValue] = useState(String(high));
   const debouncedOnChange = useMemo(() => debounce(onChange, 500), []);
   const { getExchangePrice, getOriginalPrice, currency } = usePriceConverter();
 
@@ -68,14 +67,15 @@ function PriceRangeSlider({
   }, [currency, updateInputValues]);
 
   useEffect(() => {
-    let rank = rankValueGraphi(rankGraphi);
-    rank = rank.map((e) => ({
+   let rank = rankGraphi.map((e) => ({
       price: getExchangePrice(e.price),
       percentage: e.percentage,
     }));
+
+    if(rank[rank.length-1]?.price < maxInputValue){
+      rank=[...rank,{price:maxInputValue,percentage:0}]
+    }
     setRank(rank);
-    setMinInputValue(String(rank[0].price));
-    setMaxInputValue(String(rank[rank.length - 1].price));
   }, [rankGraphi, getExchangePrice]);
 
   function onClickAfterChangeIsTouched() {
