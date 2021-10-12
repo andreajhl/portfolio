@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import styles from "./styles.module.scss";
-import { PriceRangeSlider } from "../price-range-slider";
+import { PriceRangeSlider as DesktopPriceRangeSlider } from "../price-range-slider";
 import { useEffect, useState } from "react";
 import {
   updateSearchFilters,
@@ -14,6 +14,7 @@ import { RootState } from "react-app/src/state/store";
 import { FormattedMessage } from "react-intl";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
+import { PriceRangeSlider as MobilePriceRangeSlider } from "react-app/src/components/containers/filter-range-slider";
 
 const mapStateToProps = ({ searchFilters }: RootState) => {
   return {
@@ -82,6 +83,10 @@ function SearchFilters({
     resetSearchFilters();
     setPriceRangeValues(priceRangeSliderInitialValues);
   }
+
+  const PriceRangeSlider = isDesktop
+    ? DesktopPriceRangeSlider
+    : MobilePriceRangeSlider;
 
   return (
     <div className={styles.SearchFilters}>
