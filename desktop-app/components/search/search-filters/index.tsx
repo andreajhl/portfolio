@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { connect} from "react-redux";
 import styles from "./styles.module.scss";
 import { PriceRangeSlider as DesktopPriceRangeSlider } from "../price-range-slider";
 import { useEffect, useState } from "react";
@@ -15,10 +15,11 @@ import { FormattedMessage } from "react-intl";
 import Maybe from "desktop-app/components/common/helpers/maybe";
 import { useIsOnMobileScreen } from "lib/is-on-mobile-screen";
 import { PriceRangeSlider as MobilePriceRangeSlider } from "react-app/src/components/containers/filter-range-slider";
+import usePriceConverter from "lib/hooks/usePriceConverter";
 
-const mapStateToProps = ({ searchFilters }: RootState) => {
+const mapStateToProps = ({ searchFilters}: RootState) => {
   return {
-    searchFilters,
+    searchFilters
   };
 };
 
@@ -40,10 +41,12 @@ const priceRangeSliderInitialValues = [defaultMinPrice, defaultMaxPrice];
 function SearchFilters({
   updateSearchFilters,
   resetSearchFilters,
-  searchFilters,
+  searchFilters
 }: SearchFiltersProps) {
+  const { getExchangePrice } = usePriceConverter();
   const isDesktop = !useIsOnMobileScreen();
   const [priceRangeValues, setPriceRangeValues] = useState(
+    searchFilters.min_price? [getExchangePrice(searchFilters.min_price), getExchangePrice(searchFilters.max_price)] :
     priceRangeSliderInitialValues
   );
   const [priceRangeIsTouched, setPriceRangeIsTouched] = useState(false);

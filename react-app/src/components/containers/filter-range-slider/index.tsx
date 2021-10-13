@@ -19,6 +19,7 @@ type PriceRangeSliderProps = {
 } & Omit<RangeSliderProps, "algorithm" | "isTouched">;
 
 const rankPriceState = ({ celebrities }) => celebrities.rankPriceCelebrity;
+const filter = (state) => state.searchFiltersMemory
 
 function PriceRangeSlider({
   min = 0,
@@ -33,10 +34,11 @@ function PriceRangeSlider({
   
   const [low, high] = values;
   const dispatch= useDispatch();
+  const filters= useSelector(filter)
   var rankGraphi = useSelector(rankPriceState);
   const currentCurrencyRef = useRef<string>();
   const [rank, setRank] = useState(rankGraphi);
-  const [minInputValue, setMinInputValue] = useState(String(low));
+  const [minInputValue, setMinInputValue] = useState((String(low)));
   const [maxInputValue, setMaxInputValue] = useState(String(high));
   const debouncedOnChange = useMemo(() => debounce(onChange, 500), []);
   const { getExchangePrice, getOriginalPrice, currency } = usePriceConverter();
@@ -59,6 +61,7 @@ function PriceRangeSlider({
     if(rankGraphi.length===0){
       dispatch(rankPriceCelebrity());
     }
+    console.log('p')
   }, [])
 
   useEffect(() => {
@@ -114,6 +117,7 @@ function PriceRangeSlider({
     if (String(high) === maxInputValue) return;
     setMaxInputValue(String(getExchangePrice(high)));
   }
+  console.log(minInputValue,maxInputValue, filters)
   return (
     <div className={styles.PriceRangeSlider}>
       <RangeGraphi
