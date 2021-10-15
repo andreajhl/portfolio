@@ -1,8 +1,9 @@
 import {IoLogoJavascript, IoLogoCss3,IoLogoHtml5, IoLogoSass,IoLogoReact} from 'react-icons/io5'
-import { SiRedux, SiNodeDotJs,SiPostgresql} from "react-icons/si";
+import { SiRedux, SiNodeDotJs,SiPostgresql,SiTypescript} from "react-icons/si";
 import {DiMongodb} from "react-icons/di"
 
 import Img from '../../img/ex.png'
+import next from '../../img/next.png'
 
 import '../../styles/skill.scss';
 
@@ -28,9 +29,17 @@ export default function Skill (){
                     <p className='skp'>Javascript</p>
                 </div>
                 <div className='icon'>
+                    <SiTypescript className='ii'/>
+                    <p className='skp'>Typescript</p>
+                </div>
+                <div className='icon'>
                     <IoLogoReact className='ii'/>
                     <p className='skp'>React</p>
                 </div>
+                <div className='icon' style={{alignItems:'center'}}>
+                    <img src={next} style={{height:'50%', width:'50%',margin:'10%'}} alt='icono expressJS'/>
+                    <p className='skp'>NextJS</p>
+                </div> 
                 <div className='icon'>
                     <SiRedux className='ii'/>
                     <p className='skp'>Redux</p>
