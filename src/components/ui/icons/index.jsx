@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import { FaNodeJs } from 'react-icons/fa';
 import {
   IoLogoHtml5,
 } from 'react-icons/io';
@@ -15,9 +16,8 @@ import {
   SiGmail,
   SiReactquery,
   SiFastify,
-  SiNewrelic
+  SiNewrelic,
 } from 'react-icons/si';
-import { FaNodeJs } from "react-icons/fa";
 
 const technologies = [
   <SiJavascript />,
@@ -31,7 +31,7 @@ const technologies = [
   <SiJest />,
   <FaNodeJs />,
   <SiFastify />,
-  <SiNewrelic />
+  <SiNewrelic />,
 ];
 
 export {

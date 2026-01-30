@@ -37,7 +37,7 @@ const wordings = {
       'Jest',
       'NodeJS',
       'Fastify',
-      'New Relic'
+      'New Relic',
     ],
   },
   projects: {
