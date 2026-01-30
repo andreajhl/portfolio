@@ -43,6 +43,7 @@
 .skill-title {
   @include text(1rem);
   color: white;
+  text-align: center;
 }
 
 @include tablet {

@@ -2,10 +2,9 @@ const wordings = {
   about: {
     title: 'Acerca de mí',
     profession: 'Front End Developer',
-    content:  `con más de 3 años y medio de experiencia creando interfaces interactivas y atractivas, disfruto trabajar en equipos dinámicos y multidisciplinarios, aportando soluciones innovadoras y colaborativas. 
-    \nMe destaco por convertir diseños creativos en código limpio y eficiente utilizando HTML, CSS y JavaScript, además de frameworks como React y Next.js.
-    \nCuento con experiencia en la integración de APIs y en la optimización de rendimiento de sitios web. Actualmente, me encuentro en búsqueda de una nueva posición laboral donde pueda contribuir con mi conocimiento y continuar creciendo profesionalmente.
-    `,
+    content:   `con más de 4 años y medio de experiencia creando interfaces interactivas y atractivas. Disfruto trabajar en equipos dinámicos y multidisciplinarios, involucrándome activamente en la comprensión del negocio para proponer soluciones alineadas a los objetivos del producto.
+                  \nMe destaco por convertir diseños creativos en código limpio y eficiente utilizando HTML, CSS y TypeScript, así como frameworks como React y Next.js.
+                  \nCuento con experiencia en la integración de APIs, optimización de rendimiento y mejora de la experiencia de usuario en aplicaciones web. Actualmente, me encuentro en búsqueda de una nueva posición laboral donde pueda aportar valor desde lo técnico y lo funcional, y continuar creciendo profesionalmente.`,
     options: {
       contact: 'Contactame',
       projects: 'Ver proyectos',
@@ -31,10 +30,14 @@ const wordings = {
       'TypeScript',
       'React',
       'NextJs',
+      'TanStack Query',
       'HTML',
       'Sass',
-      'Tailwind',
+      'Material UI',
       'Jest',
+      'NodeJS',
+      'Fastify',
+      'New Relic'
     ],
   },
   projects: {
@@ -42,6 +45,15 @@ const wordings = {
     learnMore: 'Leer más',
     stackLabel: 'Tecnologías:',
     projects: {
+      itti: {
+        job: 'Itti Digital - Ueno Bank',
+        position: 'Sr Front End Developer',
+        date: 'mar. 2025 - actualmente',
+        subtitle: 'Grupo Financiero',
+        stackTechnology: 'NextJs, TypeScript, TanStack, Material UI, Fastify, Nodejs.',
+        description: `Desarrollé y mantuve flujos de onboarding digital para empresas del sector financiero, enfocándome en performance, observabilidad y experiencia de usuario.
+        \nImplementé dashboards de métricas y manejo de logs con New Relic para el monitoreo de la aplicación productiva, y participé en la creación de un Design System escalable para estandarizar componentes y acelerar el desarrollo entre equipos.`,
+      },
       adGoat: {
         job: 'AdGoat',
         position: 'Ssr Front End Developer',
@@ -71,7 +83,7 @@ const wordings = {
   },
   contact: {
     title: '¿Buscas talento en Front End?',
-    content: 'Con más de 3 años de experiencia creando soluciones interactivas y escalables, estoy lista para un nuevo desafío donde pueda aportar mis habilidades y seguir creciendo profesionalmente.\n\nSi buscas talento comprometido, ¡déjame un mensaje y conectemos!',
+    content: 'Con más de 4 años de experiencia creando soluciones interactivas y escalables, estoy lista para un nuevo desafío donde pueda aportar mis habilidades y seguir creciendo profesionalmente.\n\nSi buscas talento comprometido, ¡déjame un mensaje y conectemos!',
     form: {
       name: 'Nombre',
       email: 'Email',

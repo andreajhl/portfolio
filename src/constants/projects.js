@@ -11,4 +11,8 @@ export const projectImages = {
     url: '/assets/img/adGoat/app.png',
     alt: 'banner offers platform "365 ofertas" and "tus prestámos top"',
   },
+  itti: {
+    url: '/assets/img/itti/app.png',
+    alt: 'banner Itti Digital - Ueno Bank',
+  },
 };

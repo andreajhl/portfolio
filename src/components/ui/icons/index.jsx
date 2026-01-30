@@ -10,20 +10,28 @@ import {
   SiGithub,
   SiSass,
   SiRedux,
-  SiTailwindcss,
+  SiMui,
   SiLinkedin,
   SiGmail,
+  SiReactquery,
+  SiFastify,
+  SiNewrelic
 } from 'react-icons/si';
+import { FaNodeJs } from "react-icons/fa";
 
 const technologies = [
   <SiJavascript />,
   <SiTypescript />,
   <SiReact />,
   <SiRedux />,
+  <SiReactquery />,
   <IoLogoHtml5 />,
   <SiSass />,
-  <SiTailwindcss />,
+  <SiMui />,
   <SiJest />,
+  <FaNodeJs />,
+  <SiFastify />,
+  <SiNewrelic />
 ];
 
 export {
