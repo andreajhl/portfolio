@@ -23,7 +23,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Andrea Hernandez | Front End Developer',
-    description: 'Descubre mi trayectoria como Front End Developer: más de 3 años desarrollando interfaces web modernas y optimizadas con React y Next.js.',
+    description: 'Descubre mi trayectoria como Front End Developer: más de 4 años desarrollando interfaces web modernas y optimizadas con React y Next.js.',
     url: 'https://andrea-hernandez-dev.vercel.app',
     type: 'website',
     images: [
