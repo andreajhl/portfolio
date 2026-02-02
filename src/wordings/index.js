@@ -57,7 +57,7 @@ const wordings = {
       adGoat: {
         job: 'AdGoat',
         position: 'Ssr Front End Developer',
-        date: 'abr. 2024 - actualmente',
+        date: 'abr. 2024 - mar. 2025',
         subtitle: 'Ad Tech',
         stackTechnology: 'NextJs, TypeScript, Tailwind, Nodejs.',
         description: `Ofertas365: Desarrollé una plataforma de catálogos integrada con anuncios de Google Ads y AdSense, implementando estrategias de SEO y mejoras en tiempos de carga para optimizar el rendimiento de la web.\n
